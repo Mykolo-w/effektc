@@ -13,11 +13,13 @@
         /* ======================================================= */
         
         :root {
+            /* Final definierte Brand-Farben */
             --charcoal: #2C3E42;
-            --green: #6BCB77;
-            --teal: #00A896;
-            --amber: #FFC107;
+            --green: #6BCB77;  /* Highlighter Green */
+            --teal: #00A896;   /* Deep Teal */
+            --amber: #FFC107;  /* Warm Amber */
             --white: #FFFFFF;
+            --mobile-padding: 20px; /* Konsistenter Rand */
         }
 
         body {
@@ -31,16 +33,26 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            justify-content: center;
+            justify-content: center; /* Zentriert den Hauptinhalt */
         }
         
+        /* Container für konsistente Ränder */
+        .container {
+            width: 100%;
+            max-width: 700px; /* Max-Breite für Desktop */
+            padding: 0 var(--mobile-padding); /* Hält den 20px Abstand links/rechts */
+            box-sizing: border-box; 
+            margin: 0 auto;
+            /* Sorgt dafür, dass der Container den Großteil des Bildschirms ausfüllt, wenn genug Platz ist */
+        }
+
         /* ======================================================= */
-        /* II. HERO & LOGO (ohne Beta Status Block) */
+        /* II. HERO & LOGO */
         /* ======================================================= */
         
         .header {
-            padding: 20px;
-            max-width: 800px;
+            padding: 20px 0; /* Horizontal Padding wird durch .container gesetzt */
+            width: 100%;
         }
         .logo {
             width: 90px;
@@ -62,17 +74,26 @@
             margin: 0 0 40px 0;
             letter-spacing: 1px;
         }
+        .beta-status {
+            color: var(--white);
+            background-color: var(--teal);
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
         
         /* ======================================================= */
-        /* III. USP-TEXT & TABELLE */
+        /* III. USP-TABELLE STYLES */
         /* ======================================================= */
 
         .usp-analysis {
-            padding: 20px 20px 0;
+            padding: 20px 0 0;
             width: 100%;
-            max-width: 700px;
+            /* Muss hier das padding 0 haben, da es schon im .container ist */
         }
-        /* Neuer Intro-Text Style */
         .intro-text {
             color: var(--white);
             font-size: 1rem;
@@ -80,7 +101,6 @@
             margin: 0 auto 40px;
             line-height: 1.5;
         }
-        
         .usp-table {
             width: 100%;
             border-collapse: collapse;
@@ -92,7 +112,7 @@
             border-bottom: 1px solid #3b5055; 
         }
         .usp-table th {
-            color: var(--green); /* Feature-Titel in Green */
+            color: var(--green);
             font-size: 1rem;
             width: 35%; 
             vertical-align: top;
@@ -105,13 +125,19 @@
         .usp-table tr:last-child td {
             border-bottom: none;
         }
+        .usp-label { 
+            display: inline-block;
+            margin-right: 8px;
+            font-weight: 700;
+            color: var(--teal); 
+        }
 
         /* ======================================================= */
         /* IV. CTA & IMPRESSUM STYLES */
         /* ======================================================= */
 
         .cta-section {
-            padding: 20px 20px 50px;
+            padding: 20px 0 50px;
             width: 100%;
         }
         .cta-description {
@@ -153,59 +179,63 @@
         .password-form button:hover {
             background-color: #5cb86b;
         }
-
     </style>
 </head>
 <body>
     
-    <header class="header">
-        <img src="/assets/logo.png" alt="effekt:C Logo" class="logo">
-        <h1>effekt:C</h1>
-        <p class="slogan">Dein High. Dein Profil. Deine Kontrolle.</p>
-    </header>
-
-    <section class="usp-analysis">
-        <p class="intro-text">
-            Jede Erfahrung ist persönlich. Darum muss auch das persönlich beste Cannabis für dich gefunden werden. effekt:C liefert dir die dafür notwendige, präzise Selbstanalyse.
-        </p>
+    <div class="container"> 
         
-        <table class="usp-table">
-            <tbody>
-                <tr>
-                    <th>EFFEKT-PROFIL</th>
-                    <td>5 positive und 5 negative Effekte ergeben dein persönliches Profil und zeigen dir, für welchen Zweck du gerade konsumierst.</td>
-                </tr>
-                <tr>
-                    <th>DATEN-KONTROLLE</th>
-                    <td>Deine Logs sind immer privat. Keine Cloud, kein Login-Zwang, keine Datenverkäufe.</td>
-                </tr>
-                <tr>
-                    <th>QUICK-LOG</th>
-                    <td>In zehn Sekunden ist deine Erfahrung eingeloggt und kann 48 Stunden lang bearbeitet werden.</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+        <header class="header">
+            <img src="/assets/logo.png" alt="effekt:C Logo" class="logo">
+            <h1>effekt:C</h1>
+            <p class="slogan">Dein High. Dein Profil. Deine Kontrolle.</p>
+            <span class="beta-status">⚠️ Closed Beta – Jetzt testen!</span>
+        </header>
 
-    <div class="cta-section">
-        <p class="cta-description">Die Closed Beta ist passwortgeschützt. Bitte gib das Tester-Passwort ein:</p>
-        
-        <form onsubmit="checkPassword(event)" class="password-form">
-            <input type="password" id="passwordInput" placeholder="Tester-Passwort" required 
-                   style="padding: 10px; border-radius: 5px; border: 1px solid var(--teal); background-color: #3b5055; color: var(--white); margin-bottom: 15px;">
+        <section class="usp-analysis">
+            <p class="intro-text">
+                Jede Erfahrung ist persönlich. Darum muss auch das persönlich beste Cannabis für dich gefunden werden. effekt:C liefert dir die dafür notwendige, präzise Selbstanalyse.
+            </p>
             
-            <button type="submit" style="background-color: var(--green); color: var(--charcoal); padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: 700;">
-                Download freischalten
-            </button>
-        </form>
+            <table class="usp-table">
+                <tbody>
+                    <tr>
+                        <th>EFFEKT-PROFIL</th>
+                        <td>5 positive und 5 negative Effekte ergeben dein persönliches Profil und zeigen dir, für welchen Zweck du gerade konsumierst.</td>
+                    </tr>
+                    <tr>
+                        <th>DATEN-KONTROLLE</th>
+                        <td>Deine Logs sind immer privat. Keine Cloud, kein Login-Zwang, keine Datenverkäufe.</td>
+                    </tr>
+                    <tr>
+                        <th>QUICK-LOG</th>
+                        <td>In zehn Sekunden ist deine Erfahrung eingeloggt und kann 48 Stunden lang bearbeitet werden.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-        <p id="message" style="color: var(--amber); margin-top: 10px;"></p>
+        <div class="cta-section">
+            <p class="cta-description">Die Closed Beta ist passwortgeschützt. Bitte gib das Tester-Passwort ein:</p>
+            
+            <form onsubmit="checkPassword(event)" class="password-form">
+                <input type="password" id="passwordInput" placeholder="Tester-Passwort" required 
+                       style="padding: 10px; border-radius: 5px; border: 1px solid var(--teal); background-color: #3b5055; color: var(--white); margin-bottom: 15px;">
+                
+                <button type="submit" style="background-color: var(--green); color: var(--charcoal); padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: 700;">
+                    Download freischalten
+                </button>
+            </form>
+
+            <p id="message" style="color: var(--amber); margin-top: 10px;"></p>
+            
+            <p class="warning-note">Hinweis: Die Installation erfordert die Freigabe für Apps aus unbekannter Quelle.</p>
+        </div>
         
-        <p class="warning-note">Hinweis: Die Installation erfordert die Freigabe für Apps aus unbekannter Quelle.</p>
-    </div>
-
-    <footer>
+    </div> <footer>
         <div class="legal-box">
+            <strong>Impressum (Angaben gem. § 5 TMG):</strong>
+            <p>Michael Wurmlinger | St. Andrä Str. 8a | 82398 Polling</p>
             <p>
                 <a href="impressum.html">Impressum</a> | 
                 <a href="#datenschutz">Datenschutzerklärung</a> | 
@@ -215,17 +245,19 @@
     </footer>
     
     <script>
-        const CORRECT_PASSWORD = "effekt"; // <<< HIER IHR GEWÜNSCHTES PASSWORT EINSTELLEN
+        const CORRECT_PASSWORD = "effekt"; // <<< BITTE HIER IHR GEWÜNSCHTES PASSWORT EINSTELLEN!
 
         function checkPassword(event) {
             event.preventDefault(); 
             const input = document.getElementById('passwordInput').value;
             const message = document.getElementById('message');
 
+            const VERCEL_URL = 'download.html'; // Die Seite, die den G-Drive Link enthält
+
             if (input === CORRECT_PASSWORD) {
                 message.style.color = 'var(--green)';
                 message.innerText = "Zugang erfolgreich! Du wirst weitergeleitet...";
-                window.location.href = 'download.html'; 
+                window.location.href = VERCEL_URL; 
             } else {
                 message.innerText = "Falsches Passwort. Zugang verweigert.";
                 message.style.color = 'var(--amber)';
