@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Effekt:C | Dein High. Dein Profil. Deine Kontrolle.</title>
+    <title>effekt:C - Beta Test | Dein High. Dein Profil. Deine Kontrolle.</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Definierte CI-Farben */
+        /* ======================================================= */
+        /* I. CI-FARBEN UND GLOBALE STYLES */
+        /* ======================================================= */
+        
         :root {
             --charcoal: #2C3E42;
-            --green: #6BCB77;
-            --teal: #00A896;
+            --green: #6BCB77; 
+            --teal: #00A896;   
             --white: #FFFFFF;
         }
 
-        /* Globale Styles und Dark Mode Setup */
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--charcoal);
@@ -27,29 +31,73 @@
             align-items: center;
             min-height: 100vh;
         }
+        
+        /* Überschriften-Klarheit */
+        h2 {
+            font-size: 1.8rem;
+            color: var(--teal);
+            margin-top: 0;
+        }
 
-        /* Header und Slogans */
+        /* ======================================================= */
+        /* II. HERO & LOGO (Beta-Fokus) */
+        /* ======================================================= */
+        
         .header {
-            padding: 40px 20px 20px;
+            padding: 50px 20px 20px;
             max-width: 800px;
         }
+
+        /* Logo-Darstellung (Stilisierte Kreise) */
+        .logo-container {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background-color: var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--green); /* Äußere Linie in CI-Farbe */
+        }
+        .logo-inner-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--green);
+        }
+        
         .header h1 {
             color: var(--white);
             font-size: 1.2rem;
-            font-weight: 400;
+            font-weight: 700;
             margin-bottom: 5px;
         }
         .slogan {
-            font-size: 2.5rem;
+            font-size: 2.2rem; /* Etwas kleiner für den Beta-Start */
             font-weight: 700;
             color: var(--green);
             margin: 0;
-            line-height: 1.1;
+            line-height: 1.2;
+        }
+        .beta-status {
+            color: var(--white);
+            background-color: var(--teal);
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: 700;
+            margin-top: 20px;
+            font-size: 0.9rem;
         }
 
-        /* CTA Sektion */
+        /* ======================================================= */
+        /* III. CTA & DOWNLOAD (G-Drive) */
+        /* ======================================================= */
+
         .cta-section {
             padding: 30px 20px 50px;
+            width: 100%;
         }
         .cta-button {
             display: inline-block;
@@ -60,56 +108,116 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: 700;
+            font-size: 1.1rem;
             transition: background-color 0.3s;
         }
-        .cta-button:hover {
-            background-color: #5cb86b; /* Leichterer Grünton */
-        }
-        .price-note {
-            font-size: 0.9rem;
-            color: var(--teal);
+        .cta-description {
+            font-size: 1rem;
+            color: var(--white);
             margin-top: 15px;
         }
-
-        /* Placeholder für das Diagramm */
-        .diagram-placeholder {
-            width: 90%;
-            max-width: 450px;
-            aspect-ratio: 1 / 1;
-            background-color: #3b5055; /* Dunklerer Teal/Grau-Ton */
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid var(--teal);
-            margin-top: 20px;
+        .warning-note {
+            font-size: 0.8rem;
+            color: var(--amber); /* Nutzt die Amber-Farbe als Hinweis */
+            margin-top: 10px;
         }
-        .diagram-placeholder h3 {
+
+        /* ======================================================= */
+        /* IV. VERTRAUEN & FUSSZEILE */
+        /* ======================================================= */
+        
+        .trust-section {
+            padding: 50px 20px;
+            background-color: #3b5055; 
+            width: 100%;
+        }
+        .promise-container {
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: center;
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .promise-item {
+            flex-basis: 300px; 
+            text-align: center;
+            padding: 20px;
+        }
+        .promise-item .icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .promise-item h3 {
+            color: var(--green);
+            font-size: 1.2rem;
+            margin: 5px 0 10px;
+        }
+
+        /* Footer Styles */
+        footer {
+            width: 100%;
+            padding: 20px 0;
+            background-color: #243034; 
+            color: var(--mediumGray);
+            font-size: 0.8rem;
+            margin-top: auto; 
+        }
+        footer a {
             color: var(--teal);
-            font-family: 'Roboto Mono', monospace;
-            font-size: 1.1rem;
+            text-decoration: none;
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
 
     <header class="header">
-        <h1>Effekt:C | Dein Persönlicher Cannabis-Kompass</h1>
+        <div class="logo-container">
+            <div class="logo-inner-circle"></div>
+        </div>
         <p class="slogan">Dein High. Dein Profil. Deine Kontrolle.</p>
+        <span class="beta-status">⚠️ Closed Beta – Jetzt testen!</span>
     </header>
 
-    <div class="diagram-placeholder">
-        <h3>[Interaktive Effekt-Profil Grafik hier]</h3>
-    </div>
-
     <div class="cta-section">
-        <p class="price-note">Präzision statt Rätselraten. Einmalig 2,99 €.</p>
-        <a href="#appstore-link" class="cta-button">App Store</a>
-        <a href="#playstore-link" class="cta-button">Google Play</a>
+        <p class="cta-description">Die App befindet sich im aktiven Bau. Wir suchen engagierte Tester, um den **Effekt-Profil-Standard** zu validieren.</p>
+        <a href="https://drive.google.com/drive/folders/11_rDlZtGn2Q1BajLb-4CZnlxw9EFIGqg?usp=drive_link" 
+           class="cta-button" target="_blank">
+            ➡️ Beta-APK jetzt herunterladen
+        </a>
+        <p class="warning-note">Hinweis: Die Installation erfordert die Freigabe für Apps aus unbekannter Quelle.</p>
     </div>
+    
+    <section class="trust-section">
+        <h2>Deine Daten. Dein Gerät. Deine Regeln.</h2>
+        <div class="promise-container">
+            <div class="promise-item">
+                <span class="icon">🔒</span>
+                <h3>100% Lokal & Anonym</h3>
+                <p>Deine Log-Einträge bleiben verschlüsselt auf deinem Smartphone. Wir erstellen keine Nutzerkonten und speichern keine persönlichen IDs.</p>
+            </div>
+            <div class="promise-item">
+                <span class="icon">📈</span>
+                <h3>Für den Standard</h3>
+                <p>Wir bitten dich, deine anonymen Profile zur Erforschung des Effekt-Profil-Standards beizutragen. Diese Daten sind irreversibel generalisiert.</p>
+            </div>
+            <div class="promise-item">
+                <span class="icon">🛡️</span>
+                <h3>Kostenlos testen</h3>
+                <p>Die Beta ist kostenlos. Hilf uns, die Funktionalität zu prüfen, bevor die App offiziell in die Stores kommt.</p>
+            </div>
+        </div>
+    </section>
 
-    <section class="features">
-        </section>
+    <footer>
+        <p>
+            <a href="#impressum">Impressum</a> | 
+            <a href="#datenschutz">Datenschutzerklärung</a> | 
+            <a href="#agb">AGB & Widerrufsbelehrung</a>
+        </p>
+    </footer>
 
 </body>
 </html>
