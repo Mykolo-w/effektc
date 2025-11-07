@@ -13,7 +13,6 @@
         /* ======================================================= */
         
         :root {
-            /* Final definierte Brand-Farben */
             --charcoal: #2C3E42;
             --green: #6BCB77;
             --teal: #00A896;
@@ -36,7 +35,7 @@
             justify-content: center; 
         }
         
-        /* Container für konsistente Ränder */
+        /* Container für konsistente Ränder (Padding) */
         .container {
             width: 100%;
             max-width: 700px;
@@ -46,7 +45,7 @@
         }
 
         /* ======================================================= */
-        /* II. HERO & LOGO (KEIN STATUS-BANNER!) */
+        /* II. HERO & LOGO (KEIN STATUS-BANNER) */
         /* ======================================================= */
         
         .header {
@@ -73,7 +72,6 @@
             margin: 0 0 40px 0;
             letter-spacing: 1px;
         }
-        /* .beta-status und zugehörige Styles sind entfernt */
         
         /* ======================================================= */
         /* III. USP-TABELLE STYLES (KEINE BUNTE ICONS) */
@@ -114,7 +112,6 @@
         .usp-table tr:last-child td {
             border-bottom: none;
         }
-        /* Alle Icon-Styles entfernt. Reine Text-Labels bleiben. */
 
         /* ======================================================= */
         /* IV. CTA & IMPRESSUM STYLES */
@@ -123,6 +120,11 @@
         .cta-section {
             padding: 20px 0 50px;
             width: 100%;
+        }
+        .cta-description {
+            font-size: 1rem;
+            color: var(--white);
+            margin-bottom: 10px;
         }
         .warning-note {
             font-size: 0.8rem;
@@ -165,7 +167,7 @@
             <img src="/assets/logo.png" alt="effekt:C Logo" class="logo">
             <h1>effekt:C</h1>
             <p class="slogan">Dein High. Dein Profil. Deine Kontrolle.</p>
-            </header>
+        </header>
 
         <section class="usp-analysis">
             <p class="intro-text">
@@ -209,8 +211,6 @@
         
     </div> <footer>
         <div class="legal-box">
-            <strong>Impressum (Angaben gem. § 5 TMG):</strong>
-            <p>Michael Wurmlinger | St. Andrä Str. 8a | 82398 Polling</p>
             <p>
                 <a href="impressum.html">Impressum</a> | 
                 <a href="#datenschutz">Datenschutzerklärung</a> | 
