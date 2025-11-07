@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effekt:C | Dein High. Dein Profil. Deine Kontrolle.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Definierte CI-Farben */
+        :root {
+            --charcoal: #2C3E42;
+            --green: #6BCB77;
+            --teal: #00A896;
+            --white: #FFFFFF;
+        }
+
+        /* Globale Styles und Dark Mode Setup */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--charcoal);
+            color: var(--white);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Header und Slogans */
+        .header {
+            padding: 40px 20px 20px;
+            max-width: 800px;
+        }
+        .header h1 {
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+        .slogan {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--green);
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        /* CTA Sektion */
+        .cta-section {
+            padding: 30px 20px 50px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--green);
+            color: var(--charcoal);
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #5cb86b; /* Leichterer Grünton */
+        }
+        .price-note {
+            font-size: 0.9rem;
+            color: var(--teal);
+            margin-top: 15px;
+        }
+
+        /* Placeholder für das Diagramm */
+        .diagram-placeholder {
+            width: 90%;
+            max-width: 450px;
+            aspect-ratio: 1 / 1;
+            background-color: #3b5055; /* Dunklerer Teal/Grau-Ton */
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--teal);
+            margin-top: 20px;
+        }
+        .diagram-placeholder h3 {
+            color: var(--teal);
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Effekt:C | Dein Persönlicher Cannabis-Kompass</h1>
+        <p class="slogan">Dein High. Dein Profil. Deine Kontrolle.</p>
+    </header>
+
+    <div class="diagram-placeholder">
+        <h3>[Interaktive Effekt-Profil Grafik hier]</h3>
+    </div>
+
+    <div class="cta-section">
+        <p class="price-note">Präzision statt Rätselraten. Einmalig 2,99 €.</p>
+        <a href="#appstore-link" class="cta-button">App Store</a>
+        <a href="#playstore-link" class="cta-button">Google Play</a>
+    </div>
+
+    <section class="features">
+        </section>
+
+</body>
+</html>
