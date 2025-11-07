@@ -14,9 +14,9 @@
         
         :root {
             --charcoal: #2C3E42;
-            --green: #6BCB77;  /* Highlighter Green */
-            --teal: #00A896;   /* Deep Teal */
-            --amber: #FFC107;  /* Warm Amber */
+            --green: #6BCB77;
+            --teal: #00A896;
+            --amber: #FFC107;
             --white: #FFFFFF;
         }
 
@@ -31,11 +31,11 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            justify-content: center; /* Zentriert den Hauptinhalt */
+            justify-content: center;
         }
         
         /* ======================================================= */
-        /* II. HERO & LOGO */
+        /* II. HERO & LOGO (ohne Beta Status Block) */
         /* ======================================================= */
         
         .header {
@@ -62,19 +62,9 @@
             margin: 0 0 40px 0;
             letter-spacing: 1px;
         }
-        .beta-status {
-            color: var(--white);
-            background-color: var(--teal);
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
         
         /* ======================================================= */
-        /* III. USP-TABELLE STYLES */
+        /* III. USP-TEXT & TABELLE */
         /* ======================================================= */
 
         .usp-analysis {
@@ -82,12 +72,15 @@
             width: 100%;
             max-width: 700px;
         }
-        .usp-analysis h2 {
-            color: var(--teal);
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            font-weight: 400; 
+        /* Neuer Intro-Text Style */
+        .intro-text {
+            color: var(--white);
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 0 auto 40px;
+            line-height: 1.5;
         }
+        
         .usp-table {
             width: 100%;
             border-collapse: collapse;
@@ -99,7 +92,7 @@
             border-bottom: 1px solid #3b5055; 
         }
         .usp-table th {
-            color: var(--green);
+            color: var(--green); /* Feature-Titel in Green */
             font-size: 1rem;
             width: 35%; 
             vertical-align: top;
@@ -111,12 +104,6 @@
         }
         .usp-table tr:last-child td {
             border-bottom: none;
-        }
-        .usp-label { 
-            display: inline-block;
-            margin-right: 8px;
-            font-weight: 700;
-            color: var(--teal); 
         }
 
         /* ======================================================= */
@@ -153,9 +140,6 @@
             text-align: center;
             line-height: 1.6;
         }
-        .legal-box strong {
-             color: var(--teal);
-        }
         .legal-box a {
             color: var(--teal);
             text-decoration: none;
@@ -167,7 +151,7 @@
             transition: background-color 0.3s;
         }
         .password-form button:hover {
-            background-color: #5cb86b; /* Leichter Grünton */
+            background-color: #5cb86b;
         }
 
     </style>
@@ -178,24 +162,26 @@
         <img src="/assets/logo.png" alt="effekt:C Logo" class="logo">
         <h1>effekt:C</h1>
         <p class="slogan">Dein High. Dein Profil. Deine Kontrolle.</p>
-        <span class="beta-status">⚠️ Closed Beta – Jetzt testen!</span>
     </header>
 
     <section class="usp-analysis">
-        <h2>Analysiere, was wirklich zählt.</h2>
+        <p class="intro-text">
+            Jede Erfahrung ist persönlich. Darum muss auch das persönlich beste Cannabis für dich gefunden werden. effekt:C liefert dir die dafür notwendige, präzise Selbstanalyse.
+        </p>
+        
         <table class="usp-table">
             <tbody>
                 <tr>
-                    <th><span class="usp-label">EFFEKT-PROFIL:</span></th>
-                    <td>Der Standard, der 10 Dimensionen deiner Wirkung präzise misst (5 Positiv vs. 5 Negativ).</td>
+                    <th>EFFEKT-PROFIL</th>
+                    <td>5 positive und 5 negative Effekte ergeben dein persönliches Profil und zeigen dir, für welchen Zweck du gerade konsumierst.</td>
                 </tr>
                 <tr>
-                    <th><span class="usp-label">DATEN-KONTROLLE:</span></th>
-                    <td>Deine Logs bleiben auf deinem Smartphone verschlüsselt. Keine Nutzerkonten, keine Datenverkäufe.</td>
+                    <th>DATEN-KONTROLLE</th>
+                    <td>Deine Logs sind immer privat. Keine Cloud, kein Login-Zwang, keine Datenverkäufe.</td>
                 </tr>
                 <tr>
-                    <th><span class="usp-label">QUICK-ASSESSMENT:</span></th>
-                    <td>Erfasse Dosis und Stimmung in Sekunden. Die App zwingt dich zur konsistenten Eingabe.</td>
+                    <th>QUICK-LOG</th>
+                    <td>In zehn Sekunden ist deine Erfahrung eingeloggt und kann 48 Stunden lang bearbeitet werden.</td>
                 </tr>
             </tbody>
         </table>
@@ -220,8 +206,6 @@
 
     <footer>
         <div class="legal-box">
-            <strong>Impressum (Angaben gem. § 5 TMG):</strong>
-            <p>Michael Wurmlinger | St. Andrä Str. 8a | 82398 Polling</p>
             <p>
                 <a href="impressum.html">Impressum</a> | 
                 <a href="#datenschutz">Datenschutzerklärung</a> | 
@@ -231,17 +215,16 @@
     </footer>
     
     <script>
-        const CORRECT_PASSWORD = "lsm"; // <<< BITTE HIER IHR GEWÜNSCHTES PASSWORT EINSTELLEN
+        const CORRECT_PASSWORD = "effekt"; // <<< HIER IHR GEWÜNSCHTES PASSWORT EINSTELLEN
 
         function checkPassword(event) {
-            event.preventDefault(); // Verhindert das Standard-Senden des Formulars
+            event.preventDefault(); 
             const input = document.getElementById('passwordInput').value;
             const message = document.getElementById('message');
 
             if (input === CORRECT_PASSWORD) {
                 message.style.color = 'var(--green)';
                 message.innerText = "Zugang erfolgreich! Du wirst weitergeleitet...";
-                // Leitet zum geschützten Download-Link weiter
                 window.location.href = 'download.html'; 
             } else {
                 message.innerText = "Falsches Passwort. Zugang verweigert.";
