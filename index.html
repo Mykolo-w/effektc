@@ -15,11 +15,11 @@
         :root {
             /* Final definierte Brand-Farben */
             --charcoal: #2C3E42;
-            --green: #6BCB77;  /* Highlighter Green */
-            --teal: #00A896;   /* Deep Teal */
-            --amber: #FFC107;  /* Warm Amber */
+            --green: #6BCB77;
+            --teal: #00A896;
+            --amber: #FFC107;
             --white: #FFFFFF;
-            --mobile-padding: 20px; /* Konsistenter Rand */
+            --mobile-padding: 20px;
         }
 
         body {
@@ -33,25 +33,24 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            justify-content: center; /* Zentriert den Hauptinhalt */
+            justify-content: center; 
         }
         
         /* Container für konsistente Ränder */
         .container {
             width: 100%;
-            max-width: 700px; /* Max-Breite für Desktop */
-            padding: 0 var(--mobile-padding); /* Hält den 20px Abstand links/rechts */
-            box-sizing: border-box; 
+            max-width: 700px;
+            padding: 0 var(--mobile-padding);
+            box-sizing: border-box;
             margin: 0 auto;
-            /* Sorgt dafür, dass der Container den Großteil des Bildschirms ausfüllt, wenn genug Platz ist */
         }
 
         /* ======================================================= */
-        /* II. HERO & LOGO */
+        /* II. HERO & LOGO (KEIN STATUS-BANNER!) */
         /* ======================================================= */
         
         .header {
-            padding: 20px 0; /* Horizontal Padding wird durch .container gesetzt */
+            padding: 20px 0;
             width: 100%;
         }
         .logo {
@@ -74,25 +73,15 @@
             margin: 0 0 40px 0;
             letter-spacing: 1px;
         }
-        .beta-status {
-            color: var(--white);
-            background-color: var(--teal);
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
+        /* .beta-status und zugehörige Styles sind entfernt */
         
         /* ======================================================= */
-        /* III. USP-TABELLE STYLES */
+        /* III. USP-TABELLE STYLES (KEINE BUNTE ICONS) */
         /* ======================================================= */
 
         .usp-analysis {
             padding: 20px 0 0;
             width: 100%;
-            /* Muss hier das padding 0 haben, da es schon im .container ist */
         }
         .intro-text {
             color: var(--white);
@@ -125,12 +114,7 @@
         .usp-table tr:last-child td {
             border-bottom: none;
         }
-        .usp-label { 
-            display: inline-block;
-            margin-right: 8px;
-            font-weight: 700;
-            color: var(--teal); 
-        }
+        /* Alle Icon-Styles entfernt. Reine Text-Labels bleiben. */
 
         /* ======================================================= */
         /* IV. CTA & IMPRESSUM STYLES */
@@ -139,11 +123,6 @@
         .cta-section {
             padding: 20px 0 50px;
             width: 100%;
-        }
-        .cta-description {
-            font-size: 1rem;
-            color: var(--white);
-            margin-bottom: 10px;
         }
         .warning-note {
             font-size: 0.8rem;
@@ -176,9 +155,6 @@
         .password-form button {
             transition: background-color 0.3s;
         }
-        .password-form button:hover {
-            background-color: #5cb86b;
-        }
     </style>
 </head>
 <body>
@@ -189,8 +165,7 @@
             <img src="/assets/logo.png" alt="effekt:C Logo" class="logo">
             <h1>effekt:C</h1>
             <p class="slogan">Dein High. Dein Profil. Deine Kontrolle.</p>
-            <span class="beta-status">⚠️ Closed Beta – Jetzt testen!</span>
-        </header>
+            </header>
 
         <section class="usp-analysis">
             <p class="intro-text">
@@ -200,15 +175,15 @@
             <table class="usp-table">
                 <tbody>
                     <tr>
-                        <th>EFFEKT-PROFIL</th>
-                        <td>5 positive und 5 negative Effekte ergeben dein persönliches Profil und zeigen dir, für welchen Zweck du gerade konsumierst.</td>
+                        <th>EFFEKT-PROFIL:</th>
+                        <td>Der Standard, der 10 Dimensionen deiner Wirkung präzise misst (5 Positiv vs. 5 Negativ).</td>
                     </tr>
                     <tr>
-                        <th>DATEN-KONTROLLE</th>
+                        <th>DATEN-KONTROLLE:</th>
                         <td>Deine Logs sind immer privat. Keine Cloud, kein Login-Zwang, keine Datenverkäufe.</td>
                     </tr>
                     <tr>
-                        <th>QUICK-LOG</th>
+                        <th>QUICK-LOG:</th>
                         <td>In zehn Sekunden ist deine Erfahrung eingeloggt und kann 48 Stunden lang bearbeitet werden.</td>
                     </tr>
                 </tbody>
@@ -245,7 +220,7 @@
     </footer>
     
     <script>
-        const CORRECT_PASSWORD = "effekt"; // <<< BITTE HIER IHR GEWÜNSCHTES PASSWORT EINSTELLEN!
+        const CORRECT_PASSWORD = "effekt"; // <<< HIER IHR GEWÜNSCHTES PASSWORT EINSTELLEN!
 
         function checkPassword(event) {
             event.preventDefault(); 
