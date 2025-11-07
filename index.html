@@ -14,8 +14,9 @@
         
         :root {
             --charcoal: #2C3E42;
-            --green: #6BCB77; 
-            --teal: #00A896;   
+            --green: #6BCB77;  /* Highlighter Green */
+            --teal: #00A896;   /* Deep Teal */
+            --amber: #FFC107;
             --white: #FFFFFF;
         }
 
@@ -32,71 +33,68 @@
             min-height: 100vh;
         }
         
-        /* Überschriften-Klarheit */
-        h2 {
-            font-size: 1.8rem;
-            color: var(--teal);
-            margin-top: 0;
-        }
-
         /* ======================================================= */
-        /* II. HERO & LOGO (Beta-Fokus) */
+        /* II. HERO & SLOGANS (REDUZIERT) */
         /* ======================================================= */
         
         .header {
             padding: 50px 20px 20px;
             max-width: 800px;
         }
-
-        /* Logo-Darstellung (Stilisierte Kreise) */
-        .logo-container {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            background-color: var(--teal);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid var(--green); /* Äußere Linie in CI-Farbe */
+        .logo {
+            width: 90px; /* Logo-Größe etwas kleiner */
+            height: auto;
+            margin: 0 auto 10px;
+            display: block;
         }
-        .logo-inner-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--green);
-        }
-        
         .header h1 {
             color: var(--white);
-            font-size: 1.2rem;
+            font-size: 2.5rem; /* H1 für den Produktnamen */
             font-weight: 700;
-            margin-bottom: 5px;
+            margin: 10px 0 5px;
+            text-transform: uppercase; /* Verstärkt die Professionalität */
         }
         .slogan {
-            font-size: 2.2rem; /* Etwas kleiner für den Beta-Start */
-            font-weight: 700;
-            color: var(--green);
-            margin: 0;
-            line-height: 1.2;
-        }
-        .beta-status {
-            color: var(--white);
-            background-color: var(--teal);
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: 700;
-            margin-top: 20px;
-            font-size: 0.9rem;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--teal); /* Weniger auffällige Farbe für den Slogan */
+            margin: 0 0 40px 0;
+            letter-spacing: 1px;
         }
 
         /* ======================================================= */
-        /* III. CTA & DOWNLOAD (G-Drive) */
+        /* III. USP-TABELLE (Die Analytik) */
+        /* ======================================================= */
+
+        .usp-table {
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .usp-table th, .usp-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #3b5055; /* Dünne Trennlinie */
+        }
+        .usp-table th {
+            color: var(--green); /* Fokus auf den Feature-Namen */
+            font-weight: 700;
+        }
+        .usp-table td {
+            color: var(--white);
+        }
+        .usp-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ======================================================= */
+        /* IV. CTA & IMPRESSUM */
         /* ======================================================= */
 
         .cta-section {
-            padding: 30px 20px 50px;
+            padding: 40px 20px;
             width: 100%;
         }
         .cta-button {
@@ -109,114 +107,96 @@
             text-decoration: none;
             font-weight: 700;
             font-size: 1.1rem;
-            transition: background-color 0.3s;
         }
         .cta-description {
             font-size: 1rem;
             color: var(--white);
-            margin-top: 15px;
+            margin-bottom: 10px;
         }
         .warning-note {
             font-size: 0.8rem;
-            color: var(--amber); /* Nutzt die Amber-Farbe als Hinweis */
+            color: var(--amber); 
             margin-top: 10px;
         }
 
-        /* ======================================================= */
-        /* IV. VERTRAUEN & FUSSZEILE */
-        /* ======================================================= */
-        
-        .trust-section {
-            padding: 50px 20px;
-            background-color: #3b5055; 
-            width: 100%;
-        }
-        .promise-container {
-            display: flex;
-            flex-wrap: wrap; 
-            justify-content: center;
-            gap: 25px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .promise-item {
-            flex-basis: 300px; 
-            text-align: center;
-            padding: 20px;
-        }
-        .promise-item .icon {
-            font-size: 2.5rem;
-            display: block;
-            margin-bottom: 10px;
-        }
-        .promise-item h3 {
-            color: var(--green);
-            font-size: 1.2rem;
-            margin: 5px 0 10px;
-        }
-
-        /* Footer Styles */
+        /* Footer (Impressum) */
         footer {
             width: 100%;
             padding: 20px 0;
             background-color: #243034; 
             color: var(--mediumGray);
             font-size: 0.8rem;
-            margin-top: auto; 
+            margin-top: auto;
         }
-        footer a {
-            color: var(--teal);
+        .legal-box {
+            max-width: 400px;
+            margin: 10px auto;
+            text-align: center;
+        }
+        .legal-box p {
+            margin: 2px 0;
+        }
+        .legal-box a {
+             color: var(--teal);
             text-decoration: none;
-            margin: 0 10px;
         }
     </style>
 </head>
 <body>
 
     <header class="header">
-        <div class="logo-container">
-            <div class="logo-inner-circle"></div>
-        </div>
+        <img src="/assets/logo.png" alt="effekt:C Logo" class="logo">
+        <h1>effekt:C</h1>
         <p class="slogan">Dein High. Dein Profil. Deine Kontrolle.</p>
-        <span class="beta-status">⚠️ Closed Beta – Jetzt testen!</span>
     </header>
 
-    <div class="cta-section">
-        <p class="cta-description">Die App befindet sich im aktiven Bau. Wir suchen engagierte Tester, um den **Effekt-Profil-Standard** zu validieren.</p>
-        <a href="https://drive.google.com/drive/folders/11_rDlZtGn2Q1BajLb-4CZnlxw9EFIGqg?usp=drive_link" 
-           class="cta-button" target="_blank">
-            ➡️ Beta-APK jetzt herunterladen
-        </a>
-        <p class="warning-note">Hinweis: Die Installation erfordert die Freigabe für Apps aus unbekannter Quelle.</p>
-    </div>
-    
-    <section class="trust-section">
-        <h2>Deine Daten. Dein Gerät. Deine Regeln.</h2>
-        <div class="promise-container">
-            <div class="promise-item">
-                <span class="icon">🔒</span>
-                <h3>100% Lokal & Anonym</h3>
-                <p>Deine Log-Einträge bleiben verschlüsselt auf deinem Smartphone. Wir erstellen keine Nutzerkonten und speichern keine persönlichen IDs.</p>
-            </div>
-            <div class="promise-item">
-                <span class="icon">📈</span>
-                <h3>Für den Standard</h3>
-                <p>Wir bitten dich, deine anonymen Profile zur Erforschung des Effekt-Profil-Standards beizutragen. Diese Daten sind irreversibel generalisiert.</p>
-            </div>
-            <div class="promise-item">
-                <span class="icon">🛡️</span>
-                <h3>Kostenlos testen</h3>
-                <p>Die Beta ist kostenlos. Hilf uns, die Funktionalität zu prüfen, bevor die App offiziell in die Stores kommt.</p>
-            </div>
-        </div>
+    <section class="usp-analysis">
+        <h2>Analysiere, was wirklich zählt.</h2>
+        <table class="usp-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Mehrwert</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>10-Punkte Effekt-Profil</th>
+                    <td>Der erste Standard mit 5 Positiven vs. 5 Negativen Achsen. Nie wieder vage Beschreibungen.</td>
+                </tr>
+                <tr>
+                    <th>100% Datenhoheit</th>
+                    <td>Deine Logs bleiben auf deinem Smartphone verschlüsselt. Wir verkaufen keine Daten an Dritte.</td>
+                </tr>
+                <tr>
+                    <th>Analytischer Quick-Log</th>
+                    <td>Erfasse Dosis, Stimmung und die Wirkung in unter 30 Sekunden.</td>
+                </tr>
+                <tr>
+                    <th>Keine Abos / Werbung</th>
+                    <td>Einmalige Zahlung (im App Store), werbefreie und unabhängige Entwicklung.</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 
+    <div class="cta-section">
+        <p class="cta-description">Werde Teil der Entwicklung. Wir suchen engagierte Beta-Tester:</p>
+        <a href="https://drive.google.com/drive/folders/11_rDlZtGn2Q1BajLb-4CZnlxw9EFIGqg?usp=drive_link" 
+           class="cta-button" target="_blank">
+            ➡️ Closed Beta Download (Android APK)
+        </a>
+        <p class="warning-note">Die App befindet sich in aktiver Entwicklung und erfordert die Freigabe für externe Quellen.</p>
+    </div>
+
     <footer>
-        <p>
-            <a href="#impressum">Impressum</a> | 
-            <a href="#datenschutz">Datenschutzerklärung</a> | 
-            <a href="#agb">AGB & Widerrufsbelehrung</a>
-        </p>
+        <div class="legal-box">
+            <strong>Impressum (Angaben gem. § 5 TMG):</strong>
+            <p>Michael Wurmlinger</p>
+            <p>St. Andrä Str. 8a</p>
+            <p>82398 Polling</p>
+            <p><a href="#datenschutz">Datenschutzerklärung</a> | <a href="#agb">AGB</a></p>
+        </div>
     </footer>
 
 </body>
