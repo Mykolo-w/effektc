@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download freigeschaltet</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ======================================================= */
+        /* I. CI-FARBEN UND GLOBALE STYLES */
+        /* ======================================================= */
+        
+        :root {
+            --charcoal: #2C3E42; /* Hintergrund */
+            --green: #6BCB77;    /* CTA */
+            --white: #FFFFFF;    /* Text */
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--charcoal); /* Setzt den dunklen Hintergrund */
+            color: var(--white);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: center; /* Zentriert den Inhalt */
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--green); /* Headline in CI-Grün */
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        
+        /* CTA Button Styling */
+        .download-button {
+            background-color: var(--green);
+            color: var(--charcoal);
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .download-button:hover {
+            background-color: #5cb86b;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Zugang erfolgreich freigeschaltet!</h1>
+    <p>Danke für deine Teilnahme an der Closed Beta. Bitte lade die APK-Datei über den Link herunter.</p>
+    
+    <a href="https://drive.google.com/drive/folders/11_rDlZtGn2Q1BajLb-4CZnlxw9EFIGqg?usp=drive_link" 
+       class="download-button" target="_blank">
+       ➡️ APK Download starten
+    </a>
+
+</body>
+</html>
