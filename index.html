@@ -13,6 +13,7 @@
         /* ======================================================= */
         
         :root {
+            /* Final definierte Brand-Farben */
             --charcoal: #2C3E42;
             --green: #6BCB77;
             --teal: #00A896;
@@ -45,7 +46,7 @@
         }
 
         /* ======================================================= */
-        /* II. HERO & LOGO (KEIN STATUS-BANNER) */
+        /* II. HERO & LOGO */
         /* ======================================================= */
         
         .header {
@@ -74,7 +75,7 @@
         }
         
         /* ======================================================= */
-        /* III. USP-TABELLE STYLES (KEINE BUNTE ICONS) */
+        /* III. USP-TABELLE STYLES */
         /* ======================================================= */
 
         .usp-analysis {
@@ -114,7 +115,7 @@
         }
 
         /* ======================================================= */
-        /* IV. CTA & IMPRESSUM STYLES */
+        /* IV. CTA & DOWNLOAD STYLES */
         /* ======================================================= */
 
         .cta-section {
@@ -131,8 +132,70 @@
             color: var(--amber); 
             margin-top: 10px;
         }
+        .cta-button {
+            background-color: var(--green); 
+            color: var(--charcoal); 
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        /* ======================================================= */
+        /* V. COOKIE BANNER STYLES */
+        /* ======================================================= */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #243034; 
+            color: var(--white);
+            padding: 15px 20px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            z-index: 1000; 
+            /* Stellt sicher, dass es über dem Footer liegt */
+        }
+        .cookie-banner p {
+            margin: 0;
+            text-align: left;
+            max-width: 75%; /* Platz für den Button */
+        }
+        .cookie-banner a {
+            color: var(--teal);
+            text-decoration: underline;
+        }
+        .cookie-banner button {
+            background-color: var(--green);
+            color: var(--charcoal);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        @media (max-width: 600px) {
+            .cookie-banner {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+            .cookie-banner p {
+                margin-bottom: 10px;
+            }
+        }
 
-        /* Footer (Impressum) */
+        /* ======================================================= */
+        /* VI. FOOTER STYLES */
+        /* ======================================================= */
+
         footer {
             width: 100%;
             padding: 30px 0;
@@ -151,11 +214,6 @@
             color: var(--teal);
             text-decoration: none;
             margin: 0 5px;
-        }
-        
-        /* Styles für das Passwort-Feld */
-        .password-form button {
-            transition: background-color 0.3s;
         }
     </style>
 </head>
@@ -199,7 +257,7 @@
                 <input type="password" id="passwordInput" placeholder="Tester-Passwort" required 
                        style="padding: 10px; border-radius: 5px; border: 1px solid var(--teal); background-color: #3b5055; color: var(--white); margin-bottom: 15px;">
                 
-                <button type="submit" style="background-color: var(--green); color: var(--charcoal); padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: 700;">
+                <button type="submit" class="cta-button" style="text-decoration: none;">
                     Download freischalten
                 </button>
             </form>
@@ -220,14 +278,14 @@
     </footer>
     
     <script>
-        const CORRECT_PASSWORD = "effekt"; // <<< HIER IHR GEWÜNSCHTES PASSWORT EINSTELLEN!
+        const CORRECT_PASSWORD = "effekt"; // <<< BITTE HIER IHR GEWÜNSCHTES PASSWORT EINSTELLEN
 
         function checkPassword(event) {
             event.preventDefault(); 
             const input = document.getElementById('passwordInput').value;
             const message = document.getElementById('message');
 
-            const VERCEL_URL = 'download.html'; // Die Seite, die den G-Drive Link enthält
+            const VERCEL_URL = 'download.html'; 
 
             if (input === CORRECT_PASSWORD) {
                 message.style.color = 'var(--green)';
@@ -238,6 +296,36 @@
                 message.style.color = 'var(--amber)';
             }
         }
+
+        // --- DSGVO Cookie Consent Logik ---
+        const CONSENT_COOKIE_NAME = 'effektc_consent';
+
+        function checkConsent() {
+            // Zeigt den Banner nur, wenn der Cookie nicht existiert
+            if (!document.cookie.includes(CONSENT_COOKIE_NAME)) {
+                document.getElementById('cookie-consent-banner').style.display = 'flex';
+            }
+        }
+
+        function acceptCookies() {
+            const expirationDate = new Date();
+            expirationDate.setDate(expirationDate.getDate() + 365);
+            // Setzt den Cookie für ein Jahr
+            document.cookie = `${CONSENT_COOKIE_NAME}=true; expires=${expirationDate.toUTCString()}; path=/`;
+
+            // Versteckt den Banner
+            document.getElementById('cookie-consent-banner').style.display = 'none';
+        }
+
+        // Führt den Check beim Laden der Seite aus
+        window.onload = checkConsent;
     </script>
+
+    <div id="cookie-consent-banner" class="cookie-banner" style="display: none;">
+        <p>Wir verwenden Cookies zur Gewährleistung der technischen Funktionalität unserer Website. Weitere Informationen findest du in der <a href="#datenschutz">Datenschutzerklärung</a>.</p>
+        <div>
+            <button onclick="acceptCookies()">Zustimmen</button>
+        </div>
+    </div>
 </body>
 </html>
