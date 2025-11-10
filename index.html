@@ -36,7 +36,7 @@
             justify-content: center; 
         }
         
-        /* Container für konsistente Ränder (Padding) */
+        /* Container für konsistente Ränder (Wichtig für Mobile) */
         .container {
             width: 100%;
             max-width: 700px;
@@ -133,8 +133,8 @@
             margin-top: 10px;
         }
         .cta-button {
-            background-color: var(--green); 
-            color: var(--charcoal); 
+            background-color: var(--green);
+            color: var(--charcoal);
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -143,9 +143,9 @@
             text-decoration: none;
             display: inline-block;
         }
-        
+
         /* ======================================================= */
-        /* V. COOKIE BANNER STYLES */
+        /* V. COOKIE BANNER STYLES (KORRIGIERT FÜR MOBILE) */
         /* ======================================================= */
         .cookie-banner {
             position: fixed;
@@ -154,19 +154,20 @@
             width: 100%;
             background-color: #243034; 
             color: var(--white);
-            padding: 15px 20px;
+            padding: 15px 20px; 
+            box-sizing: border-box; /* WICHTIGE Korrektur für den mobilen Rand */
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 0.9rem;
             z-index: 1000; 
-            /* Stellt sicher, dass es über dem Footer liegt */
         }
         .cookie-banner p {
             margin: 0;
             text-align: left;
-            max-width: 75%; /* Platz für den Button */
+            flex-grow: 1; 
+            margin-right: 20px; 
         }
         .cookie-banner a {
             color: var(--teal);
@@ -180,20 +181,25 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: 700;
+            flex-shrink: 0;
         }
+        
+        /* Media Query für sehr kleine Bildschirme */
         @media (max-width: 600px) {
             .cookie-banner {
                 flex-direction: column;
-                text-align: center;
                 align-items: center;
+                text-align: center;
             }
             .cookie-banner p {
+                text-align: center;
+                margin-right: 0;
                 margin-bottom: 10px;
             }
         }
 
         /* ======================================================= */
-        /* VI. FOOTER STYLES */
+        /* VI. FOOTER STYLES (NUR LINKS) */
         /* ======================================================= */
 
         footer {
@@ -278,14 +284,14 @@
     </footer>
     
     <script>
-        const CORRECT_PASSWORD = "effekt"; // <<< BITTE HIER IHR GEWÜNSCHTES PASSWORT EINSTELLEN
+        const CORRECT_PASSWORD = "effekt"; // <<< HIER IHR GEWÜNSCHTES PASSWORT EINSTELLEN
 
         function checkPassword(event) {
             event.preventDefault(); 
             const input = document.getElementById('passwordInput').value;
             const message = document.getElementById('message');
 
-            const VERCEL_URL = 'download.html'; 
+            const VERCEL_URL = 'download.html'; // Die Seite, die den G-Drive Link enthält
 
             if (input === CORRECT_PASSWORD) {
                 message.style.color = 'var(--green)';
