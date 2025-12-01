@@ -2,336 +2,792 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>effekt:C - Beta Test | Dein High. Dein Profil. Deine Kontrolle.</title>
+    <!-- shrink-to-fit=no hilft Safari/Chrome auf iOS/Android beim Skalieren -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>effekt:C | Beta Zugang</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- GOOGLE ANALYTICS (GA4) -->
+    <!-- Ersetze G-XXXXXXXXXX mit deiner echten Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q68BGFX3R2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Q68BGFX3R2');
+    </script>
+    
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+
+    <meta name="description" content="Tracking für Cannabis-Patienten. Dein High. Dein Profil. Deine Kontrolle.">
+    
+    <!-- Fonts: Roboto (App Standard) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ======================================================= */
-        /* I. CI-FARBEN UND GLOBALE STYLES */
-        /* ======================================================= */
-        
+        /* --- DESIGN SYSTEM --- */
         :root {
-            /* Final definierte Brand-Farben */
-            --charcoal: #2C3E42;
-            --green: #6BCB77;
-            --teal: #00A896;
-            --amber: #FFC107;
-            --white: #FFFFFF;
-            --mobile-padding: 20px;
+            --app-bg: #1E282A;       /* Dunkles Blau-Grau */
+            --app-surface: #2C3E42;  /* Card Color */
+            --app-primary: #6BCB77;  /* Das helle Grün (Positiv) */
+            --app-negative: #FFC107; /* Amber/Gelb (Negativ) */
+            --app-teal: #00A896;     
+            --app-text: #E0E0E0;     
+            --app-muted: #B0BEC5;    
+            --app-divider: #37474F;
+        }
+
+        * { box-sizing: border-box; }
+
+        /* WICHTIG: Harter Reset für die Basis-Schriftgröße */
+        html {
+            font-size: 16px; /* Verhindert Interpretationsspielraum für Browser */
+            -webkit-text-size-adjust: 100%; /* Verhindert Font-Boosting auf Mobile */
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--charcoal);
-            color: var(--white);
             margin: 0;
             padding: 0;
-            text-align: center;
+            background-color: var(--app-bg);
+            color: var(--app-text);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3, h4 { margin: 0; font-weight: 700; color: var(--white); }
+        
+        h1 { 
+            font-size: 2.5rem; 
+            margin-bottom: 1rem; 
+            color: #fff; 
+            line-height: 1.2;
+        }
+        
+        h2 { font-size: 1.8rem; margin-bottom: 1rem; color: #fff; }
+        h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--app-primary); }
+        h4 { font-size: 1rem; margin-bottom: 4px; color: var(--app-primary); }
+        p { color: var(--app-muted); margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;}
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 900px; 
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--app-divider);
+        }
+        section:last-of-type { border-bottom: none; }
+
+        /* --- HERO --- */
+        .hero {
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            justify-content: center; 
+            text-align: center;
         }
         
-        /* Container für konsistente Ränder (Wichtig für Mobile) */
-        .container {
-            width: 100%;
-            max-width: 700px;
-            padding: 0 var(--mobile-padding);
-            box-sizing: border-box;
-            margin: 0 auto;
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 24px;
         }
 
-        /* ======================================================= */
-        /* II. HERO & LOGO */
-        /* ======================================================= */
-        
-        .header {
-            padding: 20px 0;
-            width: 100%;
+        .app-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--app-surface);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
         }
-        .logo {
-            width: 90px;
-            height: auto;
-            margin: 0 auto 10px;
-            display: block;
-        }
-        .header h1 {
-            color: var(--white);
+
+        .brand-name {
             font-size: 2.5rem;
             font-weight: 700;
-            margin: 10px 0 5px;
-            text-transform: uppercase;
-        }
-        .slogan {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: var(--teal);
-            margin: 0 0 40px 0;
+            color: #fff;
             letter-spacing: 1px;
         }
-        
-        /* ======================================================= */
-        /* III. USP-TABELLE STYLES */
-        /* ======================================================= */
 
-        .usp-analysis {
-            padding: 20px 0 0;
-            width: 100%;
-        }
-        .intro-text {
-            color: var(--white);
-            font-size: 1rem;
-            max-width: 500px;
-            margin: 0 auto 40px;
-            line-height: 1.5;
-        }
-        .usp-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            margin: 0 auto;
-        }
-        .usp-table th, .usp-table td {
-            padding: 15px 10px;
-            border-bottom: 1px solid #3b5055; 
-        }
-        .usp-table th {
-            color: var(--green);
-            font-size: 1rem;
-            width: 35%; 
-            vertical-align: top;
-            padding-left: 0;
-        }
-        .usp-table td {
-            color: var(--white);
-            font-size: 0.95rem;
-        }
-        .usp-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* ======================================================= */
-        /* IV. CTA & DOWNLOAD STYLES */
-        /* ======================================================= */
-
-        .cta-section {
-            padding: 20px 0 50px;
-            width: 100%;
-        }
-        .cta-description {
-            font-size: 1rem;
-            color: var(--white);
-            margin-bottom: 10px;
-        }
-        .warning-note {
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(107, 203, 119, 0.15);
+            color: var(--app-primary);
+            border-radius: 100px;
             font-size: 0.8rem;
-            color: var(--amber); 
-            margin-top: 10px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .cta-button {
-            background-color: var(--green);
-            color: var(--charcoal);
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 700;
-            text-decoration: none;
+
+        /* --- FEATURE GRID --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .card {
+            background: var(--app-surface);
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center; 
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card-left { text-align: left; } 
+        .card p { margin: 0; font-size: 0.9rem; }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 16px;
+            fill: var(--app-primary);
             display: inline-block;
         }
 
-        /* ======================================================= */
-        /* V. COOKIE BANNER STYLES (KORRIGIERT FÜR MOBILE) */
-        /* ======================================================= */
-        .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #243034; 
-            color: var(--white);
-            padding: 15px 20px; 
-            box-sizing: border-box; /* WICHTIGE Korrektur für den mobilen Rand */
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+        /* --- INTERACTIVE CHART --- */
+        .chart-section-wrapper {
+            background: var(--app-surface); 
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            margin-top: 20px;
+        }
+
+        .strain-selector {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-            z-index: 1000; 
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
         }
-        .cookie-banner p {
-            margin: 0;
-            text-align: left;
-            flex-grow: 1; 
-            margin-right: 20px; 
-        }
-        .cookie-banner a {
-            color: var(--teal);
-            text-decoration: underline;
-        }
-        .cookie-banner button {
-            background-color: var(--green);
-            color: var(--charcoal);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
+        .strain-chip {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--app-muted);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
             cursor: pointer;
-            font-weight: 700;
-            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+        .strain-chip:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .strain-chip.active {
+            background: rgba(107, 203, 119, 0.2);
+            border-color: var(--app-primary);
+            color: var(--app-primary);
+            font-weight: 500;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--app-divider);
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--app-muted);
+            padding: 15px 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .tab-btn.active { color: var(--app-text); }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: 0; width: 100%; height: 3px;
+            background-color: var(--app-primary);
+            border-radius: 3px 3px 0 0;
+        }
+        .tab-btn.neg.active::after { background-color: var(--app-negative); }
+
+        .chart-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .chart-visual {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            position: relative;
+            aspect-ratio: 1 / 1; 
+        }
+
+        .chart-controls {
+            flex: 1;
+            min-width: 280px;
+            text-align: left;
+        }
+
+        #radarSvg { width: 100%; height: 100%; overflow: visible; }
+        .grid-circle { fill: none; stroke: rgba(255,255,255,0.1); stroke-width: 1; }
+        .axis-line { stroke: rgba(255,255,255,0.1); stroke-width: 1; }
+        
+        .data-poly {
+            fill: rgba(107, 203, 119, 0.2);
+            stroke: var(--app-primary); 
+            stroke-width: 2;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .data-point { 
+            fill: var(--app-primary); 
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); 
         }
         
-        /* Media Query für sehr kleine Bildschirme */
-        @media (max-width: 600px) {
-            .cookie-banner {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .cookie-banner p {
-                text-align: center;
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
+        .label-text {
+            fill: var(--app-text); font-size: 13px; font-weight: 500; font-family: 'Roboto', sans-serif;
+            text-anchor: middle; dominant-baseline: middle;
         }
 
-        /* ======================================================= */
-        /* VI. FOOTER STYLES (NUR LINKS) */
-        /* ======================================================= */
+        .center-bg-circle { fill: var(--app-surface); stroke: rgba(255,255,255,0.1); }
+        .chart-logo-fallback { font-size: 20px; fill: var(--app-primary); font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
 
+        .control-group { margin-bottom: 20px; animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .control-label {
+            display: flex; justify-content: space-between;
+            font-size: 0.9rem; color: #fff; margin-bottom: 8px; font-weight: 500;
+        }
+        input[type=range] {
+            width: 100%; height: 6px; background: #121212; border-radius: 3px;
+            outline: none; -webkit-appearance: none;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 20px; height: 20px;
+            background: var(--app-primary); border-radius: 50%;
+            cursor: pointer; border: 3px solid var(--app-surface);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3); transition: background 0.3s;
+        }
+
+        .negative-mode .data-poly {
+            fill: rgba(255, 193, 7, 0.2); stroke: var(--app-negative);
+        }
+        .negative-mode .data-point { fill: var(--app-negative); }
+        .negative-mode input[type=range]::-webkit-slider-thumb { background: var(--app-negative); }
+        .negative-mode .strain-chip.active {
+            background: rgba(255, 193, 7, 0.2); border-color: var(--app-negative); color: var(--app-negative);
+        }
+
+        /* --- AUTH FORM --- */
+        .auth-wrapper { max-width: 400px; margin: 0 auto; text-align: left; }
+        .app-input {
+            width: 100%; padding: 16px; background: var(--app-surface);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+            color: white; font-size: 1.1rem; outline: none; margin-bottom: 16px;
+            text-align: center; letter-spacing: 1px;
+        }
+        .app-input:focus { border-color: var(--app-primary); }
+        
+        .app-btn {
+            width: 100%; padding: 16px; background: var(--app-primary); color: #1E282A; 
+            border: none; border-radius: 12px; font-size: 1rem; font-weight: 700;
+            cursor: pointer; transition: transform 0.1s;
+        }
+        .app-btn:active { transform: scale(0.98); }
+
+        /* --- FOOTER --- */
         footer {
-            width: 100%;
-            padding: 30px 0;
-            background-color: #243034; 
-            color: var(--white);
-            font-size: 0.75rem; 
-            margin-top: auto;
+            padding: 60px 20px; text-align: center; font-size: 0.8rem; color: #666;
+            border-top: 1px solid var(--app-divider);
         }
-        .legal-box {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-            line-height: 1.6;
+        footer a { color: #888; text-decoration: none; margin: 0 12px; }
+        footer a:hover { color: var(--app-primary); }
+
+        /* --- COOKIE BANNER (Clean & Natural) --- */
+        .cookie-consent {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            /* Falls das Fenster sehr schmal wird, halten wir etwas Abstand */
+            max-width: calc(100% - 40px); 
+            
+            background-color: #1a1a1a;
+            color: #b0bec5;
+            
+            /* Flexibles Layout */
+            display: none; /* JS schaltet auf flex */
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.1);
+            z-index: 9999;
+            
+            /* Keine feste Breite, sondern Inhalt bestimmt Größe */
+            width: fit-content;
         }
-        .legal-box a {
-            color: var(--teal);
-            text-decoration: none;
-            margin: 0 5px;
+        
+        .cookie-consent span {
+            font-size: 0.9rem;
+            color: #b0bec5;
+        }
+
+        .cookie-consent button {
+            background: transparent;
+            border: none;
+            color: #6BCB77; /* App Primary */
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            padding: 0;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        @media(max-width: 600px) {
+            .brand-header { flex-direction: column; gap: 10px; }
+            .brand-name { font-size: 2rem; }
+            .chart-container { flex-direction: column; }
+            .chart-visual { width: 100%; min-width: unset; }
+            h1 { font-size: 2rem; } 
+            
+            /* Mobile: Volle Breite, unten angepinnt */
+            .cookie-consent {
+                left: 20px; 
+                right: 20px; 
+                bottom: 20px;
+                width: auto;
+                max-width: none;
+            }
         }
     </style>
 </head>
 <body>
-    
-    <div class="container"> 
-        
-        <header class="header">
-            <img src="/assets/logo.png" alt="effekt:C Logo" class="logo">
-            <h1>effekt:C</h1>
-            <p class="slogan">Dein High. Dein Profil. Deine Kontrolle.</p>
-        </header>
 
-        <section class="usp-analysis">
-            <p class="intro-text">
-                Jede Erfahrung ist persönlich. Darum muss auch das persönlich beste Cannabis für dich gefunden werden. effekt:C liefert dir die dafür notwendige, präzise Selbstanalyse.
-            </p>
+    <!-- HERO -->
+    <div class="container">
+        <section class="hero">
             
-            <table class="usp-table">
-                <tbody>
-                    <tr>
-                        <th>EFFEKT-PROFIL:</th>
-                        <td>Der Standard, der 10 Dimensionen deiner Wirkung präzise misst (5 Positiv vs. 5 Negativ).</td>
-                    </tr>
-                    <tr>
-                        <th>DATEN-KONTROLLE:</th>
-                        <td>Deine Logs sind immer privat. Keine Cloud, kein Login-Zwang, keine Datenverkäufe.</td>
-                    </tr>
-                    <tr>
-                        <th>QUICK-LOG:</th>
-                        <td>In zehn Sekunden ist deine Erfahrung eingeloggt und kann 48 Stunden lang bearbeitet werden.</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="brand-header">
+                <div class="app-icon">
+                    <img src="assets/logo.png" alt="Icon" style="width:40px; height:auto;" onerror="this.style.display='none'; this.parentElement.innerText='e:C'">
+                </div>
+                <div class="brand-name">effekt:C</div>
+            </div>
+
+            <span class="badge">Closed Beta</span>
+            
+            <!-- Die geforderte Einzeilen-Überschrift -->
+            <h1>Dein High. Dein Profil. Deine Kontrolle.</h1>
+            
+            <p>Die Tracking-App für Cannabis-Konsum "made in Germany". Verstehe deine persönliche Wirkung präzise und sicher - ohne Login-Zwang oder Datenverkäufe.</p>
+            
+            <!-- NEU: Custom Smooth Scroll (onclick) -->
+            <a href="#access" onclick="slowScrollTo(event, 'access')" style="color: var(--app-primary); text-decoration: none; font-weight: 500; margin-top: 20px; border-bottom: 1px solid var(--app-primary); padding-bottom: 2px;">
+                Zugang anfordern ↓
+            </a>
         </section>
 
-        <div class="cta-section">
-            <p class="cta-description">Die Closed Beta ist passwortgeschützt. Bitte gib das Tester-Passwort ein:</p>
-            
-            <form onsubmit="checkPassword(event)" class="password-form">
-                <input type="password" id="passwordInput" placeholder="Tester-Passwort" required 
-                       style="padding: 10px; border-radius: 5px; border: 1px solid var(--teal); background-color: #3b5055; color: var(--white); margin-bottom: 15px;">
+        <!-- FEATURE 1: DEIN HIGH -->
+        <section>
+            <div style="text-align: center;">
+                <h2>Dein High.</h2>
+                <p>Cannabis wirkt komplex und kein High ist gleich. effekt:C macht den Unterschied für dich sichtbar.</p>
+            </div>
+            <div class="grid-3">
                 
-                <button type="submit" class="cta-button" style="text-decoration: none;">
-                    Download freischalten
-                </button>
-            </form>
+                <!-- TILE 1: ANALYSE -->
+                <div class="card">
+                    <h4>Detaillierte Selbstanalyse</h4>
+                    <p>Identifiziere exakt die besten Strains für dich und die jeweilig gewünschten Effekte.</p>
+                </div>
 
-            <p id="message" style="color: var(--amber); margin-top: 10px;"></p>
-            
-            <p class="warning-note">Hinweis: Die Installation erfordert die Freigabe für Apps aus unbekannter Quelle.</p>
-        </div>
-        
-    </div> <footer>
-        <div class="legal-box">
-            <p>
-                <a href="impressum.html">Impressum</a> | 
-                <a href="#datenschutz">Datenschutzerklärung</a> | 
-                <a href="#agb">AGB & Widerrufsbelehrung</a>
-            </p>
-        </div>
-    </footer>
-    
-    <script>
-        const CORRECT_PASSWORD = "effekt"; // <<< HIER IHR GEWÜNSCHTES PASSWORT EINSTELLEN
+                <!-- TILE 2: FILTER / FINDEN -->
+                <div class="card">
+                    <h4>Verstehe was hilft</h4>
+                    <p>Verlass dich nicht auf vage Händler-Angaben. Baue deine eigene Wissensdatenbank auf, die auf deiner individuellen Biologie basiert.</p>
+                </div>
 
-        function checkPassword(event) {
-            event.preventDefault(); 
-            const input = document.getElementById('passwordInput').value;
-            const message = document.getElementById('message');
+                <!-- TILE 3: TAGEBUCH -->
+                <div class="card">
+                    <h4>Cannabis-Tagebuch</h4>
+                    <p>Tracke deinen Konsum und behalte immer den Überblick über deine Sorten und Sessions.</p>
+                </div>
 
-            const VERCEL_URL = 'download.html'; // Die Seite, die den G-Drive Link enthält
+            </div>
+        </section>
 
-            if (input === CORRECT_PASSWORD) {
-                message.style.color = 'var(--green)';
-                message.innerText = "Zugang erfolgreich! Du wirst weitergeleitet...";
-                window.location.href = VERCEL_URL; 
-            } else {
-                message.innerText = "Falsches Passwort. Zugang verweigert.";
-                message.style.color = 'var(--amber)';
-            }
-        }
+        <!-- FEATURE 2: DEIN PROFIL (Interaktiv SVG) -->
+        <section id="chart-section">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h2>Dein Profil.</h2>
+                <p>Wähle eine Sorte und bewerte die Effekte während und nach jedem Konsum.</p>
+            </div>
 
-        // --- DSGVO Cookie Consent Logik ---
-        const CONSENT_COOKIE_NAME = 'effektc_consent';
+            <!-- Strain Chips -->
+            <div class="strain-selector">
+                <div class="strain-chip active" onclick="selectStrain('lemonHaze', this)">Lemon Haze</div>
+                <div class="strain-chip" onclick="selectStrain('ogKush', this)">OG Kush</div>
+                <div class="strain-chip" onclick="selectStrain('granddaddy', this)">Granddaddy Purple</div>
+                <div class="strain-chip" onclick="selectStrain('jackHerer', this)">Jack Herer</div>
+            </div>
 
-        function checkConsent() {
-            // Zeigt den Banner nur, wenn der Cookie nicht existiert
-            if (!document.cookie.includes(CONSENT_COOKIE_NAME)) {
-                document.getElementById('cookie-consent-banner').style.display = 'flex';
-            }
-        }
+            <div class="chart-section-wrapper" id="chartWrapper">
+                
+                <!-- Info Header -->
+                <div style="text-align: center; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: var(--app-muted);">
+                    Beispiel-Log: <strong id="strain-name-display" style="color: var(--app-primary); font-size: 1rem; margin-left: 5px;">Lemon Haze</strong>
+                </div>
 
-        function acceptCookies() {
-            const expirationDate = new Date();
-            expirationDate.setDate(expirationDate.getDate() + 365);
-            // Setzt den Cookie für ein Jahr
-            document.cookie = `${CONSENT_COOKIE_NAME}=true; expires=${expirationDate.toUTCString()}; path=/`;
+                <!-- TABS Switcher -->
+                <div class="tabs">
+                    <button class="tab-btn active" id="btn-positive" onclick="switchMode('positive')">Positive Effekte</button>
+                    <button class="tab-btn neg" id="btn-negative" onclick="switchMode('negative')">Negative Effekte</button>
+                </div>
 
-            // Versteckt den Banner
-            document.getElementById('cookie-consent-banner').style.display = 'none';
-        }
+                <div class="chart-container">
+                    <!-- SVG Chart -->
+                    <div class="chart-visual">
+                        <svg id="radarSvg" viewBox="0 0 300 300">
+                            <!-- Hintergrund Kreise -->
+                            <circle cx="150" cy="150" r="30" class="grid-circle" /> 
+                            <circle cx="150" cy="150" r="44" class="grid-circle" style="opacity:0.3" />
+                            <circle cx="150" cy="150" r="58" class="grid-circle" style="opacity:0.3" />
+                            <circle cx="150" cy="150" r="72" class="grid-circle" style="opacity:0.3" />
+                            <circle cx="150" cy="150" r="86" class="grid-circle" style="opacity:0.3" />
+                            <circle cx="150" cy="150" r="100" class="grid-circle" />
+                            
+                            <!-- Achsen -->
+                            <line x1="150" y1="120" x2="150" y2="50" class="axis-line" />
+                            <line x1="178" y1="141" x2="245" y2="119" class="axis-line" />
+                            <line x1="167" y1="174" x2="208" y2="230" class="axis-line" />
+                            <line x1="132" y1="174" x2="91" y2="230" class="axis-line" />
+                            <line x1="121" y1="141" x2="54" y2="119" class="axis-line" />
 
-        // Führt den Check beim Laden der Seite aus
-        window.onload = checkConsent;
-    </script>
+                            <!-- Labels -->
+                            <text id="lbl-0" x="150" y="35" class="label-text">Klarheit</text>
+                            <text id="lbl-1" x="265" y="110" class="label-text">Kreativität</text>
+                            <text id="lbl-2" x="225" y="250" class="label-text">Stimmung</text>
+                            <text id="lbl-3" x="75" y="250" class="label-text">Entspannung</text>
+                            <text id="lbl-4" x="35" y="110" class="label-text">Schlaf</text>
 
-    <div id="cookie-consent-banner" class="cookie-banner" style="display: none;">
-        <p>Wir verwenden Cookies zur Gewährleistung der technischen Funktionalität unserer Website. Weitere Informationen findest du in der <a href="#datenschutz">Datenschutzerklärung</a>.</p>
-        <div>
-            <button onclick="acceptCookies()">Zustimmen</button>
-        </div>
+                            <!-- CENTER LOGO (Layer Reihenfolge: Jetzt UNTER dem Graphen/Polygon) -->
+                            <!-- Hintergrundkreis für Logo -->
+                            <circle cx="150" cy="150" r="28" class="center-bg-circle" />
+                            <!-- Image -->
+                            <image href="assets/logo.png" x="125" y="125" height="50" width="50" style="clip-path: circle(25px at center);" onerror="this.style.display='none'; document.getElementById('fallbackText').style.display='block';" />
+                            <!-- Fallback Text -->
+                            <text id="fallbackText" x="150" y="157" class="chart-logo-fallback" style="display:none;">e:C</text>
+
+                            <!-- Daten Layer (Layer Reihenfolge: Jetzt ÜBER dem Logo) -->
+                            <polygon id="dataPolygon" points="" class="data-poly" />
+                            <circle id="p0" r="4" class="data-point" />
+                            <circle id="p1" r="4" class="data-point" />
+                            <circle id="p2" r="4" class="data-point" />
+                            <circle id="p3" r="4" class="data-point" />
+                            <circle id="p4" r="4" class="data-point" />
+
+                        </svg>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="chart-controls" id="sliders-container">
+                        <!-- Wird via JS befüllt -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE 3: DEINE KONTROLLE -->
+        <section>
+            <div style="text-align: center;">
+                <h2>Deine Kontrolle.</h2>
+                <p>Keine Experimente mit deinen Daten. Wir nutzen bewährte Standards.</p>
+            </div>
+            <div class="grid-3">
+                <div class="card card-left">
+                    <h3 style="color: var(--app-primary)">Volle Datenhoheit</h3>
+                    <p>Deine sensiblen Gesundheitsdaten bleiben lokal auf deinem Gerät in einer verschlüsselten Datenbank. Keine Cloud, kein Upload, keine Kompromisse.</p>
+                </div>
+                <div class="card card-left">
+                    <h3 style="color: var(--app-primary)">Anonym per Design</h3>
+                    <p>Starten ohne Anmeldung: Wir nutzen kryptografische IDs statt E-Mail-Adressen. Deine Identität ist technisch von deinen Daten entkoppelt.</p>
+                </div>
+                <div class="card card-left">
+                    <h3 style="color: var(--app-primary)">Sicherheit "Made in Germany"</h3>
+                    <p>Entwickelt und gehostet in Deutschland nach strengen DSGVO-Standards. Wir garantieren: Kein Datenhandel und keine versteckten Tracker.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACCESS GATE -->
+        <section id="access" style="border:none; padding-bottom: 100px;">
+            <div class="auth-wrapper">
+                <h2 style="margin-bottom: 10px; text-align: center;">Beta Download</h2>
+                <p style="margin-bottom: 30px; text-align: center;">Authentifiziere dich mit dem Tester-Passwort.</p>
+                <form onsubmit="checkPassword(event)">
+                    <div class="input-group">
+                        <input type="password" id="passwordInput" class="app-input" placeholder="Passwort" required>
+                    </div>
+                    <button type="submit" class="app-btn">Freischalten</button>
+                    <div id="message" style="margin-top: 15px; font-size: 0.9rem; min-height: 20px; text-align: center;"></div>
+                </form>
+                <div style="margin-top: 40px; font-size: 0.8rem; color: #666; text-align: center; border-top: 1px solid #333; padding-top: 20px;">
+                    <strong>Systemanforderungen:</strong> Android 8.0+<br>Installation aus unbekannten Quellen erforderlich.
+                </div>
+            </div>
+        </section>
     </div>
+
+    <footer>
+        <p>&copy; 2025 effekt:C</p>
+        <p><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></p>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-overlay" class="cookie-consent">
+        <span>Wir nutzen technisch notwendige Cookies.</span>
+        <button onclick="acceptCookies()">OK</button>
+    </div>
+
+    <script>
+        // --- CUSTOM SCROLL LOGIC ---
+        // Sanftes Scrollen über 2 Sekunden, um Nutzerinhalte zu zeigen
+        function slowScrollTo(e, targetId) {
+            e.preventDefault();
+            const target = document.getElementById(targetId);
+            if (!target) return;
+            
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = 2000; // 2000ms = 2 Sekunden
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                
+                // Easing Funktion (Ease In Out Cubic) für weichen Start/Stop
+                const run = easeInOutCubic(timeElapsed, startPosition, distance, duration);
+                
+                window.scrollTo(0, run);
+                
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                }
+            }
+
+            function easeInOutCubic(t, b, c, d) {
+                t /= d/2;
+                if (t < 1) return c/2*t*t*t + b;
+                t -= 2;
+                return c/2*(t*t*t + 2) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+
+        // --- DATA CONFIG ---
+        const positiveLabels = ['Klarheit', 'Kreativität', 'Stimmung', 'Entspannung', 'Schlaf'];
+        const negativeLabels = ['Trübung', 'Angst', 'Immobilität', 'Unwohlsein', 'Müdigkeit'];
+
+        // Strain Presets (Beispielwerte)
+        const strains = {
+            lemonHaze: { 
+                name: 'Lemon Haze', 
+                pos: [5, 5, 4, 1, 0], // Viel Klarheit/Kreativität, wenig Schlaf
+                neg: [0, 1, 0, 0, 0] 
+            },
+            ogKush: { 
+                name: 'OG Kush', 
+                pos: [2, 3, 5, 4, 3], // Gute Stimmung, Entspannung
+                neg: [1, 0, 2, 0, 1] 
+            },
+            granddaddy: { 
+                name: 'Granddaddy Purple', 
+                pos: [1, 2, 3, 5, 5], // Viel Schlaf/Entspannung, wenig Fokus
+                neg: [2, 0, 3, 0, 1] 
+            },
+            jackHerer: { 
+                name: 'Jack Herer', 
+                pos: [5, 4, 4, 1, 0], // Sehr Fokuslastig
+                neg: [0, 2, 0, 0, 0] 
+            }
+        };
+
+        // Current State
+        let currentPos = [...strains.lemonHaze.pos];
+        let currentNeg = [...strains.lemonHaze.neg];
+        let currentMode = 'positive'; 
+        
+        // Donut Chart Math
+        const maxVal = 5; 
+        const center = 150;
+        const innerRadius = 30; 
+        const outerRadius = 100;
+        const effectiveRange = outerRadius - innerRadius; // 70
+        const angles = [-90, -18, 54, 126, 198].map(deg => deg * (Math.PI / 180));
+
+        // --- CHART FUNCTIONS ---
+
+        function calculatePoints(values) {
+            let pointsString = "";
+            values.forEach((val, i) => {
+                const r = innerRadius + (val / maxVal) * effectiveRange;
+                const x = center + r * Math.cos(angles[i]);
+                const y = center + r * Math.sin(angles[i]);
+                pointsString += `${x},${y} `;
+                
+                const circle = document.getElementById(`p${i}`);
+                if(circle) {
+                    circle.setAttribute('cx', x);
+                    circle.setAttribute('cy', y);
+                }
+            });
+            document.getElementById('dataPolygon').setAttribute('points', pointsString.trim());
+        }
+
+        function updateChartValue(index, value) {
+            const valInt = parseInt(value);
+            if(currentMode === 'positive') {
+                currentPos[index] = valInt;
+                calculatePoints(currentPos);
+            } else {
+                currentNeg[index] = valInt;
+                calculatePoints(currentNeg);
+            }
+            document.getElementById(`slider-val-${index}`).innerText = valInt;
+        }
+
+        function renderSliders() {
+            const container = document.getElementById('sliders-container');
+            container.innerHTML = ''; 
+
+            const labels = currentMode === 'positive' ? positiveLabels : negativeLabels;
+            const values = currentMode === 'positive' ? currentPos : currentNeg;
+
+            // Update Labels in Chart
+            labels.forEach((lbl, i) => {
+                document.getElementById(`lbl-${i}`).textContent = lbl;
+            });
+
+            // Sliders Gen
+            labels.forEach((label, index) => {
+                const val = values[index];
+                const html = `
+                    <div class="control-group">
+                        <div class="control-label"><span>${label}</span> <span id="slider-val-${index}">${val}</span></div>
+                        <input type="range" min="0" max="5" value="${val}" oninput="updateChartValue(${index}, this.value)">
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        function switchMode(mode) {
+            currentMode = mode;
+            const wrapper = document.getElementById('chartWrapper');
+            
+            if(mode === 'positive') {
+                document.getElementById('btn-positive').classList.add('active');
+                document.getElementById('btn-negative').classList.remove('active');
+                wrapper.classList.remove('negative-mode');
+                calculatePoints(currentPos);
+            } else {
+                document.getElementById('btn-positive').classList.remove('active');
+                document.getElementById('btn-negative').classList.add('active');
+                wrapper.classList.add('negative-mode');
+                calculatePoints(currentNeg);
+            }
+            renderSliders();
+        }
+
+        // --- STRAIN SELECTION ---
+        function selectStrain(strainKey, el) {
+            // UI Active Class Logic
+            document.querySelectorAll('.strain-chip').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+
+            // Data Logic
+            const data = strains[strainKey];
+            currentPos = [...data.pos];
+            currentNeg = [...data.neg];
+
+            // UI Text Update
+            document.getElementById('strain-name-display').innerText = data.name;
+
+            // Chart Refresh
+            calculatePoints(currentMode === 'positive' ? currentPos : currentNeg);
+            renderSliders();
+        }
+
+        // --- AUTH & COOKIES ---
+        const CORRECT_PASSWORD = "lsm"; 
+        const TARGET_URL = "download.html";
+
+        function checkPassword(e) {
+            e.preventDefault();
+            const input = document.getElementById('passwordInput');
+            const msg = document.getElementById('message');
+
+            if(input.value === CORRECT_PASSWORD) {
+                input.style.borderColor = '#6BCB77';
+                msg.style.color = '#6BCB77';
+                msg.innerText = "Erfolg. Weiterleitung...";
+                
+                // Google Analytics Conversion Event
+                if (typeof gtag === 'function') {
+                    gtag('event', 'unlock_beta', {
+                        'event_category': 'access',
+                        'event_label': 'password_success'
+                    });
+                }
+
+                setTimeout(() => window.location.href = TARGET_URL, 800);
+            } else {
+                input.style.borderColor = '#CF6679'; 
+                msg.style.color = '#CF6679';
+                msg.innerText = "Zugriff verweigert.";
+            }
+        }
+        
+        function acceptCookies() {
+            document.getElementById('cookie-overlay').style.display = 'none';
+            document.cookie = "effekt_consent=true; max-age=31536000; path=/";
+        }
+        
+        // Init
+        if (!document.cookie.includes('effekt_consent')) {
+            document.getElementById('cookie-overlay').style.display = 'flex';
+        }
+        
+        // Start Render
+        renderSliders();
+        calculatePoints(currentPos);
+    </script>
 </body>
 </html>

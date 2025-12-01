@@ -3,71 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download freigeschaltet</title>
+    <title>effekt:C | Download</title>
+    <meta name="robots" content="noindex, nofollow"> <!-- Verhindert Google-Indexierung -->
     
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* ======================================================= */
-        /* I. CI-FARBEN UND GLOBALE STYLES */
-        /* ======================================================= */
-        
+        /* --- DESIGN SYSTEM (Identisch zu index.html) --- */
         :root {
-            --charcoal: #2C3E42; /* Hintergrund */
-            --green: #6BCB77;    /* CTA */
-            --white: #FFFFFF;    /* Text */
+            --app-bg: #1E282A;       
+            --app-surface: #2C3E42;  
+            --app-primary: #6BCB77;  
+            --app-teal: #00A896;     
+            --app-text: #E0E0E0;     
+            --app-muted: #B0BEC5;    
+            --app-divider: #37474F;
         }
 
+        * { box-sizing: border-box; }
+
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--charcoal); /* Setzt den dunklen Hintergrund */
-            color: var(--white);
             margin: 0;
             padding: 0;
-            text-align: center;
+            background-color: var(--app-bg);
+            color: var(--app-text);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.5;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            justify-content: center; /* Zentriert den Inhalt */
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 90%;
+            padding: 40px 30px;
+            background: var(--app-surface);
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            margin: 20px;
+        }
+
+        .icon-success {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         h1 {
-            font-size: 2rem;
-            color: var(--green); /* Headline in CI-Grün */
-            margin-bottom: 15px;
+            margin: 0 0 10px 0;
+            color: white;
+            font-size: 1.8rem;
         }
 
         p {
-            font-size: 1.1rem;
+            color: var(--app-muted);
             margin-bottom: 30px;
+            font-size: 1rem;
         }
-        
-        /* CTA Button Styling */
-        .download-button {
-            background-color: var(--green);
-            color: var(--charcoal);
-            padding: 15px 30px;
-            border-radius: 8px;
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: var(--app-primary);
+            color: #1E282A;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.2rem;
-            display: inline-block;
-            transition: background-color 0.3s;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(107, 203, 119, 0.3);
         }
-        .download-button:hover {
-            background-color: #5cb86b;
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(107, 203, 119, 0.4);
+        }
+
+        .instructions {
+            margin-top: 40px;
+            text-align: left;
+            border-top: 1px solid var(--app-divider);
+            padding-top: 20px;
+        }
+
+        .instructions h3 {
+            color: var(--app-primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .step-number {
+            background: rgba(255,255,255,0.1);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            color: var(--app-primary);
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
     </style>
 </head>
 <body>
-    
-    <h1>Zugang erfolgreich freigeschaltet!</h1>
-    <p>Danke für deine Teilnahme an der Closed Beta. Bitte lade die APK-Datei über den Link herunter.</p>
-    
-    <a href="https://drive.google.com/drive/folders/11_rDlZtGn2Q1BajLb-4CZnlxw9EFIGqg?usp=drive_link" 
-       class="download-button" target="_blank">
-       ➡️ APK Download starten
-    </a>
+
+    <div class="container">
+        <span class="icon-success">🚀</span>
+        <h1>Willkommen an Bord!</h1>
+        <p>Der Beta-Zugang wurde erfolgreich freigeschaltet. Du kannst die App jetzt herunterladen.</p>
+
+        <!-- 
+             WICHTIG: ERSETZE DEN LINK UNTEN MIT DEINEM PROJEKT-LINK!
+             (z.B. Google Drive Share Link oder Dropbox Link zur .apk Datei)
+        -->
+        <a href="https://drive.google.com/file/d/1jgmzS-G4zbsKcYsarAUxgY5Z5vwg4Gcf/view?usp=sharing" class="download-btn">
+            APK Herunterladen ↓
+        </a>
+
+        <div class="instructions">
+            <h3>So installierst du die App:</h3>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>Lade die Datei auf dein Android-Gerät herunter.</div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>Öffne die Datei (meistens in der Benachrichtigungsleiste oder im Ordner "Downloads").</div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>Wenn gefragt: Erlaube die Installation aus <strong>"unbekannten Quellen"</strong> (Chrome/Files).</div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>Klicke auf <strong>"Installieren"</strong> und starte die App.</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 effekt:C Beta
+    </footer>
 
 </body>
 </html>
