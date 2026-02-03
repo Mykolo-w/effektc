@@ -783,11 +783,7 @@
                         <input type="email" id="emailInput" class="app-input" placeholder="Deine Email-Adresse" required
                             data-i18n="ph_email" data-i18n-attr="placeholder">
                     </div>
-                    <div class="input-group" style="margin-bottom: 24px;">
-                        <textarea id="motivationInput" class="app-input" placeholder="Motivation" required
-                            style="min-height: 100px; resize: vertical;" data-i18n="ph_motivation"
-                            data-i18n-attr="placeholder"></textarea>
-                    </div>
+
 
                     <button type="submit" class="app-btn" data-i18n="btn_submit">Bewerbung absenden</button>
                     <div id="message"
@@ -836,10 +832,10 @@
         // --- TRANSLATIONS (DE / EN) ---
         const translations = {
             de: {
-                beta_badge: "Closed Beta",
+                beta_badge: "Coming Soon",
                 hero_title: "Dein High. Dein Profil. Deine Kontrolle.",
                 hero_subtitle: "Die Tracking-App für Cannabis-Konsum \"made in Germany\". Verstehe deine persönliche Wirkung präzise und sicher - ohne Login-Zwang oder Datenverkäufe.",
-                hero_cta: "Zugang anfordern &darr;",
+                hero_cta: "Benachrichtigen lassen &darr;",
                 feature_high_title: "Dein High.",
                 feature_high_desc: "Cannabis wirkt komplex und kein High ist gleich. effekt:C macht den Unterschied für dich sichtbar.",
                 tile1_title: "Detaillierte Selbstanalyse",
@@ -862,31 +858,29 @@
                 tile5_desc: "Starten ohne Anmeldung: Wir nutzen kryptografische IDs statt E-Mail-Adressen. Deine Identität ist technisch von deinen Daten entkoppelt.",
                 tile6_title: "Sicherheit \"Made in Germany\"",
                 tile6_desc: "Entwickelt und gehostet in Deutschland nach strengen DSGVO-Standards. Wir garantieren: Kein Datenhandel und keine versteckten Tracker.",
-                access_title: "Beta Zugang anfordern",
-                access_desc: "Möchtest du effekt:C testen? Schreib uns kurz, warum du dabei sein willst.",
+                access_title: "Benachrichtigen lassen",
+                access_desc: "Wir melden uns, sobald effekt:C im App Store verfügbar ist.",
                 ph_name: "Vorname Nachname",
                 ph_email: "Deine Email-Adresse",
-                ph_motivation: "Motivation",
-                btn_submit: "Bewerbung absenden",
+                btn_submit: "Auf die Warteliste",
                 hint_strong: "Hinweis:",
-                hint_text: "Dies öffnet dein Email-Programm.<br>Wir melden uns persönlich bei dir.",
+                hint_text: "Dies öffnet dein Email-Programm.<br>Wir setzen dich auf die Liste.",
                 modal_privacy_title: "Datenschutz-Hinweis",
                 modal_privacy_text: "Speichern geht NUR in der App. Dein privater Log wird nie mit einem Nutzerkonto verknüpft oder in der Cloud gespeichert. Diese Daten liegen ausschließlich lokal auf deinem Gerät.",
                 btn_understood: "Verstanden",
                 cookie_text: "Wir nutzen technisch notwendige Cookies.",
-                mail_subject: "effekt:C Beta Bewerbung",
-                mail_intro: "Hallo,\n\nich möchte gerne Beta-Tester werden.",
+                mail_subject: "effekt:C Warteliste",
+                mail_intro: "Hallo,\n\nich möchte benachrichtigt werden, wenn die App verfügbar ist.",
                 mail_name: "Name",
                 mail_email: "Email",
-                mail_motivation: "Motivation",
                 mail_greetings: "Liebe Grüße",
                 mail_feedback: "Email-Programm wird geöffnet..."
             },
             en: {
-                beta_badge: "Closed Beta",
+                beta_badge: "Coming Soon",
                 hero_title: "Your High. Your Profile. Your Control.",
                 hero_subtitle: "The tracking app for cannabis consumption made in Germany. Understand your personal effect precisely and securely - without forced login or data sales.",
-                hero_cta: "Request Access â†“",
+                hero_cta: "Get Notified &darr;",
                 feature_high_title: "Your High.",
                 feature_high_desc: "Cannabis acts simply and no high is the same. effekt:C makes the difference visible to you.",
                 tile1_title: "Detailed Self-Analysis",
@@ -909,23 +903,21 @@
                 tile5_desc: "Start without registration: We use cryptographic IDs instead of emails.",
                 tile6_title: "Security \"Made in Germany\"",
                 tile6_desc: "Developed and hosted in Germany under strict GDPR standards. No data trading, no hidden trackers.",
-                access_title: "Request Beta Access",
-                access_desc: "Want to test effekt:C? Write us briefly why you want to join.",
+                access_title: "Get Notified",
+                access_desc: "We will notify you as soon as effekt:C is available in the App Store.",
                 ph_name: "First Name Last Name",
                 ph_email: "Your Email Address",
-                ph_motivation: "Motivation",
-                btn_submit: "Send Application",
+                btn_submit: "Join Waitlist",
                 hint_strong: "Note:",
-                hint_text: "This opens your email client.<br>We will contact you personally.",
+                hint_text: "This opens your email client.<br>We will put you on the list.",
                 modal_privacy_title: "Privacy Notice",
                 modal_privacy_text: "Saving works ONLY in the app. Your private log is never linked to a user account or stored in the cloud. Data stays local.",
                 btn_understood: "Understood",
                 cookie_text: "We use technically necessary cookies.",
-                mail_subject: "effekt:C Beta Application",
-                mail_intro: "Hello,\n\nI would like to become a beta tester.",
+                mail_subject: "effekt:C Waitlist",
+                mail_intro: "Hello,\n\nplease notify me when the app is released.",
                 mail_name: "Name",
                 mail_email: "Email",
-                mail_motivation: "Motivation",
                 mail_greetings: "Best regards",
                 mail_feedback: "Opening email client..."
             }
@@ -1140,15 +1132,12 @@
             const t = translations[currentLang];
             const name = document.getElementById('nameInput').value;
             const email = document.getElementById('emailInput').value;
-            const motivation = document.getElementById('motivationInput').value;
-            const msg = document.getElementById('message');
 
             const subject = encodeURIComponent(`${t.mail_subject}: ${name}`);
             const body = encodeURIComponent(
                 `${t.mail_intro}\n\n` +
                 `${t.mail_name}: ${name}\n` +
                 `${t.mail_email}: ${email}\n\n` +
-                `${t.mail_motivation}:\n${motivation}\n\n` +
                 `${t.mail_greetings}`
             );
 
