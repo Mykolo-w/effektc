@@ -1,74 +1,68 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>effekt:C | Datenschutzerklärung</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/logo.png">
-    <link rel="apple-touch-icon" href="assets/logo.png">
-    
-    <!-- Fonts: Roboto -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
+    <title>Datenschutz - effekt:C</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/header.css">
     <style>
-        /* --- DESIGN SYSTEM (Identisch zur Landingpage) --- */
-        :root {
-            --app-bg: #1E282A;
-            --app-surface: #2C3E42;
-            --app-primary: #6BCB77;
-            --app-text: #E0E0E0;
-            --app-muted: #B0BEC5;
-            --app-divider: #37474F;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 60px;
         }
 
-        * { box-sizing: border-box; }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--app-bg);
-            color: var(--app-text);
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3 { color: #fff; margin-top: 0; }
-        h1 { font-size: 2rem; margin-bottom: 10px; }
-        h2 { font-size: 1.4rem; margin-top: 40px; margin-bottom: 15px; color: var(--app-primary); border-bottom: 1px solid var(--app-divider); padding-bottom: 10px; }
-        h3 { font-size: 1.1rem; margin-top: 25px; margin-bottom: 10px; color: #fff; }
-        
-        p, ul { color: var(--app-muted); margin-bottom: 15px; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
-        
-        a { color: var(--app-primary); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        /* Header Area */
-        .header-nav {
+        .brand-header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 60px;
+            gap: 15px;
+            text-decoration: none;
+            /* Link style removal */
         }
-        .logo-area { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.2rem; color: #fff; }
-        .back-link { font-size: 0.9rem; border: 1px solid var(--app-divider); padding: 8px 16px; border-radius: 20px; transition: background 0.2s; }
-        .back-link:hover { background: rgba(255,255,255,0.05); text-decoration: none; }
+
+        .app-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--app-surface);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .back-link {
+            font-size: 0.9rem;
+            color: var(--app-muted);
+            text-decoration: none;
+            border: 1px solid var(--app-divider);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            border-color: var(--app-primary);
+            color: #fff;
+        }
 
         .content-box {
             background: var(--app-surface);
             padding: 40px;
             border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .highlight-box {
@@ -85,25 +79,46 @@
             font-size: 0.8rem;
             color: #666;
         }
-        
+
+        .legal-content h1 {
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+
+        .legal-content h2 {
+            margin-top: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
         @media(max-width: 600px) {
-            .content-box { padding: 20px; }
-            h1 { font-size: 1.6rem; }
+            .content-box {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
-        
+
         <!-- Navigation -->
         <nav class="header-nav">
-            <div class="logo-area">
-                <!-- Kleines Logo -->
-                <div style="width:32px; height:32px; background:var(--app-surface); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.8rem;">e:C</div>
-                <span>effekt:C</span>
-            </div>
-            <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+            <a href="index.html" class="brand-header">
+                <div class="app-icon" style="width: 48px; height: 48px; box-shadow: none;">
+                    <img src="assets/logo.png" alt="Icon" style="width:32px; height:auto;"
+                        onerror="this.style.display='none'; this.parentElement.innerText='e:C'">
+                </div>
+                <div class="brand-name" style="font-size: 1.5rem;">effekt:C</div>
+            </a>
+            <a href="index.html" class="back-link">Startseite</a>
         </nav>
 
         <div class="content-box">
@@ -111,7 +126,10 @@
             <p>Stand: 24.11.2025</p>
 
             <div class="highlight-box">
-                <strong>Kurzfassung:</strong> Ihre Gesundheitsdaten gehören Ihnen. Die App <em>effekt:C</em> speichert Ihre persönlichen Eingaben lokal auf Ihrem Gerät. Es findet keine Übertragung von Klarnamen oder persönlichen Inhalten an unsere Server statt.
+                <strong>Kurzfassung:</strong> Deine Gesundheitsdaten gehören nur dir. Die App <em>effekt:C</em>
+                speichert
+                deine persönlichen Eingaben <strong>ausschließlich lokal</strong> auf deinem Gerät. Es gibt keinen
+                Cloud-Sync für deine privaten Tagebuch-Einträge. Wir wissen nicht, wer du bist.
             </div>
 
             <h2>1. Verantwortlicher</h2>
@@ -123,38 +141,54 @@
                 E-Mail: info@effektc.com
             </p>
 
-            <h2>2. Datenerfassung in der App (effekt:C)</h2>
-            
-            <h3>Lokale Speicherung</h3>
-            <p>Die App speichert sämtliche von Ihnen eingegebenen Daten (wie z.B. Konsum-Einträge, Sorten, Bewertungen und Notizen) in einem geschützten Speicherbereich direkt auf Ihrem Endgerät. Wir haben keinen Zugriff auf diese lokalen Daten.</p>
+            <h2>2. Deine Daten in der App</h2>
 
-            <h3>Lizenzprüfung und Nutzung</h3>
-            <p>Die App kann ohne Angabe von personenbezogenen Daten (wie E-Mail oder Name) genutzt werden. Zur Verwaltung von Lizenzmodellen (z.B. Testzeiträume) wird eine anonyme Gerätekennung generiert und an unseren Server übermittelt. Diese Kennung lässt keine Rückschlüsse auf Ihre Person zu.</p>
+            <h3>Alles bleibt bei dir (Lokale Speicherung)</h3>
+            <p>Das wichtigste zuerst: Deine privaten Notizen, Konsum-Logs und Wirkungs-Bewertungen verlassen dein Handy
+                nicht.
+                Die App speichert diese sensiblen Daten in einer geschützten Datenbank direkt auf deinem Gerät.
+                Wenn du die App löschst, sind diese Daten weg – wir haben kein Backup, weil wir keinen Zugriff darauf
+                haben.</p>
 
-            <h3>Statistik und Verbesserung</h3>
-            <p>Um die Qualität der Sorten-Datenbank zu verbessern, können anonymisierte Nutzungsdaten an unseren Server übermittelt werden. Hierbei handelt es sich ausschließlich um statistische Werte (z.B. Häufigkeit von Wirkungen bei bestimmten Sorten). Persönliche Eingaben wie individuelle Texte, genaue Zeitpunkte oder private Notizen sind von dieser Übertragung ausgeschlossen.</p>
+            <h3>Kein Account-Zwang</h3>
+            <p>Du nutzt effekt:C ohne Benutzerkonto. Wir fragen nicht nach deiner E-Mail-Adresse oder deinem Namen, um
+                die App zu nutzen.
+                Du bist für uns technisch gesehen ein anonymer Nutzer.</p>
 
-            <h3>App-Berechtigungen</h3>
-            <p>Die App benötigt Zugriff auf den Speicher (zum Sichern der lokalen Daten) und das Internet (zur Lizenzprüfung und zum Abruf allgemeiner Sorten-Informationen).</p>
+            <h3>Statistik zur Verbesserung (Optional)</h3>
+            <p>Damit wir verstehen, welche Cannabis-Sorten welchen Effekt haben, sammeln wir vollständig anonymisierte
+                Statistik-Daten.
+                Beispiel: "Sorte XYZ wirkt bei 80% der Nutzer entspannend." <br>
+                Wichtig: Dabei werden niemals deine persönlichen Texte oder privaten Notizen übertragen. Es geht rein um
+                die Wirkungs-Mechanik.</p>
 
-            <h2>3. Datenerfassung auf dieser Website</h2>
+            <h3>Berechtigungen</h3>
+            <p>Wir fragen dich nur nach Berechtigungen, die technisch notwendig sind (z.B. Speicherzugriff, damit deine
+                Daten auf deinem Handy gespeichert werden können).</p>
+
+            <h2>3. Daten auf dieser Website</h2>
 
             <h3>Server-Log-Dateien</h3>
-            <p>Beim Aufruf unserer Website erhebt der Provider automatisch Informationen in so genannten Server-Log-Dateien (z.B. Browsertyp, IP-Adresse, Uhrzeit). Diese Daten sind technisch notwendig, um die Sicherheit und Stabilität der Website zu gewährleisten (Art. 6 Abs. 1 lit. f DSGVO).</p>
+            <p>Wenn du diese Website besuchst, notiert unser Server technische Standard-Informationen (z.B. Browser,
+                IP-Adresse), damit die Seite sicher und stabil läuft. Das passiert automatisch.</p>
 
-            <h3>Cookies</h3>
-            <p>Diese Website verwendet lediglich technisch notwendige Cookies, um den geschützten Zugang (Beta-Bereich) zu ermöglichen. Es werden keine Tracking- oder Werbe-Cookies von Drittanbietern eingesetzt.</p>
+            <h3>Beta-Anmeldung</h3>
+            <p>Wenn du dich für die Beta anmeldest, schickst du uns freiwillig eine E-Mail. Wir nutzen deine
+                Mail-Adresse ausschließlich, um dir den Beta-Zugang zu schicken und dich über Updates zu informieren.
+                Wir geben sie nicht weiter.</p>
 
-            <h2>4. Ihre Rechte</h2>
-            <p>Sie haben jederzeit das Recht auf Auskunft über Ihre gespeicherten personenbezogenen Daten. Da wir in der App keine personenbezogenen Nutzerkonten führen, liegen die meisten Daten ausschließlich in Ihrer Hand (auf Ihrem Gerät). Sie können diese Daten jederzeit löschen, indem Sie die App deinstallieren oder die entsprechenden Funktionen innerhalb der App nutzen.</p>
+            <h2>4. Deine Rechte</h2>
+            <p>Da wir keine Nutzerkonten haben, hast du die volle Kontrolle. Alle deine Daten liegen auf deinem Gerät in
+                deiner Hand.</p>
 
         </div>
 
     </div>
 
     <footer>
-        <p>&copy; 2025 effekt:C</p>
+        <p>&copy; 2026 effekt:C</p>
     </footer>
 
 </body>
+
 </html>

@@ -1,62 +1,117 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impressum | effekt:C</title>
+    <title>Impressum - effekt:C</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/header.css">
     <style>
-        /* Übernimmt das Clean Design und die Farben */
-        :root {
-            --charcoal: #2C3E42;
-            --green: #6BCB77;
-            --teal: #00A896;
-            --white: #FFFFFF;
+        .legal-content h1 {
+            color: var(--primary);
+            margin-bottom: 24px;
         }
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--charcoal);
-            color: var(--white);
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        h1 {
-            color: var(--teal);
-            font-size: 2rem;
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: var(--green);
-            font-size: 1.3rem;
-            margin-top: 30px;
-        }
-        p, address {
-            margin: 10px 0;
-        }
-        a {
-            color: var(--green);
-            text-decoration: none;
-        }
+
+        .legal-content h2 {
+            margin-top: 40px;
+
+            .app-icon {
+                width: 48px;
+                height: 48px;
+                background: var(--app-surface);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                overflow: hidden;
+            }
+
+            .brand-name {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #fff;
+                letter-spacing: 1px;
+            }
+
+            .back-link {
+                font-size: 0.9rem;
+                color: var(--app-muted);
+                text-decoration: none;
+                border: 1px solid var(--app-divider);
+                padding: 8px 16px;
+                border-radius: 20px;
+                transition: all 0.2s;
+            }
+
+            .back-link:hover {
+                border-color: var(--app-primary);
+                color: #fff;
+            }
+
+            .content-box {
+                background: var(--app-surface);
+                padding: 40px;
+                border-radius: 16px;
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            footer {
+                margin-top: 60px;
+                text-align: center;
+                font-size: 0.8rem;
+                color: #666;
+            }
+
+            @media(max-width: 600px) {
+                .content-box {
+                    padding: 20px;
+                }
+            }
     </style>
 </head>
+
 <body>
-    <h1>Impressum</h1>
 
-    <h2>Angaben gemäß § 5 TMG</h2>
-    <address>
-        Michael Wurmlinger<br>
-        St. Andrä Str. 8a<br>
-        82398 Polling
-    </address>
-    <p>
-        <strong>Kontakt:</strong><br>
-        info@effektc.com<br>
-        
-    </p>
+    <div class="container">
 
-    <hr style="border-color: #3b5055; margin: 40px 0;">
+        <!-- Navigation -->
+        <nav class="header-nav">
+            <a href="index.html" class="brand-header">
+                <div class="app-icon" style="width: 48px; height: 48px; box-shadow: none;">
+                    <img src="assets/logo.png" alt="Icon" style="width:32px; height:auto;"
+                        onerror="this.style.display='none'; this.parentElement.innerText='e:C'">
+                </div>
+                <div class="brand-name" style="font-size: 1.5rem;">effekt:C</div>
+            </a>
+            <a href="index.html" class="back-link">Startseite</a>
+        </nav>
 
-    <p>Zurück zur <a href="index.html">Startseite</a>.</p>
+        <div class="content-box">
+            <h1>Impressum</h1>
+
+            <h2>Angaben gemäß § 5 TMG</h2>
+            <address>
+                Michael Wurmlinger<br>
+                St. Andrä Str. 8a<br>
+                82398 Polling
+            </address>
+
+            <p>
+                <strong>Kontakt:</strong><br>
+                E-Mail: <a href="mailto:info@effektc.com">info@effektc.com</a>
+            </p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 effekt:C</p>
+    </footer>
+
 </body>
+
 </html>

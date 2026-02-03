@@ -1,50 +1,48 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <!-- shrink-to-fit=no hilft Safari/Chrome auf iOS/Android beim Skalieren -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>effekt:C | Beta Zugang</title>
-    
-    <!-- GOOGLE ANALYTICS (GA4) -->
-    <!-- Ersetze G-XXXXXXXXXX mit deiner echten Measurement ID -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q68BGFX3R2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    <title>effekt:C | Beta</title>
 
-      gtag('config', 'G-Q68BGFX3R2');
-    </script>
-    
     <!-- FAVICON -->
-    <link rel="icon" type="image/png" href="assets/logo.png">
-    <link rel="apple-touch-icon" href="assets/logo.png">
+    <link rel="icon" type="image/png" href="assets/logo_main.png">
+    <link rel="apple-touch-icon" href="assets/logo_main.png">
 
     <meta name="description" content="Tracking für Cannabis-Patienten. Dein High. Dein Profil. Deine Kontrolle.">
-    
+
     <!-- Fonts: Roboto (App Standard) -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
+
     <style>
         /* --- DESIGN SYSTEM --- */
         :root {
-            --app-bg: #1E282A;       /* Dunkles Blau-Grau */
-            --app-surface: #2C3E42;  /* Card Color */
-            --app-primary: #6BCB77;  /* Das helle Grün (Positiv) */
-            --app-negative: #FFC107; /* Amber/Gelb (Negativ) */
-            --app-teal: #00A896;     
-            --app-text: #E0E0E0;     
-            --app-muted: #B0BEC5;    
+            --app-bg: #1E282A;
+            /* Dunkles Blau-Grau */
+            --app-surface: #2C3E42;
+            /* Card Color */
+            --app-primary: #6BCB77;
+            /* Das helle Grün (Positiv) */
+            --app-negative: #FFC107;
+            /* Amber/Gelb (Negativ) */
+            --app-teal: #00A896;
+            --app-text: #E0E0E0;
+            --app-muted: #B0BEC5;
             --app-divider: #37474F;
         }
 
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
         /* WICHTIG: Harter Reset für die Basis-Schriftgröße */
         html {
-            font-size: 16px; /* Verhindert Interpretationsspielraum für Browser */
-            -webkit-text-size-adjust: 100%; /* Verhindert Font-Boosting auf Mobile */
+            font-size: 16px;
+            /* Verhindert Interpretationsspielraum für Browser */
+            -webkit-text-size-adjust: 100%;
+            /* Verhindert Font-Boosting auf Mobile */
         }
 
         body {
@@ -55,26 +53,85 @@
             font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        /* --- LANGUAGE SWITCHER (Kept) --- */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            padding: 8px 16px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .lang-opt {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--app-muted);
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        .lang-opt:hover {
+            color: #fff;
+        }
+
+        .lang-opt.active {
+            color: var(--app-primary);
+            text-decoration: underline;
         }
 
         /* --- TYPOGRAPHY --- */
-        h1, h2, h3, h4 { margin: 0; font-weight: 700; color: var(--white); }
-        
-        h1 { 
-            font-size: 2.5rem; 
-            margin-bottom: 1rem; 
-            color: #fff; 
+        h1,
+        h2,
+        h3,
+        h4 {
+            margin: 0;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             line-height: 1.2;
         }
-        
-        h2 { font-size: 1.8rem; margin-bottom: 1rem; color: #fff; }
-        h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--app-primary); }
-        h4 { font-size: 1rem; margin-bottom: 4px; color: var(--app-primary); }
-        p { color: var(--app-muted); margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;}
 
-        /* --- LAYOUT --- */
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--app-primary);
+        }
+
+        h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+            color: var(--app-primary);
+        }
+
+        p {
+            color: var(--app-muted);
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- LAYOUT (From Reference) --- */
         .container {
-            max-width: 900px; 
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -83,7 +140,10 @@
             padding: 80px 0;
             border-bottom: 1px solid var(--app-divider);
         }
-        section:last-of-type { border-bottom: none; }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
 
         /* --- HERO --- */
         .hero {
@@ -94,7 +154,7 @@
             align-items: center;
             text-align: center;
         }
-        
+
         .brand-header {
             display: flex;
             align-items: center;
@@ -110,8 +170,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             overflow: hidden;
         }
 
@@ -142,19 +202,30 @@
             gap: 24px;
             margin-top: 40px;
         }
+
         .card {
             background: var(--app-surface);
             padding: 24px;
             border-radius: 16px;
-            text-align: center; 
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s;
         }
-        .card:hover { transform: translateY(-5px); }
-        .card-left { text-align: left; } 
-        .card p { margin: 0; font-size: 0.9rem; }
-        
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-left {
+            text-align: left;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
         .feature-icon {
             width: 48px;
             height: 48px;
@@ -165,11 +236,11 @@
 
         /* --- INTERACTIVE CHART --- */
         .chart-section-wrapper {
-            background: var(--app-surface); 
+            background: var(--app-surface);
             border-radius: 24px;
             padding: 30px;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             margin-top: 20px;
         }
 
@@ -180,9 +251,10 @@
             flex-wrap: wrap;
             margin-bottom: 25px;
         }
+
         .strain-chip {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--app-muted);
             padding: 8px 16px;
             border-radius: 20px;
@@ -190,7 +262,12 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .strain-chip:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+        .strain-chip:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
         .strain-chip.active {
             background: rgba(107, 203, 119, 0.2);
             border-color: var(--app-primary);
@@ -198,12 +275,14 @@
             font-weight: 500;
         }
 
+        /* --- TABS --- */
         .tabs {
             display: flex;
             justify-content: center;
             margin-bottom: 30px;
             border-bottom: 1px solid var(--app-divider);
         }
+
         .tab-btn {
             background: none;
             border: none;
@@ -215,15 +294,25 @@
             position: relative;
             transition: color 0.3s;
         }
-        .tab-btn.active { color: var(--app-text); }
+
+        .tab-btn.active {
+            color: var(--app-text);
+        }
+
         .tab-btn.active::after {
             content: '';
             position: absolute;
-            bottom: -1px; left: 0; width: 100%; height: 3px;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
             background-color: var(--app-primary);
             border-radius: 3px 3px 0 0;
         }
-        .tab-btn.neg.active::after { background-color: var(--app-negative); }
+
+        .tab-btn.neg.active::after {
+            background-color: var(--app-negative);
+        }
 
         .chart-container {
             display: flex;
@@ -239,7 +328,7 @@
             min-width: 300px;
             max-width: 400px;
             position: relative;
-            aspect-ratio: 1 / 1; 
+            aspect-ratio: 1 / 1;
         }
 
         .chart-controls {
@@ -248,117 +337,208 @@
             text-align: left;
         }
 
-        #radarSvg { width: 100%; height: 100%; overflow: visible; }
-        .grid-circle { fill: none; stroke: rgba(255,255,255,0.1); stroke-width: 1; }
-        .axis-line { stroke: rgba(255,255,255,0.1); stroke-width: 1; }
-        
+        #radarSvg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .grid-circle {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.1);
+            stroke-width: 1;
+        }
+
+        .axis-line {
+            stroke: rgba(255, 255, 255, 0.1);
+            stroke-width: 1;
+        }
+
         .data-poly {
             fill: rgba(107, 203, 119, 0.2);
-            stroke: var(--app-primary); 
+            stroke: var(--app-primary);
             stroke-width: 2;
             transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        .data-point { 
-            fill: var(--app-primary); 
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); 
+
+        .data-point {
+            fill: var(--app-primary);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        
+
         .label-text {
-            fill: var(--app-text); font-size: 13px; font-weight: 500; font-family: 'Roboto', sans-serif;
-            text-anchor: middle; dominant-baseline: middle;
+            fill: var(--app-text);
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'Roboto', sans-serif;
+            text-anchor: middle;
+            dominant-baseline: middle;
         }
 
-        .center-bg-circle { fill: var(--app-surface); stroke: rgba(255,255,255,0.1); }
-        .chart-logo-fallback { font-size: 20px; fill: var(--app-primary); font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+        .center-bg-circle {
+            fill: var(--app-surface);
+            stroke: rgba(255, 255, 255, 0.1);
+        }
 
-        .control-group { margin-bottom: 20px; animation: fadeIn 0.5s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .chart-logo-fallback {
+            font-size: 20px;
+            fill: var(--app-primary);
+            font-weight: bold;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+
+        .control-group {
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         .control-label {
-            display: flex; justify-content: space-between;
-            font-size: 0.9rem; color: #fff; margin-bottom: 8px; font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 8px;
+            font-weight: 500;
         }
+
         input[type=range] {
-            width: 100%; height: 6px; background: #121212; border-radius: 3px;
-            outline: none; -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: #121212;
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
         }
+
         input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none; width: 20px; height: 20px;
-            background: var(--app-primary); border-radius: 50%;
-            cursor: pointer; border: 3px solid var(--app-surface);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3); transition: background 0.3s;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--app-primary);
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid var(--app-surface);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s;
         }
 
         .negative-mode .data-poly {
-            fill: rgba(255, 193, 7, 0.2); stroke: var(--app-negative);
-        }
-        .negative-mode .data-point { fill: var(--app-negative); }
-        .negative-mode input[type=range]::-webkit-slider-thumb { background: var(--app-negative); }
-        .negative-mode .strain-chip.active {
-            background: rgba(255, 193, 7, 0.2); border-color: var(--app-negative); color: var(--app-negative);
+            fill: rgba(255, 193, 7, 0.2);
+            stroke: var(--app-negative);
         }
 
-        /* --- AUTH FORM --- */
-        .auth-wrapper { max-width: 400px; margin: 0 auto; text-align: left; }
+        .negative-mode .data-point {
+            fill: var(--app-negative);
+        }
+
+        .negative-mode input[type=range]::-webkit-slider-thumb {
+            background: var(--app-negative);
+        }
+
+        .negative-mode .strain-chip.active {
+            background: rgba(255, 193, 7, 0.2);
+            border-color: var(--app-negative);
+            color: var(--app-negative);
+        }
+
+        /* --- AUTH FORM (From Reference) --- */
+        .auth-wrapper {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
         .app-input {
-            width: 100%; padding: 16px; background: var(--app-surface);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
-            color: white; font-size: 1.1rem; outline: none; margin-bottom: 16px;
-            text-align: center; letter-spacing: 1px;
+            width: 100%;
+            padding: 16px;
+            background: var(--app-surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+            margin-bottom: 16px;
+            text-align: center;
+            letter-spacing: 1px;
         }
-        .app-input:focus { border-color: var(--app-primary); }
-        
+
+        .app-input:focus {
+            border-color: var(--app-primary);
+        }
+
         .app-btn {
-            width: 100%; padding: 16px; background: var(--app-primary); color: #1E282A; 
-            border: none; border-radius: 12px; font-size: 1rem; font-weight: 700;
-            cursor: pointer; transition: transform 0.1s;
+            width: 100%;
+            padding: 16px;
+            background: var(--app-primary);
+            color: #1E282A;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.1s;
         }
-        .app-btn:active { transform: scale(0.98); }
+
+        .app-btn:active {
+            transform: scale(0.98);
+        }
 
         /* --- FOOTER --- */
         footer {
-            padding: 60px 20px; text-align: center; font-size: 0.8rem; color: #666;
+            padding: 60px 20px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
             border-top: 1px solid var(--app-divider);
         }
-        footer a { color: #888; text-decoration: none; margin: 0 12px; }
-        footer a:hover { color: var(--app-primary); }
 
-        /* --- COOKIE BANNER (Clean & Natural) --- */
+        footer a {
+            color: #888;
+            text-decoration: none;
+            margin: 0 12px;
+        }
+
+        footer a:hover {
+            color: var(--app-primary);
+        }
+
+        /* --- COOKIE BANNER --- */
         .cookie-consent {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            /* Falls das Fenster sehr schmal wird, halten wir etwas Abstand */
-            max-width: calc(100% - 40px); 
-            
+            max-width: calc(100% - 40px);
             background-color: #1a1a1a;
             color: #b0bec5;
-            
-            /* Flexibles Layout */
-            display: none; /* JS schaltet auf flex */
+            display: none;
             align-items: center;
             justify-content: space-between;
             gap: 20px;
-            
             padding: 15px 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 9999;
-            
-            /* Keine feste Breite, sondern Inhalt bestimmt Größe */
             width: fit-content;
-        }
-        
-        .cookie-consent span {
-            font-size: 0.9rem;
-            color: #b0bec5;
         }
 
         .cookie-consent button {
             background: transparent;
             border: none;
-            color: #6BCB77; /* App Primary */
+            color: #6BCB77;
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
@@ -367,87 +547,127 @@
             white-space: nowrap;
         }
 
-        @media(max-width: 600px) {
-            .brand-header { flex-direction: column; gap: 10px; }
-            .brand-name { font-size: 2rem; }
-            .chart-container { flex-direction: column; }
-            .chart-visual { width: 100%; min-width: unset; }
-            h1 { font-size: 2rem; } 
-            
-            /* Mobile: Volle Breite, unten angepinnt */
-            .cookie-consent {
-                left: 20px; 
-                right: 20px; 
-                bottom: 20px;
-                width: auto;
-                max-width: none;
+        /* --- MODAL (Crucial) --- */
+        .app-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--app-surface);
+            margin: 20px;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
             }
         }
+
+        .modal-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
-    <!-- HERO -->
+    <!-- Language Switcher (Floating) -->
+    <nav class="lang-switch">
+        <a class="lang-opt active" id="lang-de" onclick="changeLanguage('de')">DE</a>
+        <span style="color:rgba(255,255,255,0.2)">|</span>
+        <a class="lang-opt" id="lang-en" onclick="changeLanguage('en')">EN</a>
+    </nav>
+
+    <!-- WRAPPER: Matches Reference Structure -->
     <div class="container">
+
+        <!-- HERO -->
         <section class="hero">
-            
             <div class="brand-header">
                 <div class="app-icon">
-                    <img src="assets/logo.png" alt="Icon" style="width:40px; height:auto;" onerror="this.style.display='none'; this.parentElement.innerText='e:C'">
+                    <img src="assets/logo_main.png" alt="Icon" style="width:40px; height:auto;"
+                        onerror="this.style.display='none'; this.parentElement.innerText='e:C'">
                 </div>
                 <div class="brand-name">effekt:C</div>
             </div>
 
-            <span class="badge">Closed Beta</span>
-            
-            <!-- Die geforderte Einzeilen-Überschrift -->
-            <h1>Dein High. Dein Profil. Deine Kontrolle.</h1>
-            
-            <p>Die Tracking-App für Cannabis-Konsum "made in Germany". Verstehe deine persönliche Wirkung präzise und sicher - ohne Login-Zwang oder Datenverkäufe.</p>
-            
-            <!-- NEU: Custom Smooth Scroll (onclick) -->
-            <a href="#access" onclick="slowScrollTo(event, 'access')" style="color: var(--app-primary); text-decoration: none; font-weight: 500; margin-top: 20px; border-bottom: 1px solid var(--app-primary); padding-bottom: 2px;">
-                Zugang anfordern ↓
+            <span class="badge" data-i18n="beta_badge">Closed Beta</span>
+
+            <h1 data-i18n="hero_title">Dein High. Dein Profil. Deine Kontrolle.</h1>
+
+            <p data-i18n="hero_subtitle">Die Tracking-App für Cannabis-Konsum "made in Germany". Verstehe deine
+                persönliche Wirkung präzise und
+                sicher - ohne Login-Zwang oder Datenverkäufe.</p>
+
+            <a href="#access" onclick="slowScrollTo(event, 'access')"
+                style="color: var(--app-primary); text-decoration: none; font-weight: 500; margin-top: 20px; border-bottom: 1px solid var(--app-primary); padding-bottom: 2px;"
+                data-i18n="hero_cta">
+                Zugang anfordern &darr;
             </a>
         </section>
 
         <!-- FEATURE 1: DEIN HIGH -->
         <section>
-            <div style="text-align: center;">
-                <h2>Dein High.</h2>
-                <p>Cannabis wirkt komplex und kein High ist gleich. effekt:C macht den Unterschied für dich sichtbar.</p>
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h2 data-i18n="feature_high_title">Dein High.</h2>
+                <p data-i18n="feature_high_desc">Cannabis wirkt komplex und kein High ist gleich. effekt:C macht den
+                    Unterschied für dich sichtbar.</p>
             </div>
             <div class="grid-3">
-                
-                <!-- TILE 1: ANALYSE -->
-                <div class="card">
-                    <h4>Detaillierte Selbstanalyse</h4>
-                    <p>Identifiziere exakt die besten Strains für dich und die jeweilig gewünschten Effekte.</p>
+                <div class="card card-left">
+                    <h4 data-i18n="tile1_title">Detaillierte Selbstanalyse</h4>
+                    <p data-i18n="tile1_desc">Identifiziere exakt die besten Strains für dich und die jeweilig
+                        gewünschten Effekte.</p>
                 </div>
-
-                <!-- TILE 2: FILTER / FINDEN -->
-                <div class="card">
-                    <h4>Verstehe was hilft</h4>
-                    <p>Verlass dich nicht auf vage Händler-Angaben. Baue deine eigene Wissensdatenbank auf, die auf deiner individuellen Biologie basiert.</p>
+                <div class="card card-left">
+                    <h4 data-i18n="tile2_title">Verstehe was hilft</h4>
+                    <p data-i18n="tile2_desc">Verlass dich nicht auf vage Händler-Angaben. Baue deine eigene
+                        Wissensdatenbank auf.</p>
                 </div>
-
-                <!-- TILE 3: TAGEBUCH -->
-                <div class="card">
-                    <h4>Cannabis-Tagebuch</h4>
-                    <p>Tracke deinen Konsum und behalte immer den Überblick über deine Sorten und Sessions.</p>
+                <div class="card card-left">
+                    <h4 data-i18n="tile3_title">Cannabis-Tagebuch</h4>
+                    <p data-i18n="tile3_desc">Tracke deinen Konsum und behalte immer den Überblick über deine Sorten
+                        und
+                        Sessions.</p>
                 </div>
-
             </div>
         </section>
 
-        <!-- FEATURE 2: DEIN PROFIL (Interaktiv SVG) -->
+        <!-- FEATURE 2: DEIN PROFIL (Chart) -->
         <section id="chart-section">
             <div style="text-align: center; margin-bottom: 20px;">
-                <h2>Dein Profil.</h2>
-                <p>Wähle eine Sorte und bewerte die Effekte während und nach jedem Konsum.</p>
+                <h2 data-i18n="feature_profile_title">Dein Profil.</h2>
+                <p data-i18n="feature_profile_desc">Wähle eine Sorte und bewerte die Effekte während und nach jedem
+                    Konsum.</p>
             </div>
 
-            <!-- Strain Chips -->
             <div class="strain-selector">
                 <div class="strain-chip active" onclick="selectStrain('lemonHaze', this)">Lemon Haze</div>
                 <div class="strain-chip" onclick="selectStrain('ogKush', this)">OG Kush</div>
@@ -456,16 +676,18 @@
             </div>
 
             <div class="chart-section-wrapper" id="chartWrapper">
-                
                 <!-- Info Header -->
-                <div style="text-align: center; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: var(--app-muted);">
-                    Beispiel-Log: <strong id="strain-name-display" style="color: var(--app-primary); font-size: 1rem; margin-left: 5px;">Lemon Haze</strong>
+                <div
+                    style="text-align: center; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: var(--app-muted);">
+                    <span data-i18n="chart_sample_log">Beispiel-Log</span>: <strong id="strain-name-display"
+                        style="color: var(--app-primary); font-size: 1rem; margin-left: 5px;">Lemon Haze</strong>
                 </div>
 
-                <!-- TABS Switcher -->
                 <div class="tabs">
-                    <button class="tab-btn active" id="btn-positive" onclick="switchMode('positive')">Positive Effekte</button>
-                    <button class="tab-btn neg" id="btn-negative" onclick="switchMode('negative')">Negative Effekte</button>
+                    <button class="tab-btn active" id="btn-positive" onclick="switchMode('positive')"
+                        data-i18n="tab_positive">Positive Effekte</button>
+                    <button class="tab-btn neg" id="btn-negative" onclick="switchMode('negative')"
+                        data-i18n="tab_negative">Negative Effekte</button>
                 </div>
 
                 <div class="chart-container">
@@ -473,13 +695,13 @@
                     <div class="chart-visual">
                         <svg id="radarSvg" viewBox="0 0 300 300">
                             <!-- Hintergrund Kreise -->
-                            <circle cx="150" cy="150" r="30" class="grid-circle" /> 
+                            <circle cx="150" cy="150" r="30" class="grid-circle" />
                             <circle cx="150" cy="150" r="44" class="grid-circle" style="opacity:0.3" />
                             <circle cx="150" cy="150" r="58" class="grid-circle" style="opacity:0.3" />
                             <circle cx="150" cy="150" r="72" class="grid-circle" style="opacity:0.3" />
                             <circle cx="150" cy="150" r="86" class="grid-circle" style="opacity:0.3" />
                             <circle cx="150" cy="150" r="100" class="grid-circle" />
-                            
+
                             <!-- Achsen -->
                             <line x1="150" y1="120" x2="150" y2="50" class="axis-line" />
                             <line x1="178" y1="141" x2="245" y2="119" class="axis-line" />
@@ -494,166 +716,283 @@
                             <text id="lbl-3" x="75" y="250" class="label-text">Entspannung</text>
                             <text id="lbl-4" x="35" y="110" class="label-text">Schlaf</text>
 
-                            <!-- CENTER LOGO (Layer Reihenfolge: Jetzt UNTER dem Graphen/Polygon) -->
-                            <!-- Hintergrundkreis für Logo -->
+                            <!-- CENTER LOGO -->
                             <circle cx="150" cy="150" r="28" class="center-bg-circle" />
-                            <!-- Image -->
-                            <image href="assets/logo.png" x="125" y="125" height="50" width="50" style="clip-path: circle(25px at center);" onerror="this.style.display='none'; document.getElementById('fallbackText').style.display='block';" />
-                            <!-- Fallback Text -->
-                            <text id="fallbackText" x="150" y="157" class="chart-logo-fallback" style="display:none;">e:C</text>
+                            <image href="assets/logo_main.png" x="125" y="125" height="50" width="50"
+                                style="clip-path: circle(25px at center);"
+                                onerror="this.style.display='none'; document.getElementById('fallbackText').style.display='block';" />
+                            <text id="fallbackText" x="150" y="157" class="chart-logo-fallback"
+                                style="display:none;">e:C</text>
 
-                            <!-- Daten Layer (Layer Reihenfolge: Jetzt ÜBER dem Logo) -->
+                            <!-- Daten Layer -->
                             <polygon id="dataPolygon" points="" class="data-poly" />
                             <circle id="p0" r="4" class="data-point" />
                             <circle id="p1" r="4" class="data-point" />
                             <circle id="p2" r="4" class="data-point" />
                             <circle id="p3" r="4" class="data-point" />
                             <circle id="p4" r="4" class="data-point" />
-
                         </svg>
                     </div>
 
-                    <!-- Controls -->
                     <div class="chart-controls" id="sliders-container">
-                        <!-- Wird via JS befüllt -->
+                        <!-- Filled by JS -->
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- FEATURE 3: DEINE KONTROLLE -->
+        <!-- FEATURE 3: KONTROLLE -->
         <section>
             <div style="text-align: center;">
-                <h2>Deine Kontrolle.</h2>
-                <p>Keine Experimente mit deinen Daten. Wir nutzen bewährte Standards.</p>
+                <h2 data-i18n="feature_control_title">Deine Kontrolle.</h2>
+                <p data-i18n="feature_control_desc">Keine Experimente mit deinen Daten. Wir nutzen bewährte Standards.
+                </p>
             </div>
             <div class="grid-3">
                 <div class="card card-left">
-                    <h3 style="color: var(--app-primary)">Volle Datenhoheit</h3>
-                    <p>Deine sensiblen Gesundheitsdaten bleiben lokal auf deinem Gerät in einer verschlüsselten Datenbank. Keine Cloud, kein Upload, keine Kompromisse.</p>
+                    <h3 style="color: var(--app-primary)" data-i18n="tile4_title">Volle Datenhoheit</h3>
+                    <p data-i18n="tile4_desc">Deine sensiblen Gesundheitsdaten bleiben lokal auf deinem Gerät in einer
+                        verschlüsselten Datenbank. Keine Cloud.</p>
                 </div>
                 <div class="card card-left">
-                    <h3 style="color: var(--app-primary)">Anonym per Design</h3>
-                    <p>Starten ohne Anmeldung: Wir nutzen kryptografische IDs statt E-Mail-Adressen. Deine Identität ist technisch von deinen Daten entkoppelt.</p>
+                    <h3 style="color: var(--app-primary)" data-i18n="tile5_title">Anonym per Design</h3>
+                    <p data-i18n="tile5_desc">Starten ohne Anmeldung: Wir nutzen kryptografische IDs statt
+                        E-Mail-Adressen.</p>
                 </div>
                 <div class="card card-left">
-                    <h3 style="color: var(--app-primary)">Sicherheit "Made in Germany"</h3>
-                    <p>Entwickelt und gehostet in Deutschland nach strengen DSGVO-Standards. Wir garantieren: Kein Datenhandel und keine versteckten Tracker.</p>
+                    <h3 style="color: var(--app-primary)" data-i18n="tile6_title">Sicherheit "Made in Germany"</h3>
+                    <p data-i18n="tile6_desc">Entwickelt und gehostet in Deutschland nach strengen DSGVO-Standards.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ACCESS GATE -->
+        <!-- ACCESS GATE (Reference Form Style) -->
         <section id="access" style="border:none; padding-bottom: 100px;">
             <div class="auth-wrapper">
-                <h2 style="margin-bottom: 10px; text-align: center;">Beta Download</h2>
-                <p style="margin-bottom: 30px; text-align: center;">Authentifiziere dich mit dem Tester-Passwort.</p>
-                <form onsubmit="checkPassword(event)">
-                    <div class="input-group">
-                        <input type="password" id="passwordInput" class="app-input" placeholder="Passwort" required>
+                <h2 style="margin-bottom: 10px; text-align: center;" data-i18n="access_title">Beta Zugang anfordern</h2>
+                <p style="margin-bottom: 30px; text-align: center;" data-i18n="access_desc">Möchtest du effekt:C
+                    testen?
+                    Schreib uns kurz.</p>
+
+                <form onsubmit="sendApplication(event)">
+                    <div class="input-group" style="margin-bottom: 16px;">
+                        <input type="text" id="nameInput" class="app-input" placeholder="Vorname Nachname" required
+                            data-i18n="ph_name" data-i18n-attr="placeholder">
                     </div>
-                    <button type="submit" class="app-btn">Freischalten</button>
-                    <div id="message" style="margin-top: 15px; font-size: 0.9rem; min-height: 20px; text-align: center;"></div>
+                    <div class="input-group" style="margin-bottom: 16px;">
+                        <input type="email" id="emailInput" class="app-input" placeholder="Deine Email-Adresse" required
+                            data-i18n="ph_email" data-i18n-attr="placeholder">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 24px;">
+                        <textarea id="motivationInput" class="app-input" placeholder="Motivation" required
+                            style="min-height: 100px; resize: vertical;" data-i18n="ph_motivation"
+                            data-i18n-attr="placeholder"></textarea>
+                    </div>
+
+                    <button type="submit" class="app-btn" data-i18n="btn_submit">Bewerbung absenden</button>
+                    <div id="message"
+                        style="margin-top: 15px; font-size: 0.9rem; min-height: 20px; text-align: center;"></div>
                 </form>
-                <div style="margin-top: 40px; font-size: 0.8rem; color: #666; text-align: center; border-top: 1px solid #333; padding-top: 20px;">
-                    <strong>Systemanforderungen:</strong> Android 8.0+<br>Installation aus unbekannten Quellen erforderlich.
+
+                <div
+                    style="margin-top: 40px; font-size: 0.8rem; color: #666; text-align: center; border-top: 1px solid #333; padding-top: 20px;">
+                    <strong data-i18n="hint_strong">Hinweis:</strong> <span data-i18n="hint_text">Öffnet
+                        Email-Client.</span>
                 </div>
             </div>
         </section>
-    </div>
+
+    </div><!-- END CONTAINER -->
 
     <footer>
-        <p>&copy; 2025 effekt:C</p>
+        <p>&copy; 2026 effekt:C</p>
         <p><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></p>
     </footer>
 
+    <!-- INFO MODAL -->
+    <div id="info-modal" class="app-modal">
+        <div class="modal-content">
+            <span class="modal-icon">&#128274;</span>
+            <h3 style="color: #fff; margin-bottom: 15px;" data-i18n="modal_privacy_title">Datenschutz-Hinweis</h3>
+            <p style="color: #b0bec5; font-size: 0.95rem; line-height: 1.6;" data-i18n="modal_privacy_text">
+                Speichern geht NUR in der App. Dein privater Log wird nie mit einem Nutzerkonto verknüpft oder in der
+                Cloud gespeichert. Diese Daten liegen ausschließlich lokal auf deinem Gerät.
+            </p>
+            <button onclick="closeModal()" class="app-btn"
+                style="background: var(--app-surface); border: 1px solid rgba(255,255,255,0.2); color: #fff; margin-top: 10px;"
+                data-i18n="btn_understood">
+                Verstanden
+            </button>
+        </div>
+    </div>
+
     <!-- COOKIE BANNER -->
     <div id="cookie-overlay" class="cookie-consent">
-        <span>Wir nutzen technisch notwendige Cookies.</span>
+        <span data-i18n="cookie_text">Wir nutzen technisch notwendige Cookies.</span>
         <button onclick="acceptCookies()">OK</button>
     </div>
 
     <script>
-        // --- CUSTOM SCROLL LOGIC ---
-        // Sanftes Scrollen über 2 Sekunden, um Nutzerinhalte zu zeigen
-        function slowScrollTo(e, targetId) {
-            e.preventDefault();
-            const target = document.getElementById(targetId);
-            if (!target) return;
-            
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-            const startPosition = window.pageYOffset;
-            const distance = targetPosition - startPosition;
-            const duration = 2000; // 2000ms = 2 Sekunden
-            let startTime = null;
+        // --- TRANSLATIONS (DE / EN) ---
+        const translations = {
+            de: {
+                beta_badge: "Closed Beta",
+                hero_title: "Dein High. Dein Profil. Deine Kontrolle.",
+                hero_subtitle: "Die Tracking-App für Cannabis-Konsum \"made in Germany\". Verstehe deine persönliche Wirkung präzise und sicher - ohne Login-Zwang oder Datenverkäufe.",
+                hero_cta: "Zugang anfordern &darr;",
+                feature_high_title: "Dein High.",
+                feature_high_desc: "Cannabis wirkt komplex und kein High ist gleich. effekt:C macht den Unterschied für dich sichtbar.",
+                tile1_title: "Detaillierte Selbstanalyse",
+                tile1_desc: "Identifiziere exakt die besten Strains für dich und die jeweilig gewünschten Effekte.",
+                tile2_title: "Verstehe was hilft",
+                tile2_desc: "Verlass dich nicht auf vage Händler-Angaben. Baue deine eigene Wissensdatenbank auf.",
+                tile3_title: "Cannabis-Tagebuch",
+                tile3_desc: "Tracke deinen Konsum und behalte immer den Überblick über deine Sorten und Sessions.",
+                feature_profile_title: "Dein Profil.",
+                feature_profile_desc: "Wähle eine Sorte und bewerte die Effekte während und nach jedem Konsum.",
+                chart_sample_log: "Beispiel-Log",
+                tab_positive: "Positive Effekte",
+                tab_negative: "Negative Effekte",
+                chart_btn_save: "Speichern",
+                feature_control_title: "Deine Kontrolle.",
+                feature_control_desc: "Keine Experimente mit deinen Daten. Wir nutzen bewährte Standards.",
+                tile4_title: "Volle Datenhoheit",
+                tile4_desc: "Deine sensiblen Gesundheitsdaten bleiben lokal auf deinem Gerät in einer verschlüsselten Datenbank. Keine Cloud, kein Upload.",
+                tile5_title: "Anonym per Design",
+                tile5_desc: "Starten ohne Anmeldung: Wir nutzen kryptografische IDs statt E-Mail-Adressen. Deine Identität ist technisch von deinen Daten entkoppelt.",
+                tile6_title: "Sicherheit \"Made in Germany\"",
+                tile6_desc: "Entwickelt und gehostet in Deutschland nach strengen DSGVO-Standards. Wir garantieren: Kein Datenhandel und keine versteckten Tracker.",
+                access_title: "Beta Zugang anfordern",
+                access_desc: "Möchtest du effekt:C testen? Schreib uns kurz, warum du dabei sein willst.",
+                ph_name: "Vorname Nachname",
+                ph_email: "Deine Email-Adresse",
+                ph_motivation: "Motivation",
+                btn_submit: "Bewerbung absenden",
+                hint_strong: "Hinweis:",
+                hint_text: "Dies öffnet dein Email-Programm.<br>Wir melden uns persönlich bei dir.",
+                modal_privacy_title: "Datenschutz-Hinweis",
+                modal_privacy_text: "Speichern geht NUR in der App. Dein privater Log wird nie mit einem Nutzerkonto verknüpft oder in der Cloud gespeichert. Diese Daten liegen ausschließlich lokal auf deinem Gerät.",
+                btn_understood: "Verstanden",
+                cookie_text: "Wir nutzen technisch notwendige Cookies.",
+                mail_subject: "effekt:C Beta Bewerbung",
+                mail_intro: "Hallo,\n\nich möchte gerne Beta-Tester werden.",
+                mail_name: "Name",
+                mail_email: "Email",
+                mail_motivation: "Motivation",
+                mail_greetings: "Liebe Grüße",
+                mail_feedback: "Email-Programm wird geöffnet..."
+            },
+            en: {
+                beta_badge: "Closed Beta",
+                hero_title: "Your High. Your Profile. Your Control.",
+                hero_subtitle: "The tracking app for cannabis consumption made in Germany. Understand your personal effect precisely and securely - without forced login or data sales.",
+                hero_cta: "Request Access â†“",
+                feature_high_title: "Your High.",
+                feature_high_desc: "Cannabis acts simply and no high is the same. effekt:C makes the difference visible to you.",
+                tile1_title: "Detailed Self-Analysis",
+                tile1_desc: "Identify exactly the best strains for you and the desired effects.",
+                tile2_title: "Understand what helps",
+                tile2_desc: "Don't rely on vague dealer specs. Build your own knowledge base based on your individual biology.",
+                tile3_title: "Cannabis Journal",
+                tile3_desc: "Track your consumption and keep an overview of your strains and sessions.",
+                feature_profile_title: "Your Profile.",
+                feature_profile_desc: "Choose a strain and rate the effects during and after each consumption.",
+                chart_sample_log: "Sample Log",
+                tab_positive: "Positive Effects",
+                tab_negative: "Negative Effects",
+                chart_btn_save: "Save",
+                feature_control_title: "Your Control.",
+                feature_control_desc: "No experiments with your data. We use proven standards.",
+                tile4_title: "Full Data Sovereignty",
+                tile4_desc: "Your sensitive health data remains locally on your device in an encrypted database. No cloud, no upload.",
+                tile5_title: "Anonymous by Design",
+                tile5_desc: "Start without registration: We use cryptographic IDs instead of emails.",
+                tile6_title: "Security \"Made in Germany\"",
+                tile6_desc: "Developed and hosted in Germany under strict GDPR standards. No data trading, no hidden trackers.",
+                access_title: "Request Beta Access",
+                access_desc: "Want to test effekt:C? Write us briefly why you want to join.",
+                ph_name: "First Name Last Name",
+                ph_email: "Your Email Address",
+                ph_motivation: "Motivation",
+                btn_submit: "Send Application",
+                hint_strong: "Note:",
+                hint_text: "This opens your email client.<br>We will contact you personally.",
+                modal_privacy_title: "Privacy Notice",
+                modal_privacy_text: "Saving works ONLY in the app. Your private log is never linked to a user account or stored in the cloud. Data stays local.",
+                btn_understood: "Understood",
+                cookie_text: "We use technically necessary cookies.",
+                mail_subject: "effekt:C Beta Application",
+                mail_intro: "Hello,\n\nI would like to become a beta tester.",
+                mail_name: "Name",
+                mail_email: "Email",
+                mail_motivation: "Motivation",
+                mail_greetings: "Best regards",
+                mail_feedback: "Opening email client..."
+            }
+        };
 
-            function animation(currentTime) {
-                if (startTime === null) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                
-                // Easing Funktion (Ease In Out Cubic) für weichen Start/Stop
-                const run = easeInOutCubic(timeElapsed, startPosition, distance, duration);
-                
-                window.scrollTo(0, run);
-                
-                if (timeElapsed < duration) {
-                    requestAnimationFrame(animation);
+        let currentLang = 'de';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-opt').forEach(el => el.classList.remove('active'));
+            document.getElementById(`lang-${lang}`).classList.add('active');
+
+            const t = translations[lang];
+
+            // Text Content Updates
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) {
+                    if (el.getAttribute('data-i18n-attr')) {
+                        const attr = el.getAttribute('data-i18n-attr');
+                        el.setAttribute(attr, t[key]);
+                    } else {
+                        el.innerHTML = t[key];
+                    }
                 }
-            }
+            });
 
-            function easeInOutCubic(t, b, c, d) {
-                t /= d/2;
-                if (t < 1) return c/2*t*t*t + b;
-                t -= 2;
-                return c/2*(t*t*t + 2) + b;
-            }
-
-            requestAnimationFrame(animation);
+            // Re-render chart sliders for translated labels if needed
+            renderSliders();
         }
 
         // --- DATA CONFIG ---
-        const positiveLabels = ['Klarheit', 'Kreativität', 'Stimmung', 'Entspannung', 'Schlaf'];
-        const negativeLabels = ['Trübung', 'Angst', 'Immobilität', 'Unwohlsein', 'Müdigkeit'];
-
-        // Strain Presets (Beispielwerte)
-        const strains = {
-            lemonHaze: { 
-                name: 'Lemon Haze', 
-                pos: [5, 5, 4, 1, 0], // Viel Klarheit/Kreativität, wenig Schlaf
-                neg: [0, 1, 0, 0, 0] 
+        const chartLabels = {
+            de: {
+                positive: ['Klarheit', 'Kreativität', 'Stimmung', 'Entspannung', 'Schlaf'],
+                negative: ['Trübung', 'Angst', 'Immobilität', 'Unwohlsein', 'Müdigkeit'],
+                intensity: ["Nicht spürbar", "Minimal", "Leicht", "Mittel", "Stark", "Extrem"]
             },
-            ogKush: { 
-                name: 'OG Kush', 
-                pos: [2, 3, 5, 4, 3], // Gute Stimmung, Entspannung
-                neg: [1, 0, 2, 0, 1] 
-            },
-            granddaddy: { 
-                name: 'Granddaddy Purple', 
-                pos: [1, 2, 3, 5, 5], // Viel Schlaf/Entspannung, wenig Fokus
-                neg: [2, 0, 3, 0, 1] 
-            },
-            jackHerer: { 
-                name: 'Jack Herer', 
-                pos: [5, 4, 4, 1, 0], // Sehr Fokuslastig
-                neg: [0, 2, 0, 0, 0] 
+            en: {
+                positive: ['Clarity', 'Creativity', 'Mood', 'Relaxation', 'Sleep'],
+                negative: ['Fog', 'Anxiety', 'Immobility', 'Discomfort', 'Fatigue'],
+                intensity: ["Not felt", "Minimal", "Light", "Medium", "Strong", "Extreme"]
             }
+        };
+
+        // Strain Presets
+        const strains = {
+            lemonHaze: { name: 'Lemon Haze', pos: [5, 5, 4, 1, 0], neg: [0, 1, 0, 0, 0] },
+            ogKush: { name: 'OG Kush', pos: [2, 3, 5, 4, 3], neg: [1, 0, 2, 0, 1] },
+            granddaddy: { name: 'Granddaddy Purple', pos: [1, 2, 3, 5, 5], neg: [2, 0, 3, 0, 1] },
+            jackHerer: { name: 'Jack Herer', pos: [5, 4, 4, 1, 0], neg: [0, 2, 0, 0, 0] }
         };
 
         // Current State
         let currentPos = [...strains.lemonHaze.pos];
         let currentNeg = [...strains.lemonHaze.neg];
-        let currentMode = 'positive'; 
-        
+        let currentMode = 'positive';
+
         // Donut Chart Math
-        const maxVal = 5; 
+        const maxVal = 5;
         const center = 150;
-        const innerRadius = 30; 
+        const innerRadius = 30;
         const outerRadius = 100;
         const effectiveRange = outerRadius - innerRadius; // 70
         const angles = [-90, -18, 54, 126, 198].map(deg => deg * (Math.PI / 180));
 
         // --- CHART FUNCTIONS ---
-
         function calculatePoints(values) {
             let pointsString = "";
             values.forEach((val, i) => {
@@ -661,9 +1000,9 @@
                 const x = center + r * Math.cos(angles[i]);
                 const y = center + r * Math.sin(angles[i]);
                 pointsString += `${x},${y} `;
-                
+
                 const circle = document.getElementById(`p${i}`);
-                if(circle) {
+                if (circle) {
                     circle.setAttribute('cx', x);
                     circle.setAttribute('cy', y);
                 }
@@ -673,46 +1012,65 @@
 
         function updateChartValue(index, value) {
             const valInt = parseInt(value);
-            if(currentMode === 'positive') {
+            if (currentMode === 'positive') {
                 currentPos[index] = valInt;
                 calculatePoints(currentPos);
             } else {
                 currentNeg[index] = valInt;
                 calculatePoints(currentNeg);
             }
-            document.getElementById(`slider-val-${index}`).innerText = valInt;
+            // Update Text Label
+            const iLabels = chartLabels[currentLang].intensity;
+            const labelColor = valInt > 0 ? 'var(--app-primary)' : 'var(--app-muted)';
+            const labelEl = document.getElementById(`slider-val-${index}`);
+            labelEl.innerText = iLabels[valInt];
+            labelEl.style.color = labelColor;
         }
 
         function renderSliders() {
             const container = document.getElementById('sliders-container');
-            container.innerHTML = ''; 
+            container.innerHTML = '';
 
-            const labels = currentMode === 'positive' ? positiveLabels : negativeLabels;
+            const cLabels = chartLabels[currentLang];
+            const labels = currentMode === 'positive' ? cLabels.positive : cLabels.negative;
             const values = currentMode === 'positive' ? currentPos : currentNeg;
+            const iLabels = cLabels.intensity;
 
-            // Update Labels in Chart
+            // Update Labels in Chart SVG (lbl-0 to lbl-4)
             labels.forEach((lbl, i) => {
-                document.getElementById(`lbl-${i}`).textContent = lbl;
+                let svgLabel = lbl;
+                if (lbl.includes('/')) svgLabel = lbl.split('/')[0].trim();
+                document.getElementById(`lbl-${i}`).textContent = svgLabel;
             });
 
             // Sliders Gen
             labels.forEach((label, index) => {
                 const val = values[index];
+                const textLabel = iLabels[val];
                 const html = `
                     <div class="control-group">
-                        <div class="control-label"><span>${label}</span> <span id="slider-val-${index}">${val}</span></div>
+                        <div class="control-label"><span>${label}</span> <span id="slider-val-${index}" style="color: var(--app-primary); font-size: 0.85rem;">${textLabel}</span></div>
                         <input type="range" min="0" max="5" value="${val}" oninput="updateChartValue(${index}, this.value)">
                     </div>
                 `;
                 container.innerHTML += html;
             });
+
+            // ADD SAVE BUTTON
+            container.innerHTML += `
+                <div style="margin-top: 30px; text-align: center;">
+                    <button onclick="openModal()" class="app-btn" style="padding: 12px 24px; font-size: 1rem; width: auto; min-width: 200px;">
+                        ${translations[currentLang].chart_btn_save}
+                    </button>
+                </div>
+            `;
         }
 
         function switchMode(mode) {
             currentMode = mode;
             const wrapper = document.getElementById('chartWrapper');
-            
-            if(mode === 'positive') {
+
+            if (mode === 'positive') {
                 document.getElementById('btn-positive').classList.add('active');
                 document.getElementById('btn-negative').classList.remove('active');
                 wrapper.classList.remove('negative-mode');
@@ -745,49 +1103,94 @@
             renderSliders();
         }
 
-        // --- AUTH & COOKIES ---
-        const CORRECT_PASSWORD = "lsm"; 
-        const TARGET_URL = "download.html";
-
-        function checkPassword(e) {
+        // --- CUSTOM SCROLL LOGIC ---
+        function slowScrollTo(e, targetId) {
             e.preventDefault();
-            const input = document.getElementById('passwordInput');
+            const target = document.getElementById(targetId);
+            if (!target) return;
+
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = 2000;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = easeInOutCubic(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function easeInOutCubic(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t * t + b;
+                t -= 2;
+                return c / 2 * (t * t * t + 2) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+
+        // --- BETA FORM EMAIL LOGIC ---
+        function sendApplication(e) {
+            e.preventDefault();
+
+            const t = translations[currentLang];
+            const name = document.getElementById('nameInput').value;
+            const email = document.getElementById('emailInput').value;
+            const motivation = document.getElementById('motivationInput').value;
             const msg = document.getElementById('message');
 
-            if(input.value === CORRECT_PASSWORD) {
-                input.style.borderColor = '#6BCB77';
-                msg.style.color = '#6BCB77';
-                msg.innerText = "Erfolg. Weiterleitung...";
-                
-                // Google Analytics Conversion Event
-                if (typeof gtag === 'function') {
-                    gtag('event', 'unlock_beta', {
-                        'event_category': 'access',
-                        'event_label': 'password_success'
-                    });
-                }
+            const subject = encodeURIComponent(`${t.mail_subject}: ${name}`);
+            const body = encodeURIComponent(
+                `${t.mail_intro}\n\n` +
+                `${t.mail_name}: ${name}\n` +
+                `${t.mail_email}: ${email}\n\n` +
+                `${t.mail_motivation}:\n${motivation}\n\n` +
+                `${t.mail_greetings}`
+            );
 
-                setTimeout(() => window.location.href = TARGET_URL, 800);
-            } else {
-                input.style.borderColor = '#CF6679'; 
-                msg.style.color = '#CF6679';
-                msg.innerText = "Zugriff verweigert.";
-            }
+            const mailtoLink = `mailto:info@effektc.com?subject=${subject}&body=${body}`;
+            window.location.href = mailtoLink;
+
+            msg.style.color = '#6BCB77';
+            msg.innerText = t.mail_feedback;
         }
-        
+
         function acceptCookies() {
             document.getElementById('cookie-overlay').style.display = 'none';
             document.cookie = "effekt_consent=true; max-age=31536000; path=/";
         }
-        
+
+        // --- MODAL LOGIC ---
+        function openModal() {
+            document.getElementById('info-modal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('info-modal').style.display = 'none';
+        }
+
+        // Close on click outside
+        window.onclick = function (event) {
+            const modal = document.getElementById('info-modal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
         // Init
         if (!document.cookie.includes('effekt_consent')) {
             document.getElementById('cookie-overlay').style.display = 'flex';
         }
-        
+
         // Start Render
-        renderSliders();
-        calculatePoints(currentPos);
+        changeLanguage('de'); // Default to German
+
+        // Init Chart with Lemon Haze
+        selectStrain('lemonHaze', document.querySelector('.strain-chip'));
     </script>
 </body>
+
 </html>
