@@ -955,6 +955,25 @@
         <button onclick="acceptCookies()">OK</button>
     </div>
 
+    <!-- GALLERY OVERLAY -->
+    <div id="gallery-overlay" class="gallery-overlay" onclick="closeGallery()">
+        <button class="gallery-close-btn" onclick="closeGallery()">&times;</button>
+
+        <div class="gallery-content" onclick="event.stopPropagation()">
+            <!-- Stop click to allow swiping without closing -->
+
+            <button class="gallery-nav-btn prev" onclick="changeGalleryImage(-1)">&#10094;</button>
+
+            <div class="gallery-image-wrapper">
+                <img id="gallery-img" class="gallery-img" src="" alt="App Screenshot" onclick="toggleCaption()">
+            </div>
+
+            <button class="gallery-nav-btn next" onclick="changeGalleryImage(1)">&#10095;</button>
+
+            <div id="gallery-caption" class="gallery-caption"></div>
+        </div>
+    </div>
+
     <script>
         // --- TRANSLATIONS (DE / EN) ---
         const translations = {
