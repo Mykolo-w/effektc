@@ -592,6 +592,127 @@
             margin-bottom: 20px;
             display: block;
         }
+
+        /* --- GALLERY OVERLAY CSS --- */
+        .gallery-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .gallery-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            font-size: 2rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery-image-wrapper {
+            position: relative;
+            max-width: 100%;
+            max-height: 85vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery-img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s ease;
+        }
+
+        .gallery-caption {
+            color: #fff;
+            margin-top: 16px;
+            font-size: 1rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 16px;
+            border-radius: 20px;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .gallery-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .gallery-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .gallery-nav-btn.prev {
+            left: 20px;
+        }
+
+        .gallery-nav-btn.next {
+            right: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-nav-btn {
+                display: none;
+            }
+
+            /* Hide arrows on mobile, rely on swipe */
+            .gallery-img {
+                max-height: 80vh;
+                max-width: 95vw;
+            }
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -600,6 +721,12 @@
 
     <!-- Language Switcher (Floating) -->
     <nav class="lang-switch">
+        <a class="lang-opt"
+            style="cursor: pointer; margin-right: 15px; font-weight: 600; color: var(--app-primary); display: flex; align-items: center; gap: 6px;"
+            onclick="openGallery(0)" data-i18n="btn_preview">
+            App Vorschau
+        </a>
+        <span style="color:rgba(255,255,255,0.2)">|</span>
         <a class="lang-opt active" id="lang-de" onclick="changeLanguage('de')">DE</a>
         <span style="color:rgba(255,255,255,0.2)">|</span>
         <a class="lang-opt" id="lang-en" onclick="changeLanguage('en')">EN</a>
@@ -836,6 +963,7 @@
                 hero_title: "Dein High. Dein Profil. Deine Kontrolle.",
                 hero_subtitle: "Die Tracking-App für Cannabis-Konsum \"made in Germany\". Verstehe deine persönliche Wirkung präzise und sicher - ohne Login-Zwang oder Datenverkäufe.",
                 hero_cta: "Benachrichtigen lassen &darr;",
+                btn_preview: "App Vorschau 📱",
                 feature_high_title: "Dein High.",
                 feature_high_desc: "Cannabis wirkt komplex und kein High ist gleich. effekt:C macht den Unterschied für dich sichtbar.",
                 tile1_title: "Detaillierte Selbstanalyse",
@@ -881,6 +1009,7 @@
                 hero_title: "Your High. Your Profile. Your Control.",
                 hero_subtitle: "The tracking app for cannabis consumption made in Germany. Understand your personal effect precisely and securely - without forced login or data sales.",
                 hero_cta: "Get Notified &darr;",
+                btn_preview: "App Preview 📱",
                 feature_high_title: "Your High.",
                 feature_high_desc: "Cannabis acts simply and no high is the same. effekt:C makes the difference visible to you.",
                 tile1_title: "Detailed Self-Analysis",
@@ -1160,6 +1289,86 @@
         function closeModal() {
             document.getElementById('info-modal').style.display = 'none';
         }
+
+        // --- GALLERY LOGIC ---
+        const galleryImages = [
+            { src: 'assets/screen_1.png', desc_de: 'Startbildschirm', desc_en: 'Home Screen' },
+            { src: 'assets/screen_2.png', desc_de: 'Log Eintragen', desc_en: 'Create Log' },
+            { src: 'assets/screen_3.png', desc_de: 'Sorten Details', desc_en: 'Strain Details' },
+            { src: 'assets/screen_4.png', desc_de: 'Statistiken', desc_en: 'Statistics' },
+            { src: 'assets/screen_5.png', desc_de: 'Einstellungen', desc_en: 'Settings' }
+        ];
+        let currentImageIndex = 0;
+        let isCaptionVisible = true;
+
+        function openGallery(index = 0) {
+            currentImageIndex = index;
+            updateGalleryImage();
+            const overlay = document.getElementById('gallery-overlay');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeGallery() {
+            const overlay = document.getElementById('gallery-overlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function changeGalleryImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+            if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+            updateGalleryImage();
+        }
+
+        function updateGalleryImage() {
+            const imgPath = galleryImages[currentImageIndex].src;
+            const desc = currentLang === 'de' ? galleryImages[currentImageIndex].desc_de : galleryImages[currentImageIndex].desc_en;
+
+            document.getElementById('gallery-img').src = imgPath;
+            document.getElementById('gallery-caption').innerText = desc + ` (${currentImageIndex + 1}/${galleryImages.length})`;
+        }
+
+        function toggleCaption() {
+            isCaptionVisible = !isCaptionVisible;
+            document.getElementById('gallery-caption').style.opacity = isCaptionVisible ? '1' : '0';
+        }
+
+        // SWIPE LOGIC
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        const galleryContent = document.querySelector('.gallery-content');
+
+        galleryContent.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        galleryContent.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            if (touchStartX - touchEndX > 50) {
+                // Swipe Left -> Next
+                changeGalleryImage(1);
+            }
+            if (touchEndX - touchStartX > 50) {
+                // Swipe Right -> Prev
+                changeGalleryImage(-1);
+            }
+        }
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', function (event) {
+            if (!document.getElementById('gallery-overlay').classList.contains('active')) return;
+
+            if (event.key === 'Escape') closeGallery();
+            if (event.key === 'ArrowRight') changeGalleryImage(1);
+            if (event.key === 'ArrowLeft') changeGalleryImage(-1);
+        });
 
         // Close on click outside
         window.onclick = function (event) {
