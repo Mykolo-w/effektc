@@ -3,15 +3,57 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Datenschutz - effekt:C</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/header.css">
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="assets/logo_main.png">
+
+    <!-- Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <style>
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 60px;
+        /* --- DESIGN SYSTEM (Matches index.html) --- */
+        :root {
+            --app-bg: #1E282A;
+            --app-surface: #2C3E42;
+            --app-primary: #6BCB77;
+            --app-text: #E0E0E0;
+            --app-muted: #B0BEC5;
+            --app-divider: #37474F;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--app-bg);
+            color: var(--app-text);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* --- HEADER --- */
+        .header-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
         }
 
         .brand-header {
@@ -19,7 +61,6 @@
             align-items: center;
             gap: 15px;
             text-decoration: none;
-            /* Link style removal */
         }
 
         .app-icon {
@@ -57,6 +98,7 @@
             color: #fff;
         }
 
+        /* --- CONTENT --- */
         .content-box {
             background: var(--app-surface);
             padding: 40px;
@@ -65,12 +107,47 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
+        h1 {
+            color: #fff;
+            margin-top: 0;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: #fff;
+            margin-top: 40px;
+            border-bottom: 1px solid var(--app-divider);
+            padding-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        h3 {
+            color: var(--app-primary);
+            margin-top: 24px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        p {
+            color: var(--app-muted);
+            margin-bottom: 16px;
+            max-width: none;
+            /* Reset limitation from index.html if needed */
+        }
+
         .highlight-box {
             background: rgba(107, 203, 119, 0.1);
             border-left: 4px solid var(--app-primary);
-            padding: 15px;
-            margin: 20px 0;
+            padding: 20px;
+            margin: 30px 0;
             border-radius: 0 8px 8px 0;
+            color: var(--app-text);
+        }
+
+        strong,
+        em {
+            color: #fff;
         }
 
         footer {
@@ -80,22 +157,9 @@
             color: #666;
         }
 
-        .legal-content h1 {
-            color: var(--primary);
-            margin-bottom: 24px;
-        }
-
-        .legal-content h2 {
-            margin-top: 40px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 12px;
-            font-size: 1.5rem;
-            color: #fff;
-        }
-
         @media(max-width: 600px) {
             .content-box {
-                padding: 20px;
+                padding: 25px;
             }
 
             h1 {
@@ -108,28 +172,26 @@
 <body>
 
     <div class="container">
-
         <!-- Navigation -->
         <nav class="header-nav">
             <a href="index.html" class="brand-header">
-                <div class="app-icon" style="width: 48px; height: 48px; box-shadow: none;">
-                    <img src="assets/logo.png" alt="Icon" style="width:32px; height:auto;"
+                <div class="app-icon">
+                    <img src="assets/logo_main.png" alt="Icon" style="width:32px; height:auto;"
                         onerror="this.style.display='none'; this.parentElement.innerText='e:C'">
                 </div>
-                <div class="brand-name" style="font-size: 1.5rem;">effekt:C</div>
+                <div class="brand-name">effekt:C</div>
             </a>
-            <a href="index.html" class="back-link">Startseite</a>
+            <a href="index.html" class="back-link">&larr; Zurück</a>
         </nav>
 
         <div class="content-box">
             <h1>Datenschutzerklärung</h1>
-            <p>Stand: 24.11.2025</p>
+            <p style="font-size: 0.9rem; margin-bottom: 30px;">Stand: 24.11.2025</p>
 
             <div class="highlight-box">
                 <strong>Kurzfassung:</strong> Deine Gesundheitsdaten gehören nur dir. Die App <em>effekt:C</em>
-                speichert
-                deine persönlichen Eingaben <strong>ausschließlich lokal</strong> auf deinem Gerät. Es gibt keinen
-                Cloud-Sync für deine privaten Tagebuch-Einträge. Wir wissen nicht, wer du bist.
+                speichert deine persönlichen Eingaben <strong>ausschließlich lokal</strong> auf deinem Gerät. Es gibt
+                keinen Cloud-Sync für deine privaten Tagebuch-Einträge. Wir wissen nicht, wer du bist.
             </div>
 
             <h2>1. Verantwortlicher</h2>
@@ -145,21 +207,19 @@
 
             <h3>Alles bleibt bei dir (Lokale Speicherung)</h3>
             <p>Das wichtigste zuerst: Deine privaten Notizen, Konsum-Logs und Wirkungs-Bewertungen verlassen dein Handy
-                nicht.
-                Die App speichert diese sensiblen Daten in einer geschützten Datenbank direkt auf deinem Gerät.
+                nicht. Die App speichert diese sensiblen Daten in einer geschützten Datenbank direkt auf deinem Gerät.
                 Wenn du die App löschst, sind diese Daten weg – wir haben kein Backup, weil wir keinen Zugriff darauf
                 haben.</p>
 
             <h3>Kein Account-Zwang</h3>
             <p>Du nutzt effekt:C ohne Benutzerkonto. Wir fragen nicht nach deiner E-Mail-Adresse oder deinem Namen, um
-                die App zu nutzen.
-                Du bist für uns technisch gesehen ein anonymer Nutzer.</p>
+                die App zu nutzen. Du bist für uns technisch gesehen ein anonymer Nutzer.</p>
 
             <h3>Statistik zur Verbesserung (Optional)</h3>
             <p>Damit wir verstehen, welche Cannabis-Sorten welchen Effekt haben, sammeln wir vollständig anonymisierte
-                Statistik-Daten.
-                Beispiel: "Sorte XYZ wirkt bei 80% der Nutzer entspannend." <br>
-                Wichtig: Dabei werden niemals deine persönlichen Texte oder privaten Notizen übertragen. Es geht rein um
+                Statistik-Daten.</p>
+            <p>Beispiel: "Sorte XYZ wirkt bei 80% der Nutzer entspannend."</p>
+            <p>Wichtig: Dabei werden niemals deine persönlichen Texte oder privaten Notizen übertragen. Es geht rein um
                 die Wirkungs-Mechanik.</p>
 
             <h3>Berechtigungen</h3>
@@ -172,17 +232,15 @@
             <p>Wenn du diese Website besuchst, notiert unser Server technische Standard-Informationen (z.B. Browser,
                 IP-Adresse), damit die Seite sicher und stabil läuft. Das passiert automatisch.</p>
 
-            <h3>Beta-Anmeldung</h3>
-            <p>Wenn du dich für die Beta anmeldest, schickst du uns freiwillig eine E-Mail. Wir nutzen deine
-                Mail-Adresse ausschließlich, um dir den Beta-Zugang zu schicken und dich über Updates zu informieren.
-                Wir geben sie nicht weiter.</p>
+            <h3>Beta-Anmeldung / Warteliste</h3>
+            <p>Wenn du dich für die Warteliste anmeldest, schickst du uns freiwillig eine E-Mail. Wir nutzen deine
+                Mail-Adresse ausschließlich, um dich zu informieren, wenn die App verfügbar ist. Wir geben sie nicht
+                weiter.</p>
 
             <h2>4. Deine Rechte</h2>
             <p>Da wir keine Nutzerkonten haben, hast du die volle Kontrolle. Alle deine Daten liegen auf deinem Gerät in
                 deiner Hand.</p>
-
         </div>
-
     </div>
 
     <footer>
