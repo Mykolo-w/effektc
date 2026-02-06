@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <!-- shrink-to-fit=no hilft Safari/Chrome auf iOS/Android beim Skalieren -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>effekt:C | Beta</title>
+    <title>effekt:C | Dein High. Dein Profil. Deine Kontrolle.</title>
 
     <!-- FAVICON -->
     <link rel="icon" type="image/png" href="assets/logo_main.png">
@@ -978,6 +978,7 @@
         // --- TRANSLATIONS (DE / EN) ---
         const translations = {
             de: {
+                page_title: "effekt:C | Dein High. Dein Profil. Deine Kontrolle.",
                 beta_badge: "Coming Soon",
                 hero_title: "Dein High. Dein Profil. Deine Kontrolle.",
                 hero_subtitle: "Die Tracking-App für Cannabis-Konsum \"made in Germany\". Verstehe deine persönliche Wirkung präzise und sicher - ohne Login-Zwang oder Datenverkäufe.",
@@ -1024,6 +1025,7 @@
                 mail_feedback: "Email-Programm wird geöffnet..."
             },
             en: {
+                page_title: "effekt:C | Your High. Your Profile. Your Control.",
                 beta_badge: "Coming Soon",
                 hero_title: "Your High. Your Profile. Your Control.",
                 hero_subtitle: "The tracking app for cannabis consumption made in Germany. Understand your personal effect precisely and securely - without forced login or data sales.",
@@ -1092,6 +1094,11 @@
                     }
                 }
             });
+
+            // Update Page Title
+            if (t.page_title) {
+                document.title = t.page_title;
+            }
 
             // Re-render chart sliders for translated labels if needed
             renderSliders();
