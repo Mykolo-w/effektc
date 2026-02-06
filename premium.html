@@ -3,42 +3,57 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>effekt:C | Premium</title>
-    <title>effekt:C - Premium</title>
-    <link rel="stylesheet" href="assets/css/header.css">
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="assets/logo_main.png">
+
+    <!-- Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <style>
+        /* --- DESIGN SYSTEM --- */
         :root {
-            --primary: #4CAF50;
-            --premium-gold: #FFC107;
-            --bg: #121212;
-            --surface: #1E1E1E;
-            --text: #ffffff;
-            --text-secondary: #aaaaaa;
+            --app-bg: #1E282A;
+            --app-surface: #2C3E42;
+            --app-primary: #6BCB77;
+            --app-text: #E0E0E0;
+            --app-muted: #B0BEC5;
+            --app-divider: #37474F;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
             margin: 0;
-            color: var(--app-muted);
+            padding: 0;
+            background-color: var(--app-bg);
+            color: var(--app-text);
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
-            margin-bottom: 20px;
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* --- LAYOUT --- */
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
         }
 
-        /* Header Area (Adapted from index.html) */
+        /* --- HEADER --- */
         .header-nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         .brand-header {
@@ -46,7 +61,6 @@
             align-items: center;
             gap: 15px;
             text-decoration: none;
-            /* Link style removal */
         }
 
         .app-icon {
@@ -67,114 +81,214 @@
             font-weight: 700;
             color: #fff;
             letter-spacing: 1px;
+        }
 
-            /* Specific Styles for Premium Page */
-            .premium-hero {
-                text-align: center;
-                padding: 60px 20px;
+        .back-link {
+            font-size: 0.9rem;
+            color: var(--app-muted);
+            text-decoration: none;
+            border: 1px solid var(--app-divider);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            border-color: var(--app-primary);
+            color: #fff;
+        }
+
+        /* --- CONTENT --- */
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            color: #fff;
+            margin: 0;
+            font-size: 2.2rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--app-surface);
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Subtle highlighting for Premium */
+        .feature-card.premium {
+            border-color: rgba(107, 203, 119, 0.3);
+            /* Low opacity primary */
+            background: linear-gradient(180deg, rgba(44, 62, 66, 1) 0%, rgba(30, 40, 42, 1) 100%);
+        }
+
+        .card-header {
+            border-bottom: 1px solid var(--app-divider);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .card-header p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: var(--app-muted);
+        }
+
+        ul.feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        li.feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            color: var(--app-text);
+            font-size: 1rem;
+        }
+
+        li.feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Monochrome Icons */
+        .icon {
+            margin-right: 12px;
+            flex-shrink: 0;
+            width: 20px;
+            text-align: center;
+            color: var(--app-muted);
+            /* Grey */
+        }
+
+        .premium .icon {
+            color: #fff;
+            /* White for premium */
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        @media(max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
             }
 
-            .premium-icon-wrapper {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                width: 100px;
-                height: 100px;
-                background: rgba(255, 193, 7, 0.1);
-                border-radius: 50%;
-                margin-bottom: 24px;
-                box-shadow: 0 0 30px rgba(255, 193, 7, 0.2);
+            .feature-card {
+                padding: 24px;
             }
-
-            .premium-icon {
-                font-size: 4rem;
-                color: var(--gold);
-            }
-
-            .feature-list {
-                background: rgba(255, 255, 255, 0.03);
-                border: 1px solid rgba(255, 255, 255, 0.05);
-                border-radius: var(--radius-l);
-                padding: 32px;
-                margin: 40px auto;
-                max-width: 600px;
-                text-align: left;
-            }
-
-            .feature-item {
-                display: flex;
-                align-items: center;
-                margin-bottom: 20px;
-                font-size: 1.1rem;
-            }
-
-            .feature-item:last-child {
-                margin-bottom: 0;
-            }
-
-            .feature-item .icon {
-                color: var(--gold);
-                margin-right: 16px;
-                font-size: 1.5rem;
-            }
-
-            .pricing-cards {
-                display: flex;
-                gap: 24px;
-                justify-content: center;
-                flex-wrap: wrap;
-                margin-top: 40px;
-            }
-
-            .price-card {
-                background: rgba(255, 255, 255, 0.05);
-                padding: 32px;
-                border-radius: var(--radius-m);
-                flex: 1;
-                min-width: 250px;
-                max-width: 350px;
-                /* Prevent overstretching */
-                border: 2px solid transparent;
-                transition: all 0.3s;
-            }
-
-            .price-card.featured {
-                border-color: var(--gold);
-                background: rgba(255, 193, 7, 0.05);
-            }
-
-            .price {
-                font-size: 1.8rem;
-                font-weight: 700;
-                margin: 16px 0;
-                color: #fff;
-            }
+        }
     </style>
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- Fixed Header -->
-    <header class="fixed-header">
-        <div class="header-inner">
-            <a href="index.html" class="header-logo">
-                <img src="assets/images/app_logo_transparent.png" alt="effekt:C Logo">
-                <span>effekt:C</span>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="header-nav">
+            <a href="index.html" class="brand-header">
+                <div class="app-icon">
+                    <img src="assets/logo_main.png" alt="Icon" style="width:32px; height:auto;"
+                        onerror="this.style.display='none'; this.parentElement.innerText='e:C'">
+                </div>
+                <div class="brand-name">effekt:C</div>
             </a>
-            <p class="disclaimer">
-                Abo verlängert sich automatisch. Jederzeit kündbar über den Google Play Store.
-            </p>
+            <a href="index.html" class="back-link">&larr; Zurück</a>
+        </nav>
+
+        <div class="page-title">
+            <h1>Features & Premium</h1>
         </div>
-        </div>
+
+        <div class="comparison-grid">
+
+            <!-- BASIC CARD -->
+            <div class="feature-card">
+                <div class="card-header">
+                    <h2>Basis</h2>
+                    <p>Dauerhaft kostenlos</p>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <span class="icon">&#10003;</span>
+                        <span>Unbegrenzt Logs erstellen & speichern</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="icon">&#10003;</span>
+                        <span>Zugriff auf alle Einzellogs</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="icon">&#10003;</span>
+                        <span>Kalender-Übersicht</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="icon">&#10003;</span>
+                        <span>Sorten-Datenbank</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- PREMIUM CARD -->
+            <div class="feature-card premium">
+                <div class="card-header">
+                    <h2>Premium</h2>
+                    <p>Erweiterte Funktionen</p>
+                </div>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <span class="icon">&#9733;</span>
+                        <span>Detail-Analyse & Radar-Charts</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="icon">&#9733;</span>
+                        <span>Durchschnittswerte & Vergleiche</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="icon">&#9733;</span>
+                        <span>Daten Export & Import (Backup)</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="icon">&#9733;</span>
+                        <span>Werbefrei & Support für Entwickler</span>
+                    </li>
+                </ul>
+            </div>
 
         </div>
 
-        <footer style="text-align: center; padding: 40px; color: #555; font-size: 0.8rem;">
-            &copy; 2026 effekt:C <span style="margin: 0 10px;">|</span> <a href="impressum.html"
-                style="color:#666; text-decoration:none;">Impressum</a>
-        </footer>
+        <p style="text-align: center; margin-top: 40px; font-size: 0.85rem; color: var(--app-muted);">
+            Das Abo kann jederzeit bequem über den Play Store gekündigt werden.
+        </p>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 effekt:C</p>
+    </footer>
 
 </body>
 
