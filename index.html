@@ -562,6 +562,18 @@
             backdrop-filter: blur(5px);
         }
 
+        /* --- FORM --- */
+        .access-form {
+            background: var(--app-surface);
+            padding: 40px;
+            border-radius: 24px;
+            max-width: 500px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
         .modal-content {
             background-color: var(--app-surface);
             margin: 20px;
@@ -721,6 +733,12 @@
 
     <!-- Language Switcher (Floating) -->
     <nav class="lang-switch">
+        <a class="lang-opt"
+            style="cursor: pointer; margin-right: 5px; font-weight: 600; color: #FFC107; display: flex; align-items: center; gap: 6px;"
+            href="premium.html">
+            Premium
+        </a>
+        <span style="color:rgba(255,255,255,0.2)">|</span>
         <a class="lang-opt"
             style="cursor: pointer; margin-right: 15px; font-weight: 600; color: var(--app-primary); display: flex; align-items: center; gap: 6px;"
             onclick="openGallery(0)" data-i18n="btn_preview">
@@ -979,6 +997,9 @@
         const translations = {
             de: {
                 page_title: "effekt:C | Dein High. Dein Profil. Deine Kontrolle.",
+                premium_title: "Hol dir das volle Erlebnis",
+                premium_desc: "Detaillierte Analysen, exportierbare Daten und mehr.",
+                premium_btn: "Premium Features ansehen",
                 beta_badge: "Coming Soon",
                 hero_title: "Dein High. Dein Profil. Deine Kontrolle.",
                 hero_subtitle: "Die Tracking-App für Cannabis-Konsum \"made in Germany\". Verstehe deine persönliche Wirkung präzise und sicher - ohne Login-Zwang oder Datenverkäufe.",
@@ -1026,6 +1047,9 @@
             },
             en: {
                 page_title: "effekt:C | Your High. Your Profile. Your Control.",
+                premium_title: "Get the full experience",
+                premium_desc: "Detailed insights, data export, and more.",
+                premium_btn: "View Premium Features",
                 beta_badge: "Coming Soon",
                 hero_title: "Your High. Your Profile. Your Control.",
                 hero_subtitle: "The tracking app for cannabis consumption made in Germany. Understand your personal effect precisely and securely - without forced login or data sales.",
