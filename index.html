@@ -726,6 +726,93 @@
             }
         }
     </style>
+    <style>
+        /* --- PHONE FRAME & GALLERY --- */
+        .phone-section {
+            text-align: center;
+            margin: 0 0 80px 0;
+            perspective: 1000px;
+        }
+
+        .phone-frame {
+            width: 300px;
+            height: 600px;
+            /* ~19.5:9 Aspect Ratio */
+            background: #000;
+            margin: 0 auto;
+            border-radius: 40px;
+            border: 8px solid #2C3E42;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            position: relative;
+            transform: rotateY(-5deg) rotateX(5deg);
+            transition: transform 0.5s ease;
+        }
+
+        .phone-frame:hover {
+            transform: rotateY(0) rotateX(0);
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 25px;
+            background: #2C3E42;
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
+            z-index: 10;
+        }
+
+        /* Gallery Slider */
+        .gallery-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease-out;
+            cursor: grab;
+        }
+
+        .gallery-track:active {
+            cursor: grabbing;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        /* Dots Indicator */
+        .gallery-dots {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: var(--app-primary);
+            transform: scale(1.2);
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -741,7 +828,7 @@
         <span style="color:rgba(255,255,255,0.2)">|</span>
         <a class="lang-opt"
             style="cursor: pointer; margin-right: 15px; font-weight: 600; color: var(--app-primary); display: flex; align-items: center; gap: 6px;"
-            onclick="openGallery(0)" data-i18n="btn_preview">
+            href="#app-preview" onclick="slowScrollTo(event, 'app-preview')" data-i18n="btn_preview">
             App Vorschau
         </a>
         <span style="color:rgba(255,255,255,0.2)">|</span>
@@ -943,6 +1030,31 @@
             </div>
         </section>
 
+        <!-- APP PREVIEW (PHONE GALLERY) -->
+        <section id="app-preview" class="phone-section">
+            <h2 data-i18n="gallery_title">App Vorschau</h2>
+            <br>
+            <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <!-- Slider Track -->
+                <div class="gallery-track" id="gallery-track">
+                    <div class="gallery-slide"><img src="assets/screen_1.png" alt="Screen 1"></div>
+                    <div class="gallery-slide"><img src="assets/screen_2.png" alt="Screen 2"></div>
+                    <div class="gallery-slide"><img src="assets/screen_3.png" alt="Screen 3"></div>
+                    <div class="gallery-slide"><img src="assets/screen_4.png" alt="Screen 4"></div>
+                    <div class="gallery-slide"><img src="assets/screen_5.png" alt="Screen 5"></div>
+                </div>
+            </div>
+            <!-- Dots -->
+            <div class="gallery-dots" id="gallery-dots">
+                <div class="dot active" onclick="goToSlide(0)"></div>
+                <div class="dot" onclick="goToSlide(1)"></div>
+                <div class="dot" onclick="goToSlide(2)"></div>
+                <div class="dot" onclick="goToSlide(3)"></div>
+                <div class="dot" onclick="goToSlide(4)"></div>
+            </div>
+        </section>
+
     </div><!-- END CONTAINER -->
 
     <footer>
@@ -993,6 +1105,77 @@
     </div>
 
     <script>
+        // --- PHONE GALLERY LOGIC ---
+        const track = document.getElementById('gallery-track');
+        const slides = document.querySelectorAll('.gallery-slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+        let startX = 0;
+        let isDragging = false;
+        let autoPlayInterval;
+
+        function updateGallery() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateGallery();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateGallery();
+            resetAutoPlay();
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = setInterval(nextSlide, 3000); // 3s Auto-Play
+        }
+
+        // Swipe Support
+        track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+            clearInterval(autoPlayInterval);
+        });
+
+        track.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const x = e.touches[0].clientX;
+            const diff = startX - x;
+            // Prevent scrolling page while swiping gallery? Maybe not needed for simple swipe
+        });
+
+        track.addEventListener('touchend', (e) => {
+            isDragging = false;
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+
+            if (Math.abs(diff) > 50) { // Threshold
+                if (diff > 0) {
+                    // Swipe Left -> Next
+                    nextSlide();
+                } else {
+                    // Swipe Right -> Prev
+                    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                    updateGallery();
+                }
+            }
+            resetAutoPlay();
+        });
+
+        // Init
+        resetAutoPlay();
+
+        // --- OLD GALLERY (Fullscreen) - KEPT FOR REFERENCE OR REMOVAL separate?
+        // We replaced the header link, so openGallery(0) is no longer called by Header.
+        // Keeping it for now if referenced elsewhere, but standardizing.
+
         // --- TRANSLATIONS (DE / EN) ---
         const translations = {
             de: {
@@ -1000,6 +1183,7 @@
                 premium_title: "Hol dir das volle Erlebnis",
                 premium_desc: "Detaillierte Analysen, exportierbare Daten und mehr.",
                 premium_btn: "Premium Features ansehen",
+                gallery_title: "App Vorschau",
                 beta_badge: "Coming Soon",
                 hero_title: "Dein High. Dein Profil. Deine Kontrolle.",
                 hero_subtitle: "Die Tracking-App für Cannabis-Konsum \"made in Germany\". Verstehe deine persönliche Wirkung präzise und sicher - ohne Login-Zwang oder Datenverkäufe.",
@@ -1050,6 +1234,7 @@
                 premium_title: "Get the full experience",
                 premium_desc: "Detailed insights, data export, and more.",
                 premium_btn: "View Premium Features",
+                gallery_title: "App Preview",
                 beta_badge: "Coming Soon",
                 hero_title: "Your High. Your Profile. Your Control.",
                 hero_subtitle: "The tracking app for cannabis consumption made in Germany. Understand your personal effect precisely and securely - without forced login or data sales.",
