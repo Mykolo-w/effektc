@@ -255,14 +255,11 @@
             }
 
             .phone-frame {
-                /* Remove fixed scale, use responsive sizing */
-                transform: none !important;
+                /* S23 Fix: Cap height to ensure header room */
+                max-height: 55dvh !important;
                 width: auto !important;
-                height: auto !important;
-                max-height: 100%;
-                max-width: 80%;
+                transform: none !important;
                 aspect-ratio: 300/600;
-                /* Preserve ratio based on original px */
             }
 
             .hero-text {
@@ -1161,6 +1158,16 @@
             font-size: 1.3rem;
         }
 
+        /* Text/Icon Switching Helpers */
+        .mobile-text,
+        .mobile-icon {
+            display: none;
+        }
+
+        .desktop-text {
+            display: inline;
+        }
+
 
 
         /* Mobile Hide */
@@ -1190,11 +1197,8 @@
                 justify-content: space-between;
                 padding: 10px 15px;
                 gap: 5px;
-                overflow-x: auto;
-                /* Enable scroll if needed */
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-                /* Hide scrollbar Firefox */
+                overflow-x: hidden;
+                /* No scrolling needed with icons */
             }
 
             .side-nav::-webkit-scrollbar {
@@ -1209,19 +1213,47 @@
             }
 
             .nav-item {
-                flex: 0 0 auto;
-                /* Don't shrink, allow scroll */
-                font-size: 0.75rem;
+                flex: 1;
+                /* Distribute space */
+                font-size: 0.8rem;
+                /* Readable size */
                 text-align: center;
-                padding: 6px 10px;
+                padding: 6px 4px;
                 border-radius: 20px;
-                white-space: nowrap;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Mobile Content Switching */
+            .desktop-text {
+                display: none;
+            }
+
+            .mobile-text {
+                display: inline;
+            }
+
+            .mobile-icon {
+                display: block;
+            }
+
+            .brand-icon-mobile {
+                height: 24px;
+                width: auto;
+            }
+
+            .download-icon-mobile {
+                width: 24px;
+                height: 24px;
+                fill: var(--app-primary);
             }
 
             .nav-item.active {
                 background: rgba(107, 203, 119, 0.15);
                 color: var(--app-primary);
-                font-size: 0.8rem;
+                font-size: inherit;
+                /* Use inherited font size for active state */
             }
 
             .nav-item:hover {
@@ -1484,15 +1516,28 @@
 
     <!-- SIDE NAV -->
     <nav class="side-nav" id="sideNav">
-        <a href="#hero" class="nav-item active" onclick="slowScrollTo(event, 'hero')" data-i18n="nav_brand">effekt:C</a>
-        <a href="#feature-high" class="nav-item" onclick="slowScrollTo(event, 'feature-high')" data-i18n="nav_high">Dein
-            High.</a>
-        <a href="#feature-profile" class="nav-item" onclick="slowScrollTo(event, 'feature-profile')"
-            data-i18n="nav_profile">Dein Profil.</a>
-        <a href="#feature-control" class="nav-item" onclick="slowScrollTo(event, 'feature-control')"
-            data-i18n="nav_data">Deine Daten.</a>
-        <a href="#access" class="nav-item" onclick="slowScrollTo(event, 'access')" data-i18n="nav_download"
-            style="color: var(--app-primary);">App Download</a>
+        <a href="#hero" class="nav-item active" onclick="slowScrollTo(event, 'hero')">
+            <span class="desktop-text" data-i18n="nav_brand">effekt:C</span>
+            <img src="assets/logo.png" class="mobile-icon brand-icon-mobile" alt="e:C">
+        </a>
+        <a href="#feature-high" class="nav-item" onclick="slowScrollTo(event, 'feature-high')">
+            <span class="desktop-text" data-i18n="nav_high">Dein High.</span>
+            <span class="mobile-text">High</span>
+        </a>
+        <a href="#feature-profile" class="nav-item" onclick="slowScrollTo(event, 'feature-profile')">
+            <span class="desktop-text" data-i18n="nav_profile">Dein Profil.</span>
+            <span class="mobile-text">Profil</span>
+        </a>
+        <a href="#feature-control" class="nav-item" onclick="slowScrollTo(event, 'feature-control')">
+            <span class="desktop-text" data-i18n="nav_data">Deine Daten.</span>
+            <span class="mobile-text">Daten</span>
+        </a>
+        <a href="#access" class="nav-item" onclick="slowScrollTo(event, 'access')" style="color: var(--app-primary);">
+            <span class="desktop-text" data-i18n="nav_download">App Download</span>
+            <svg class="mobile-icon download-icon-mobile" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+            </svg>
+        </a>
     </nav>
 
     <footer>
