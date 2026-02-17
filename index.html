@@ -1429,11 +1429,19 @@
         <a href="#feature-high" class="nav-item" onclick="slowScrollTo(event, 'feature-high')">Dein High.</a>
         <a href="#feature-profile" class="nav-item" onclick="slowScrollTo(event, 'feature-profile')">Dein Profil.</a>
         <a href="#feature-control" class="nav-item" onclick="slowScrollTo(event, 'feature-control')">Deine Daten.</a>
+        <a href="#access" class="nav-item" onclick="slowScrollTo(event, 'access')" data-i18n="nav_download"
+            style="color: var(--app-primary);">App herunterladen</a>
     </nav>
 
     <footer>
         <p>&copy; 2026 effekt:C</p>
-        <p><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></p>
+        <p>
+            <a href="impressum.html" id="footer-imprint" data-i18n="footer_imprint"
+                style="color: #666; text-decoration: none;">Impressum</a>
+            <span style="margin: 0 10px; color: #666;">|</span>
+            <a href="datenschutz.html" id="footer-privacy" data-i18n="footer_privacy"
+                style="color: #666; text-decoration: none;">Datenschutz</a>
+        </p>
     </footer>
 
     <!-- INFO MODAL -->
@@ -1452,6 +1460,8 @@
             </button>
         </div>
     </div>
+
+
 
     <!-- COOKIE BANNER -->
     <div id="cookie-overlay" class="cookie-consent">
@@ -1585,8 +1595,8 @@
                 tile5_desc: "Nutzung ohne Registrierung. Keine E-Mail, kein Benutzerkonto, keine Verknüpfung.",
                 tile6_title: "Ehrlicher Datenschutz",
                 tile6_desc: "Wir verzichten auf Tracking-Tools und Datenhandel. Entwickelt in Deutschland nach strengsten Standards.",
-                access_title: "Werde Teil der Bewegung",
-                access_desc: "Sichere dir deinen Platz auf der Warteliste. 100% kostenlos und unverbindlich. Wir melden uns zum Start.",
+                access_title: "Bald verfügbar",
+                access_desc: "Die App befindet sich im finalen Testing. Sicher dir jetzt deinen Platz auf der Warteliste und wir benachrichtigen dich zum Start.",
                 ph_name: "Vorname Nachname",
                 ph_email: "Deine Email-Adresse",
                 btn_submit: "Auf die Warteliste",
@@ -1601,7 +1611,10 @@
                 mail_name: "Name",
                 mail_email: "Email",
                 mail_greetings: "Liebe Grüße",
-                mail_feedback: "Email-Programm wird geöffnet..."
+                mail_feedback: "Email-Programm wird geöffnet...",
+                nav_download: "App herunterladen",
+                footer_imprint: "Impressum",
+                footer_privacy: "Datenschutz"
             },
             en: {
                 page_title: "effekt:C | Your High. Your Profile. Your Control.",
@@ -1636,8 +1649,8 @@
                 tile5_desc: "Use without registration. No email, no user account, no linking.",
                 tile6_title: "Honest Privacy",
                 tile6_desc: "We avoid tracking tools and data trading. Developed in Germany under the strictest standards.",
-                access_title: "Join the Movement",
-                access_desc: "Secure your spot on the waitlist. 100% free and non-binding. We'll notify you at launch.",
+                access_title: "Coming Soon",
+                access_desc: "The app is currently in final testing. Secure your spot on the waitlist now and we'll notify you at launch.",
                 ph_name: "First Name Last Name",
                 ph_email: "Your Email Address",
                 btn_submit: "Join Waitlist",
@@ -1652,7 +1665,10 @@
                 mail_name: "Name",
                 mail_email: "Email",
                 mail_greetings: "Best regards",
-                mail_feedback: "Opening email client..."
+                mail_feedback: "Opening email client...",
+                nav_download: "Download App",
+                footer_imprint: "Imprint",
+                footer_privacy: "Privacy Policy"
             }
         };
 
@@ -1685,6 +1701,10 @@
 
             // Re-render chart sliders for translated labels if needed
             renderSliders();
+
+            // Update Footer Links
+            document.getElementById('footer-imprint').href = lang === 'en' ? 'impressum_en.html' : 'impressum.html';
+            document.getElementById('footer-privacy').href = lang === 'en' ? 'datenschutz_en.html' : 'datenschutz.html';
         }
 
         // --- LANGUAGE SWITCHER LOGIC ---
@@ -1916,9 +1936,12 @@
         function openModal() {
             document.getElementById('info-modal').style.display = 'flex';
         }
+
         function closeModal() {
             document.getElementById('info-modal').style.display = 'none';
         }
+
+
 
         // --- GALLERY LOGIC ---
         const galleryImages = [
@@ -2024,7 +2047,8 @@
             document.getElementById('hero'),
             document.getElementById('feature-high'), // Ensure ID is added
             document.getElementById('feature-profile'), // Ensure ID is added
-            document.getElementById('feature-control')  // Ensure ID is added
+            document.getElementById('feature-control'),  // Ensure ID is added
+            document.getElementById('access') // App Download Section
         ];
 
         window.addEventListener('scroll', () => {
