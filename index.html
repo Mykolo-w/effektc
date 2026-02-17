@@ -1118,21 +1118,55 @@
             font-size: 1.3rem;
         }
 
-        /* Hero Text Transition */
-        .hero-text-content {
-            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-        }
 
-        body.scrolled .hero-text-content {
-            opacity: 0;
-            transform: translateX(50px);
-            pointer-events: none;
-        }
 
         /* Mobile Hide */
+        /* Mobile Sticky Nav (Bottom Pill) */
         @media (max-width: 900px) {
             .side-nav {
-                display: none !important;
+                display: flex !important;
+                /* Override none */
+                top: auto;
+                right: auto;
+                bottom: 25px;
+                left: 50%;
+                transform: translateX(-50%) translateY(20px);
+                width: 90%;
+                max-width: 400px;
+                background: rgba(44, 62, 66, 0.95);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                padding: 10px 0;
+                border-radius: 50px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: center;
+                gap: 5px;
+            }
+
+            .side-nav.active {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .nav-item {
+                font-size: 0.8rem;
+                text-align: center;
+                padding: 6px 12px;
+                border-radius: 20px;
+            }
+
+            .nav-item.active {
+                background: rgba(107, 203, 119, 0.15);
+                color: var(--app-primary);
+                font-size: 0.8rem;
+            }
+
+            .nav-item:hover {
+                transform: none;
             }
         }
     </style>
@@ -1177,18 +1211,17 @@
                             <img src="assets/logo_main.png" alt="Icon" style="width:40px; height:auto;"
                                 onerror="this.style.display='none'; this.parentElement.innerText='e:C'">
                         </div>
-                        <div class="brand-text hero-text-content">
+                        <div class="brand-text">
                             <div class="brand-name">effekt:C</div>
                             <h1 data-i18n="hero_title">Dein High. Dein Profil. Deine Kontrolle.</h1>
                         </div>
                     </div>
 
-                    <p data-i18n="hero_subtitle" class="hero-text-content">Deine persönliche Tracking-App für
+                    <p data-i18n="hero_subtitle">Deine persönliche Tracking-App für
                         Cannabis-Konsum. Führe dein Cannabis-Tagebuch, verstehe die Wirkung jeder Sorte und verbessere
                         deine Therapie – präzise, sicher und privat.</p>
 
-                    <a href="#access" onclick="slowScrollTo(event, 'access')" class="cta-button hero-text-content"
-                        data-i18n="hero_cta">
+                    <a href="#access" onclick="slowScrollTo(event, 'access')" class="cta-button" data-i18n="hero_cta">
                         Benachrichtigen lassen
                     </a>
 
