@@ -221,13 +221,13 @@
         /* Mobile Layout overrides */
         @media (max-width: 900px) {
             .hero {
-                min-height: 100dvh;
-                height: auto;
-                /* Allow growth */
+                height: 100dvh;
+                /* Strict Fit */
+                min-height: 0;
                 padding-bottom: 90px;
                 box-sizing: border-box;
-                overflow: visible;
-                /* Allow scrolling if needed */
+                overflow: hidden;
+                /* No Scroll */
                 display: flex;
                 flex-direction: column;
                 position: relative;
@@ -245,24 +245,47 @@
             .hero-image {
                 order: -1;
                 /* Force to top */
-                flex: 1;
-                /* Grow to fill space */
+                flex: 1 1 auto;
+                /* Shrinkable */
+                min-height: 0;
+                /* Critical for shrink */
                 width: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                margin-top: 20px;
-                margin-bottom: 10px;
+                margin-top: 10px;
+                margin-bottom: 5px;
             }
 
             .phone-frame {
-                /* Adaptive sizing */
-                max-height: 65vh;
-                /* Keep it reasonable */
+                max-height: 100%;
+                /* Fit container */
                 width: auto !important;
                 max-width: 85%;
                 transform: none !important;
                 aspect-ratio: 300/600;
+                position: relative;
+            }
+
+            .gallery-dots {
+                display: none !important;
+            }
+
+            .maximize-btn {
+                position: absolute;
+                bottom: 12px;
+                right: 12px;
+                background: rgba(0, 0, 0, 0.6);
+                backdrop-filter: blur(4px);
+                border-radius: 50%;
+                width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                z-index: 20;
+                border: 1px solid rgba(255, 255, 255, 0.2);
             }
 
             .hero-text {
@@ -1324,6 +1347,16 @@
                 <div class="hero-image">
                     <div class="phone-frame">
                         <div class="phone-notch"></div>
+                        <!-- Maximize Button (Mobile Only via CSS) -->
+                        <div class="maximize-btn" onclick="openLightbox()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <polyline points="9 21 3 21 3 15"></polyline>
+                                <line x1="21" y1="3" x2="14" y2="10"></line>
+                                <line x1="3" y1="21" x2="10" y2="14"></line>
+                            </svg>
+                        </div>
                         <!-- Slider Track -->
                         <div class="gallery-track" id="gallery-track">
                             <div class="gallery-slide"><img src="assets/screen_1.png" alt="Screen 1"></div>
@@ -2202,6 +2235,40 @@
             });
         });
 
+    </script>
+    <!-- Lightbox -->
+    <div id="lightbox"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center; flex-direction:column;">
+        <img id="lightbox-img" src=""
+            style="max-width:95%; max-height:80%; border-radius:12px; box-shadow:0 0 20px rgba(0,0,0,0.5);">
+        <button onclick="closeLightbox()"
+            style="margin-top:20px; background:none; border:1px solid rgba(255,255,255,0.3); color:#fff; padding:10px 20px; border-radius:30px; cursor:pointer;">Schließen</button>
+    </div>
+
+    <script>
+        function openLightbox() {
+            // Get all slides in the hero gallery track
+            const gallerySlides = document.querySelectorAll('#gallery-track .gallery-slide');
+            let index = 0;
+            // 'currentSlide' is global from the main script
+            if (typeof currentSlide !== 'undefined') {
+                index = currentSlide;
+            }
+
+            if (gallerySlides[index]) {
+                const img = gallerySlides[index].querySelector('img');
+                if (img) {
+                    document.getElementById('lightbox-img').src = img.src;
+                }
+            } else {
+                // Fallback
+                document.getElementById('lightbox-img').src = 'assets/screen_1.png';
+            }
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
     </script>
 </body>
 
