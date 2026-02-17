@@ -221,13 +221,13 @@
         /* Mobile Layout overrides */
         @media (max-width: 900px) {
             .hero {
-                height: 100dvh;
-                /* Force exact fit */
-                max-height: 100dvh;
+                min-height: 100dvh;
+                height: auto;
+                /* Allow growth */
                 padding-bottom: 90px;
-                /* Space for the floating menu */
                 box-sizing: border-box;
-                overflow: hidden;
+                overflow: visible;
+                /* Allow scrolling if needed */
                 display: flex;
                 flex-direction: column;
                 position: relative;
@@ -236,28 +236,29 @@
             .hero-container {
                 flex: 1;
                 flex-direction: column;
-                justify-content: flex-start;
-                gap: 0;
-                height: auto;
+                justify-content: flex-end;
+                /* Dock to bottom */
+                gap: 20px;
                 padding-bottom: 0;
             }
 
             .hero-image {
-                order: -1;
                 flex: 1;
-                min-height: 0;
+                /* Grow to fill space */
                 width: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                overflow: visible;
-                margin-top: 0;
+                margin-top: 20px;
+                margin-bottom: 10px;
             }
 
             .phone-frame {
-                /* S23 Fix: Cap height to ensure header room */
-                max-height: 55dvh !important;
+                /* Adaptive sizing */
+                max-height: 65vh;
+                /* Keep it reasonable */
                 width: auto !important;
+                max-width: 85%;
                 transform: none !important;
                 aspect-ratio: 300/600;
             }
@@ -1195,15 +1196,13 @@
                 flex-direction: row;
                 /* S23 Fixes: Tighter layout */
                 justify-content: space-between;
-                padding: 10px 15px;
-                gap: 5px;
+                padding: 10px 10px;
+                gap: 2px;
                 overflow-x: hidden;
-                /* No scrolling needed with icons */
             }
 
             .side-nav::-webkit-scrollbar {
                 display: none;
-                /* Hide scrollbar Chrome/Safari */
             }
 
             .side-nav.active {
@@ -1214,15 +1213,15 @@
 
             .nav-item {
                 flex: 1;
-                /* Distribute space */
-                font-size: 0.8rem;
-                /* Readable size */
+                font-size: 0.65rem;
+                /* Small but readable for full text */
                 text-align: center;
-                padding: 6px 4px;
+                padding: 8px 2px;
                 border-radius: 20px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                white-space: nowrap;
             }
 
             /* Mobile Content Switching */
@@ -1522,15 +1521,15 @@
         </a>
         <a href="#feature-high" class="nav-item" onclick="slowScrollTo(event, 'feature-high')">
             <span class="desktop-text" data-i18n="nav_high">Dein High.</span>
-            <span class="mobile-text">High</span>
+            <span class="mobile-text">Dein High.</span>
         </a>
         <a href="#feature-profile" class="nav-item" onclick="slowScrollTo(event, 'feature-profile')">
             <span class="desktop-text" data-i18n="nav_profile">Dein Profil.</span>
-            <span class="mobile-text">Profil</span>
+            <span class="mobile-text">Dein Profil.</span>
         </a>
         <a href="#feature-control" class="nav-item" onclick="slowScrollTo(event, 'feature-control')">
             <span class="desktop-text" data-i18n="nav_data">Deine Daten.</span>
-            <span class="mobile-text">Daten</span>
+            <span class="mobile-text">Deine Daten.</span>
         </a>
         <a href="#access" class="nav-item" onclick="slowScrollTo(event, 'access')" style="color: var(--app-primary);">
             <span class="desktop-text" data-i18n="nav_download">App Download</span>
