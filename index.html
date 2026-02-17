@@ -1425,12 +1425,15 @@
 
     <!-- SIDE NAV -->
     <nav class="side-nav" id="sideNav">
-        <a href="#hero" class="nav-item active" onclick="slowScrollTo(event, 'hero')">effekt:C</a>
-        <a href="#feature-high" class="nav-item" onclick="slowScrollTo(event, 'feature-high')">Dein High.</a>
-        <a href="#feature-profile" class="nav-item" onclick="slowScrollTo(event, 'feature-profile')">Dein Profil.</a>
-        <a href="#feature-control" class="nav-item" onclick="slowScrollTo(event, 'feature-control')">Deine Daten.</a>
+        <a href="#hero" class="nav-item active" onclick="slowScrollTo(event, 'hero')" data-i18n="nav_brand">effekt:C</a>
+        <a href="#feature-high" class="nav-item" onclick="slowScrollTo(event, 'feature-high')" data-i18n="nav_high">Dein
+            High.</a>
+        <a href="#feature-profile" class="nav-item" onclick="slowScrollTo(event, 'feature-profile')"
+            data-i18n="nav_profile">Dein Profil.</a>
+        <a href="#feature-control" class="nav-item" onclick="slowScrollTo(event, 'feature-control')"
+            data-i18n="nav_data">Deine Daten.</a>
         <a href="#access" class="nav-item" onclick="slowScrollTo(event, 'access')" data-i18n="nav_download"
-            style="color: var(--app-primary);">App herunterladen</a>
+            style="color: var(--app-primary);">App Download</a>
     </nav>
 
     <footer>
@@ -1611,8 +1614,14 @@
                 mail_name: "Name",
                 mail_email: "Email",
                 mail_greetings: "Liebe Grüße",
+                mail_email: "Email",
+                mail_greetings: "Liebe Grüße",
                 mail_feedback: "Email-Programm wird geöffnet...",
-                nav_download: "App herunterladen",
+                nav_brand: "effekt:C",
+                nav_high: "Dein High.",
+                nav_profile: "Dein Profil.",
+                nav_data: "Deine Daten.",
+                nav_download: "App Download",
                 footer_imprint: "Impressum",
                 footer_privacy: "Datenschutz"
             },
@@ -1666,6 +1675,10 @@
                 mail_email: "Email",
                 mail_greetings: "Best regards",
                 mail_feedback: "Opening email client...",
+                nav_brand: "effekt:C",
+                nav_high: "Your High.",
+                nav_profile: "Your Profile.",
+                nav_data: "Your Data.",
                 nav_download: "Download App",
                 footer_imprint: "Imprint",
                 footer_privacy: "Privacy Policy"
