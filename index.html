@@ -258,13 +258,26 @@
             }
 
             .phone-frame {
-                max-height: 55vh;
-                /* Cap height so header fits below */
+                max-height: 65vh;
+                /* Increased size */
                 width: auto !important;
                 max-width: 90%;
                 transform: none !important;
                 aspect-ratio: 300/600;
                 position: relative;
+            }
+
+            .gallery-track,
+            .gallery-slide {
+                height: 100%;
+                width: 100%;
+            }
+
+            .gallery-slide img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                /* Ensure no gaps */
             }
 
             .gallery-dots {
@@ -1274,10 +1287,13 @@
             }
 
             .nav-item.active {
-                background: rgba(107, 203, 119, 0.15);
+                background: none !important;
+                /* No box */
                 color: var(--app-primary);
                 font-size: inherit;
-                /* Use inherited font size for active state */
+                transform: scale(1.2);
+                /* Scale up instead */
+                font-weight: 800;
             }
 
             .nav-item:hover {
