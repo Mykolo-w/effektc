@@ -221,30 +221,47 @@
         /* Mobile Layout overrides */
         @media (max-width: 900px) {
             .hero {
-                height: auto;
-                min-height: auto;
-                overflow: visible;
+                min-height: 100dvh;
+                height: 100dvh;
+                padding: 10px 0 20px 0;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
             }
 
             .hero-container {
+                flex: 1;
                 flex-direction: column;
-                gap: 30px;
-                /* Tighter gap */
+                justify-content: flex-end;
+                /* Push text to bottom */
+                gap: 0;
+                height: 100%;
+                padding-bottom: env(safe-area-inset-bottom);
             }
 
             .hero-image {
                 order: -1;
-                flex: 0 0 auto;
-                /* Do not stretch, take content height */
+                flex: 1;
                 width: 100%;
-                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: visible;
+                margin-top: 0;
+            }
+
+            .phone-frame {
+                /* Scale down to fit 100dvh */
+                transform: scale(0.65) !important;
+                transform-origin: center center;
             }
 
             .hero-text {
                 order: 1;
                 flex: 0 0 auto;
-                /* Do not stretch */
                 width: 100%;
+                z-index: 10;
+                padding-bottom: 10px;
             }
 
             .hero-text .brand-header {
@@ -254,20 +271,28 @@
             .mobile-hero-brand {
                 display: flex !important;
                 flex-direction: row;
-                /* Horizontal Row */
                 align-items: center;
                 justify-content: center;
-                /* Center the whole block */
-                gap: 15px;
-                margin-bottom: 20px;
+                gap: 12px;
+                margin-bottom: 15px;
                 text-align: left;
-                /* Text aligns left relative to icon */
+            }
+
+            /* Adjust Text Sizes for Fit */
+            .hero p {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+                padding: 0 10px;
+            }
+
+            .hero h1 {
+                font-size: 1rem;
             }
 
             .mobile-hero-brand .app-icon {
-                width: 56px;
-                height: 56px;
-                border-radius: 14px;
+                width: 48px;
+                height: 48px;
+                border-radius: 12px;
                 background: var(--app-surface);
                 display: flex;
                 align-items: center;
@@ -283,23 +308,20 @@
             }
 
             .mobile-hero-brand .brand-name {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
                 line-height: 1;
                 color: #fff;
                 font-weight: 800;
-                margin-bottom: 4px;
+                margin-bottom: 2px;
             }
 
             .mobile-hero-brand h1 {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
                 color: #fff;
-                /* WHITE */
                 font-weight: 700;
-                /* BOLD */
                 margin: 0;
                 line-height: 1.2;
                 white-space: nowrap;
-                /* Keep on one line if possible, or wrap gently */
             }
         }
 
