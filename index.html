@@ -222,26 +222,28 @@
         @media (max-width: 900px) {
             .hero {
                 min-height: 100dvh;
-                height: 100dvh;
-                padding: 10px 0 20px 0;
-                overflow: hidden;
+                height: auto;
+                /* Allow growth for content below fold */
+                padding: 0;
+                overflow: visible;
                 display: flex;
                 flex-direction: column;
+                position: relative;
             }
 
             .hero-container {
                 flex: 1;
                 flex-direction: column;
-                justify-content: flex-end;
-                /* Push text to bottom */
+                justify-content: flex-start;
                 gap: 0;
-                height: 100%;
-                padding-bottom: env(safe-area-inset-bottom);
+                height: auto;
+                padding-bottom: 0;
             }
 
             .hero-image {
                 order: -1;
-                flex: 1;
+                height: 80vh;
+                /* Most of the screen */
                 width: 100%;
                 display: flex;
                 align-items: center;
@@ -251,17 +253,18 @@
             }
 
             .phone-frame {
-                /* Scale down to fit 100dvh */
-                transform: scale(0.65) !important;
+                /* Larger scale as requested */
+                transform: scale(0.85) !important;
                 transform-origin: center center;
             }
 
             .hero-text {
                 order: 1;
-                flex: 0 0 auto;
                 width: 100%;
                 z-index: 10;
-                padding-bottom: 10px;
+                padding-bottom: 40px;
+                /* Background gradient to ensure text readability if overlapping? */
+                /* background: linear-gradient(to top, var(--app-bg) 0%, transparent 100%); */
             }
 
             .hero-text .brand-header {
@@ -274,25 +277,35 @@
                 align-items: center;
                 justify-content: center;
                 gap: 12px;
-                margin-bottom: 15px;
+                margin-bottom: 0;
+                /* Tight to bottom of 100vh area */
                 text-align: left;
+                height: 20vh;
+                /* Fill rest of screen roughly */
             }
 
             /* Adjust Text Sizes for Fit */
+            /* Push these below the fold */
             .hero p {
-                font-size: 0.9rem;
+                font-size: 1rem;
+                margin-top: 20px;
                 margin-bottom: 1.5rem;
-                padding: 0 10px;
+                padding: 0 20px;
+                opacity: 0.8;
             }
 
             .hero h1 {
                 font-size: 1rem;
             }
 
+            .cta-button {
+                margin-bottom: 40px;
+            }
+
             .mobile-hero-brand .app-icon {
-                width: 48px;
-                height: 48px;
-                border-radius: 12px;
+                width: 52px;
+                height: 52px;
+                border-radius: 14px;
                 background: var(--app-surface);
                 display: flex;
                 align-items: center;
@@ -308,7 +321,7 @@
             }
 
             .mobile-hero-brand .brand-name {
-                font-size: 1.6rem;
+                font-size: 1.8rem;
                 line-height: 1;
                 color: #fff;
                 font-weight: 800;
@@ -316,7 +329,7 @@
             }
 
             .mobile-hero-brand h1 {
-                font-size: 0.85rem;
+                font-size: 0.9rem;
                 color: #fff;
                 font-weight: 700;
                 margin: 0;
