@@ -56,37 +56,55 @@
             position: relative;
         }
 
-        /* --- LANGUAGE SWITCHER (Kept) --- */
+
+
+        /* --- NAVIGATION --- */
+        /* --- NAVIGATION --- */
         .lang-switch {
-            position: absolute;
+            position: fixed;
             top: 20px;
             right: 20px;
+            z-index: 99999;
+            /* Max z-index */
             display: flex;
             align-items: center;
-            gap: 10px;
-            z-index: 1000;
-            padding: 8px 16px;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            padding: 4px 6px;
             border-radius: 20px;
-            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            pointer-events: auto;
         }
 
-        .lang-opt {
-            cursor: pointer;
-            font-weight: bold;
+        .lang-btn {
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 700;
             font-size: 0.9rem;
-            color: var(--app-muted);
-            transition: color 0.3s, transform 0.2s;
+            padding: 6px 10px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
         }
 
-        .lang-opt:hover {
+        .lang-btn:hover {
             color: #fff;
         }
 
-        .lang-opt.active {
-            color: var(--app-primary);
-            text-decoration: underline;
+        .lang-btn.active {
+            color: #1E282A;
+            /* Dark Text */
+            background: var(--app-primary);
         }
+
+        .sep {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.8rem;
+            margin: 0 2px;
+            user-select: none;
+        }
+
+
 
         /* --- TYPOGRAPHY --- */
         h1,
@@ -99,13 +117,21 @@
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
+            font-size: 0.8rem;
+            /* Mobile Slogan: Very Small & Clean */
+            margin-bottom: 0;
+            line-height: 1.4;
+            /* Slightly looser */
+            font-weight: 700;
+            /* BOLD */
+            color: #fff;
+            /* WHITE */
+            opacity: 0.9;
         }
 
         h2 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
+            /* Reduced from 1.8rem */
             margin-bottom: 1rem;
         }
 
@@ -123,7 +149,8 @@
 
         p {
             color: var(--app-muted);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            /* Increased from 1.5rem */
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -153,6 +180,188 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            padding: 60px 0;
+            /* overflow: hidden;  <-- REMOVED to prevent clipping */
+        }
+
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: center;
+            order: 1;
+            z-index: 2;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            order: 2;
+            z-index: 1;
+            position: relative;
+            margin-top: 0;
+        }
+
+        .mobile-hero-brand {
+            display: none;
+        }
+
+        /* Mobile Layout overrides */
+        @media (max-width: 900px) {
+            .hero {
+                height: auto;
+                min-height: auto;
+                overflow: visible;
+            }
+
+            .hero-container {
+                flex-direction: column;
+                gap: 30px;
+                /* Tighter gap */
+            }
+
+            .hero-image {
+                order: -1;
+                flex: 0 0 auto;
+                /* Do not stretch, take content height */
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .hero-text {
+                order: 1;
+                flex: 0 0 auto;
+                /* Do not stretch */
+                width: 100%;
+            }
+
+            .hero-text .brand-header {
+                display: none !important;
+            }
+
+            .mobile-hero-brand {
+                display: flex !important;
+                flex-direction: row;
+                /* Horizontal Row */
+                align-items: center;
+                justify-content: center;
+                /* Center the whole block */
+                gap: 15px;
+                margin-bottom: 20px;
+                text-align: left;
+                /* Text aligns left relative to icon */
+            }
+
+            .mobile-hero-brand .app-icon {
+                width: 56px;
+                height: 56px;
+                border-radius: 14px;
+                background: var(--app-surface);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+                flex-shrink: 0;
+            }
+
+            .mobile-hero-brand .brand-text {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .mobile-hero-brand .brand-name {
+                font-size: 1.8rem;
+                line-height: 1;
+                color: #fff;
+                font-weight: 800;
+                margin-bottom: 4px;
+            }
+
+            .mobile-hero-brand h1 {
+                font-size: 0.9rem;
+                color: #fff;
+                /* WHITE */
+                font-weight: 700;
+                /* BOLD */
+                margin: 0;
+                line-height: 1.2;
+                white-space: nowrap;
+                /* Keep on one line if possible, or wrap gently */
+            }
+        }
+
+        /* Desktop Layout */
+        @media (min-width: 900px) {
+            .hero-container {
+                flex-direction: row;
+                text-align: left;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .hero-text {
+                text-align: left;
+                padding-right: 40px;
+                max-width: 50%;
+            }
+
+            .hero-image {
+                max-width: 50%;
+                margin-top: 0;
+                /* Reset for desktop */
+            }
+
+            .hero .brand-header {
+                justify-content: flex-start;
+            }
+
+            .hero p {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            /* Slightly rotate phone on desktop for style */
+            .hero .phone-frame {
+                transform: rotateY(-15deg) rotateX(5deg);
+            }
+
+            .hero .phone-frame:hover {
+                transform: rotateY(0) rotateX(0);
+            }
+
+            /* Make slogan single line on desktop */
+            .hero h1 {
+                font-size: 1.1rem;
+                /* Smaller for single line */
+                margin-bottom: 0;
+                white-space: nowrap;
+                /* Force single line */
+            }
+
+            .brand-name {
+                font-size: 2.2rem;
+                margin-bottom: 0;
+            }
+
+            .app-icon {
+                width: 64px;
+                /* Desktop: Orig Size */
+                height: 64px;
+                border-radius: 16px;
+            }
         }
 
         .brand-header {
@@ -162,24 +371,38 @@
             margin-bottom: 24px;
         }
 
+        .brand-name {
+            font-size: 1.5rem;
+            /* Mobile: Compact */
+            font-weight: 800;
+            /* Extra Bold for structure */
+            color: #fff;
+            letter-spacing: 0.5px;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+        }
+
         .app-icon {
-            width: 64px;
-            height: 64px;
+            width: 48px;
+            /* Mobile: Smaller Icon */
+            height: 48px;
             background: var(--app-surface);
-            border-radius: 16px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.05);
             overflow: hidden;
-        }
-
-        .brand-name {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 1px;
+            flex-shrink: 0;
+            /* Prevent squish */
         }
 
         .badge {
@@ -421,6 +644,7 @@
             border-radius: 3px;
             outline: none;
             -webkit-appearance: none;
+            appearance: none;
         }
 
         input[type=range]::-webkit-slider-thumb {
@@ -481,15 +705,25 @@
 
         .app-btn {
             width: 100%;
-            padding: 16px;
+            height: 56px;
+            padding: 0 32px;
             background: var(--app-primary);
-            color: #1E282A;
+            color: #fff;
             border: none;
-            border-radius: 12px;
+            border-radius: 16px;
             font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.1s;
+            box-shadow: 0 4px 10px rgba(107, 203, 119, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(107, 203, 119, 0.6);
         }
 
         .app-btn:active {
@@ -513,6 +747,34 @@
 
         footer a:hover {
             color: var(--app-primary);
+        }
+
+        /* --- CTA BUTTON (App Style) --- */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 56px;
+            padding: 0 32px;
+            background-color: var(--app-primary);
+            color: #fff !important;
+            /* Force white text */
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(107, 203, 119, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 24px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(107, 203, 119, 0.6);
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
         }
 
         /* --- COOKIE BANNER --- */
@@ -812,61 +1074,155 @@
             background: var(--app-primary);
             transform: scale(1.2);
         }
+
+        /* --- STICKY SIDE NAV --- */
+        .side-nav {
+            position: fixed;
+            top: 50%;
+            right: 40px;
+            transform: translateY(-50%) translateX(-20px);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .side-nav.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        .nav-item {
+            display: block;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: right;
+            transition: all 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            color: #fff;
+            transform: translateX(-5px);
+        }
+
+        .nav-item.active {
+            color: var(--app-primary);
+            font-size: 1.3rem;
+        }
+
+        /* Hero Text Transition */
+        .hero-text-content {
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        body.scrolled .hero-text-content {
+            opacity: 0;
+            transform: translateX(50px);
+            pointer-events: none;
+        }
+
+        /* Mobile Hide */
+        @media (max-width: 900px) {
+            .side-nav {
+                display: none !important;
+            }
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-    <!-- Language Switcher (Floating) -->
-    <nav class="lang-switch">
-        <a class="lang-opt"
-            style="cursor: pointer; margin-right: 5px; font-weight: 600; color: #FFC107; display: flex; align-items: center; gap: 6px;"
-            href="premium.html">
-            Premium
-        </a>
-        <span style="color:rgba(255,255,255,0.2)">|</span>
-        <a class="lang-opt"
-            style="cursor: pointer; margin-right: 15px; font-weight: 600; color: var(--app-primary); display: flex; align-items: center; gap: 6px;"
-            href="#app-preview" onclick="slowScrollTo(event, 'app-preview')" data-i18n="btn_preview">
-            App Vorschau
-        </a>
-        <span style="color:rgba(255,255,255,0.2)">|</span>
-        <a class="lang-opt active" id="lang-de" onclick="changeLanguage('de')">DE</a>
-        <span style="color:rgba(255,255,255,0.2)">|</span>
-        <a class="lang-opt" id="lang-en" onclick="changeLanguage('en')">EN</a>
+    <!-- Language Switcher (Robust Toggle) -->
+    <nav class="lang-switch" id="lang-switch">
+        <!-- Premium Hidden -->
+        <a href="premium.html" style="display: none;">Premium</a>
+
+        <span class="lang-btn active" id="lang-de" onclick="changeLanguage('de')">DE</span>
+        <span class="sep">|</span>
+        <span class="lang-btn" id="lang-en" onclick="changeLanguage('en')">EN</span>
     </nav>
 
     <!-- WRAPPER: Matches Reference Structure -->
     <div class="container">
 
         <!-- HERO -->
-        <section class="hero">
-            <div class="brand-header">
-                <div class="app-icon">
-                    <img src="assets/logo_main.png" alt="Icon" style="width:40px; height:auto;"
-                        onerror="this.style.display='none'; this.parentElement.innerText='e:C'">
+        <section class="hero" id="hero">
+            <div class="hero-container">
+
+                <!-- LEFT: Text -->
+                <div class="hero-text">
+
+                    <!-- MOBILE ONLY BRAND STACK -->
+                    <div class="mobile-hero-brand">
+                        <div class="app-icon">
+                            <img src="assets/logo_main.png" alt="effekt:C" style="width:36px; height:auto;">
+                        </div>
+                        <div class="brand-text">
+                            <div class="brand-name">effekt:C</div>
+                            <h1 data-i18n="hero_title">Dein High. Dein Profil. Deine Kontrolle.</h1>
+                        </div>
+                    </div>
+
+                    <div class="brand-header">
+                        <div class="app-icon">
+                            <img src="assets/logo_main.png" alt="Icon" style="width:40px; height:auto;"
+                                onerror="this.style.display='none'; this.parentElement.innerText='e:C'">
+                        </div>
+                        <div class="brand-text hero-text-content">
+                            <div class="brand-name">effekt:C</div>
+                            <h1 data-i18n="hero_title">Dein High. Dein Profil. Deine Kontrolle.</h1>
+                        </div>
+                    </div>
+
+                    <p data-i18n="hero_subtitle" class="hero-text-content">Deine persönliche Tracking-App für
+                        Cannabis-Konsum. Führe dein Cannabis-Tagebuch, verstehe die Wirkung jeder Sorte und verbessere
+                        deine Therapie – präzise, sicher und privat.</p>
+
+                    <a href="#access" onclick="slowScrollTo(event, 'access')" class="cta-button hero-text-content"
+                        data-i18n="hero_cta">
+                        Benachrichtigen lassen
+                    </a>
+
+
                 </div>
-                <div class="brand-name">effekt:C</div>
+
+                <!-- RIGHT: Phone Preview -->
+                <div class="hero-image">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <!-- Slider Track -->
+                        <div class="gallery-track" id="gallery-track">
+                            <div class="gallery-slide"><img src="assets/screen_1.png" alt="Screen 1"></div>
+                            <div class="gallery-slide"><img src="assets/screen_2.png" alt="Screen 2"></div>
+                            <div class="gallery-slide"><img src="assets/screen_3.png" alt="Screen 3"></div>
+                            <div class="gallery-slide"><img src="assets/screen_4.png" alt="Screen 4"></div>
+                            <div class="gallery-slide"><img src="assets/screen_5.png" alt="Screen 5"></div>
+                        </div>
+                    </div>
+                    <!-- Dots -->
+                    <div class="gallery-dots" id="gallery-dots">
+                        <div class="dot active" onclick="goToSlide(0)"></div>
+                        <div class="dot" onclick="goToSlide(1)"></div>
+                        <div class="dot" onclick="goToSlide(2)"></div>
+                        <div class="dot" onclick="goToSlide(3)"></div>
+                        <div class="dot" onclick="goToSlide(4)"></div>
+                    </div>
+                </div>
+
             </div>
-
-            <span class="badge" data-i18n="beta_badge">Closed Beta</span>
-
-            <h1 data-i18n="hero_title">Dein High. Dein Profil. Deine Kontrolle.</h1>
-
-            <p data-i18n="hero_subtitle">Die Tracking-App für Cannabis-Konsum "made in Germany". Verstehe deine
-                persönliche Wirkung präzise und
-                sicher - ohne Login-Zwang oder Datenverkäufe.</p>
-
-            <a href="#access" onclick="slowScrollTo(event, 'access')"
-                style="color: var(--app-primary); text-decoration: none; font-weight: 500; margin-top: 20px; border-bottom: 1px solid var(--app-primary); padding-bottom: 2px;"
-                data-i18n="hero_cta">
-                Zugang anfordern &darr;
-            </a>
         </section>
 
         <!-- FEATURE 1: DEIN HIGH -->
-        <section>
+        <section id="feature-high">
             <div style="text-align: center; margin-bottom: 40px;">
                 <h2 data-i18n="feature_high_title">Dein High.</h2>
                 <p data-i18n="feature_high_desc">Cannabis wirkt komplex und kein High ist gleich. effekt:C macht den
@@ -893,7 +1249,7 @@
         </section>
 
         <!-- FEATURE 2: DEIN PROFIL (Chart) -->
-        <section id="chart-section">
+        <section id="feature-profile">
             <div style="text-align: center; margin-bottom: 20px;">
                 <h2 data-i18n="feature_profile_title">Dein Profil.</h2>
                 <p data-i18n="feature_profile_desc">Wähle eine Sorte und bewerte die Effekte während und nach jedem
@@ -974,7 +1330,7 @@
         </section>
 
         <!-- FEATURE 3: KONTROLLE -->
-        <section>
+        <section id="feature-control">
             <div style="text-align: center;">
                 <h2 data-i18n="feature_control_title">Deine Kontrolle.</h2>
                 <p data-i18n="feature_control_desc">Keine Experimente mit deinen Daten. Wir nutzen bewährte Standards.
@@ -1030,32 +1386,17 @@
             </div>
         </section>
 
-        <!-- APP PREVIEW (PHONE GALLERY) -->
-        <section id="app-preview" class="phone-section">
-            <h2 data-i18n="gallery_title">App Vorschau</h2>
-            <br>
-            <div class="phone-frame">
-                <div class="phone-notch"></div>
-                <!-- Slider Track -->
-                <div class="gallery-track" id="gallery-track">
-                    <div class="gallery-slide"><img src="assets/screen_1.png" alt="Screen 1"></div>
-                    <div class="gallery-slide"><img src="assets/screen_2.png" alt="Screen 2"></div>
-                    <div class="gallery-slide"><img src="assets/screen_3.png" alt="Screen 3"></div>
-                    <div class="gallery-slide"><img src="assets/screen_4.png" alt="Screen 4"></div>
-                    <div class="gallery-slide"><img src="assets/screen_5.png" alt="Screen 5"></div>
-                </div>
-            </div>
-            <!-- Dots -->
-            <div class="gallery-dots" id="gallery-dots">
-                <div class="dot active" onclick="goToSlide(0)"></div>
-                <div class="dot" onclick="goToSlide(1)"></div>
-                <div class="dot" onclick="goToSlide(2)"></div>
-                <div class="dot" onclick="goToSlide(3)"></div>
-                <div class="dot" onclick="goToSlide(4)"></div>
-            </div>
-        </section>
+
 
     </div><!-- END CONTAINER -->
+
+    <!-- SIDE NAV -->
+    <nav class="side-nav" id="sideNav">
+        <a href="#hero" class="nav-item active" onclick="slowScrollTo(event, 'hero')">effekt:C</a>
+        <a href="#feature-high" class="nav-item" onclick="slowScrollTo(event, 'feature-high')">Dein High.</a>
+        <a href="#feature-profile" class="nav-item" onclick="slowScrollTo(event, 'feature-profile')">Dein Profil.</a>
+        <a href="#feature-control" class="nav-item" onclick="slowScrollTo(event, 'feature-control')">Deine Daten.</a>
+    </nav>
 
     <footer>
         <p>&copy; 2026 effekt:C</p>
@@ -1186,33 +1527,33 @@
                 gallery_title: "App Vorschau",
                 beta_badge: "Coming Soon",
                 hero_title: "Dein High. Dein Profil. Deine Kontrolle.",
-                hero_subtitle: "Die Tracking-App für Cannabis-Konsum \"made in Germany\". Verstehe deine persönliche Wirkung präzise und sicher - ohne Login-Zwang oder Datenverkäufe.",
-                hero_cta: "Benachrichtigen lassen &darr;",
+                hero_subtitle: "Deine persönliche Tracking-App für Cannabis-Konsum. Führe dein Cannabis-Tagebuch, verstehe die Wirkung jeder Sorte und verbessere deine Therapie – präzise, sicher und privat.",
+                hero_cta: "Benachrichtigen lassen",
                 btn_preview: "App Vorschau",
-                feature_high_title: "Dein High.",
-                feature_high_desc: "Cannabis wirkt komplex und kein High ist gleich. effekt:C macht den Unterschied für dich sichtbar.",
-                tile1_title: "Detaillierte Selbstanalyse",
-                tile1_desc: "Identifiziere exakt die besten Strains für dich und die jeweilig gewünschten Effekte.",
-                tile2_title: "Verstehe was hilft",
-                tile2_desc: "Verlass dich nicht auf vage Händler-Angaben. Baue deine eigene Wissensdatenbank auf.",
-                tile3_title: "Cannabis-Tagebuch",
-                tile3_desc: "Tracke deinen Konsum und behalte immer den Überblick über deine Sorten und Sessions.",
-                feature_profile_title: "Dein Profil.",
-                feature_profile_desc: "Wähle eine Sorte und bewerte die Effekte während und nach jedem Konsum.",
+                feature_high_title: "Verstehe deine Cannabis Wirkung",
+                feature_high_desc: "Die Wirkung ist komplex. Mit deinem persönlichen Cannabis Journal machst du die Unterschiede sichtbar.",
+                tile1_title: "Wirkung & Effekte",
+                tile1_desc: "Analysiere genau, welche Sorten dir am besten helfen. Verstehe den Zusammenhang zwischen Dosis, Sorte und Wirkung.",
+                tile2_title: "Dein Cannabis Logbook",
+                tile2_desc: "Vergiss nie wieder eine gute Sorte oder die perfekte Dosis. Baue deine eigene Wissensdatenbank auf.",
+                tile3_title: "Privates Tagebuch",
+                tile3_desc: "Behalte den vollen Überblick über deinen Konsumverlauf. Dein Tagebuch hilft dir, Muster zu erkennen und deine Therapie zu optimieren.",
+                feature_profile_title: "Dein persönliches Wirkungsprofil",
+                feature_profile_desc: "Jede Sorte wirkt anders. Erstelle individuelle Profile und vergleiche die Wirkung verschiedener Cannabis-Sorten direkt miteinander.",
                 chart_sample_log: "Beispiel-Log",
                 tab_positive: "Positive Effekte",
                 tab_negative: "Negative Effekte",
                 chart_btn_save: "Speichern",
-                feature_control_title: "Deine Kontrolle.",
-                feature_control_desc: "Keine Experimente mit deinen Daten. Wir nutzen bewährte Standards.",
-                tile4_title: "Volle Datenhoheit",
-                tile4_desc: "Deine sensiblen Gesundheitsdaten bleiben lokal auf deinem Gerät in einer verschlüsselten Datenbank. Keine Cloud, kein Upload.",
-                tile5_title: "Anonym per Design",
-                tile5_desc: "Starten ohne Anmeldung: Wir nutzen kryptografische IDs statt E-Mail-Adressen. Deine Identität ist technisch von deinen Daten entkoppelt.",
-                tile6_title: "Sicherheit \"Made in Germany\"",
-                tile6_desc: "Entwickelt und gehostet in Deutschland nach strengen DSGVO-Standards. Wir garantieren: Kein Datenhandel und keine versteckten Tracker.",
-                access_title: "Benachrichtigen lassen",
-                access_desc: "Wir melden uns, sobald effekt:C im App Store verfügbar ist.",
+                feature_control_title: "Deine Daten gehören dir",
+                feature_control_desc: "Keine Cloud, kein Tracking, kein Risiko. Wir garantieren Anonymität und Datenschutz nach deutschen Standards.",
+                tile4_title: "Deine privaten Daten bleiben privat",
+                tile4_desc: "Tagebucheinträge und Notizen bleiben lokal verschlüsselt. Wir nutzen lediglich anonymisierte Wirkungsdaten.",
+                tile5_title: "100% Anonym",
+                tile5_desc: "Nutzung ohne Registrierung. Keine E-Mail, kein Benutzerkonto, keine Verknüpfung.",
+                tile6_title: "Ehrlicher Datenschutz",
+                tile6_desc: "Wir verzichten auf Tracking-Tools und Datenhandel. Entwickelt in Deutschland nach strengsten Standards.",
+                access_title: "Werde Teil der Bewegung",
+                access_desc: "Sichere dir deinen Platz auf der Warteliste. 100% kostenlos und unverbindlich. Wir melden uns zum Start.",
                 ph_name: "Vorname Nachname",
                 ph_email: "Deine Email-Adresse",
                 btn_submit: "Auf die Warteliste",
@@ -1237,33 +1578,33 @@
                 gallery_title: "App Preview",
                 beta_badge: "Coming Soon",
                 hero_title: "Your High. Your Profile. Your Control.",
-                hero_subtitle: "The tracking app for cannabis consumption made in Germany. Understand your personal effect precisely and securely - without forced login or data sales.",
-                hero_cta: "Get Notified &darr;",
+                hero_subtitle: "Your personal tracking app for cannabis consumption. Keep your cannabis journal, understand the effects of every strain, and improve your therapy – precise, secure, and private.",
+                hero_cta: "Get Notified",
                 btn_preview: "App Preview",
-                feature_high_title: "Your High.",
-                feature_high_desc: "Cannabis acts simply and no high is the same. effekt:C makes the difference visible to you.",
-                tile1_title: "Detailed Self-Analysis",
-                tile1_desc: "Identify exactly the best strains for you and the desired effects.",
-                tile2_title: "Understand what helps",
-                tile2_desc: "Don't rely on vague dealer specs. Build your own knowledge base based on your individual biology.",
-                tile3_title: "Cannabis Journal",
-                tile3_desc: "Track your consumption and keep an overview of your strains and sessions.",
-                feature_profile_title: "Your Profile.",
-                feature_profile_desc: "Choose a strain and rate the effects during and after each consumption.",
+                feature_high_title: "Understand your Cannabis Effects",
+                feature_high_desc: "Effects are complex. Make the differences visible with your personal Cannabis Journal.",
+                tile1_title: "Effects & Impact",
+                tile1_desc: "Analyze exactly which strains help you best. Understand the connection between dose, strain, and effect.",
+                tile2_title: "Your Cannabis Logbook",
+                tile2_desc: "Never forget a good strain or the perfect dose again. Build your own knowledge base.",
+                tile3_title: "Private Journal",
+                tile3_desc: "Keep full overview of your consumption history. Your journal helps you recognize patterns and optimize your therapy.",
+                feature_profile_title: "Your Personal Effect Profile",
+                feature_profile_desc: "Every strain works differently. Create individual profiles and compare the effects of different cannabis strains directly.",
                 chart_sample_log: "Sample Log",
                 tab_positive: "Positive Effects",
                 tab_negative: "Negative Effects",
                 chart_btn_save: "Save",
-                feature_control_title: "Your Control.",
-                feature_control_desc: "No experiments with your data. We use proven standards.",
-                tile4_title: "Full Data Sovereignty",
-                tile4_desc: "Your sensitive health data remains locally on your device in an encrypted database. No cloud, no upload.",
-                tile5_title: "Anonymous by Design",
-                tile5_desc: "Start without registration: We use cryptographic IDs instead of emails.",
-                tile6_title: "Security \"Made in Germany\"",
-                tile6_desc: "Developed and hosted in Germany under strict GDPR standards. No data trading, no hidden trackers.",
-                access_title: "Get Notified",
-                access_desc: "We will notify you as soon as effekt:C is available in the App Store.",
+                feature_control_title: "Your Data Belongs to You",
+                feature_control_desc: "No cloud, no tracking, no risk. We guarantee anonymity and data protection according to German standards.",
+                tile4_title: "Your Private Data Stays Private",
+                tile4_desc: "Journal entries and notes remain locally encrypted. We only use anonymized effect data.",
+                tile5_title: "100% Anonymous",
+                tile5_desc: "Use without registration. No email, no user account, no linking.",
+                tile6_title: "Honest Privacy",
+                tile6_desc: "We avoid tracking tools and data trading. Developed in Germany under the strictest standards.",
+                access_title: "Join the Movement",
+                access_desc: "Secure your spot on the waitlist. 100% free and non-binding. We'll notify you at launch.",
                 ph_name: "First Name Last Name",
                 ph_email: "Your Email Address",
                 btn_submit: "Join Waitlist",
@@ -1286,7 +1627,7 @@
 
         function changeLanguage(lang) {
             currentLang = lang;
-            document.querySelectorAll('.lang-opt').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
             document.getElementById(`lang-${lang}`).classList.add('active');
 
             const t = translations[lang];
@@ -1311,6 +1652,27 @@
 
             // Re-render chart sliders for translated labels if needed
             renderSliders();
+        }
+
+        // --- LANGUAGE SWITCHER LOGIC ---
+        function toggleLangMenu() {
+            const menu = document.getElementById('lang-menu');
+            menu.classList.toggle('collapsed');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (event) {
+            const langSwitch = document.getElementById('lang-switch');
+            const menu = document.getElementById('lang-menu');
+            if (!langSwitch.contains(event.target)) {
+                menu.classList.add('collapsed');
+            }
+        });
+
+        function selectLanguage(event, lang) {
+            event.stopPropagation(); // Stop bubbling to nav onclick
+            changeLanguage(lang);
+            document.getElementById('lang-menu').classList.add('collapsed');
         }
 
         // --- DATA CONFIG ---
@@ -1623,6 +1985,48 @@
 
         // Init Chart with Lemon Haze
         selectStrain('lemonHaze', document.querySelector('.strain-chip'));
+        // --- SCROLL SPY & STICKY NAV ---
+        const navLinks = document.querySelectorAll('.nav-item');
+        const sections = [
+            document.getElementById('hero'),
+            document.getElementById('feature-high'), // Ensure ID is added
+            document.getElementById('feature-profile'), // Ensure ID is added
+            document.getElementById('feature-control')  // Ensure ID is added
+        ];
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const heroHeight = document.getElementById('hero').offsetHeight;
+
+            // Toggle Nav Visibility
+            if (scrollY > heroHeight * 0.3) {
+                document.getElementById('sideNav').classList.add('active');
+                document.body.classList.add('scrolled');
+            } else {
+                document.getElementById('sideNav').classList.remove('active');
+                document.body.classList.remove('scrolled');
+            }
+
+            // Simple ScrollSpy
+            let current = '';
+            sections.forEach(section => {
+                if (!section) return;
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            // Map IDs to Nav Links (fallback if IDs don't match hrefs exactly, but here they do)
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
     </script>
 </body>
 
