@@ -10,6 +10,7 @@ const translations = {
             footer_copyright: "&copy; 2024 effekt:C. Alle Rechte vorbehalten.",
             footer_imprint: "Impressum",
             footer_privacy: "Datenschutz",
+            footer_terms: "AGB",
             footer_disclaimer: "Hinweis: Diese App fördert keinen Drogenkonsum. Bitte informiere dich über die geltenden Gesetze in deiner Region.",
             btn_app_store: "Laden im",
             btn_google_play: "JETZT BEI"
@@ -59,6 +60,7 @@ const translations = {
             footer_copyright: "&copy; 2024 effekt:C. All rights reserved.",
             footer_imprint: "Imprint",
             footer_privacy: "Privacy Policy",
+            footer_terms: "Terms & Conditions",
             footer_disclaimer: "Note: This app does not encourage drug use. Please inform yourself about applicable laws in your region.",
             btn_app_store: "Download on the",
             btn_google_play: "GET IT ON"
@@ -119,7 +121,7 @@ function changeLanguage(lang) {
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
         const parts = key.split('.');
-        
+
         let translation = translations[lang];
         for (const part of parts) {
             translation = translation ? translation[part] : null;
@@ -134,10 +136,20 @@ function changeLanguage(lang) {
         }
     });
 
+    // Update Footer Links
+    const suffix = lang === 'en' ? '_en.html' : '.html';
+    const imprintLink = document.getElementById('footer-imprint');
+    const privacyLink = document.getElementById('footer-privacy');
+    const termsLink = document.getElementById('footer-terms');
+
+    if (imprintLink) imprintLink.href = `impressum${suffix}`;
+    if (privacyLink) privacyLink.href = `datenschutz${suffix}`;
+    if (termsLink) termsLink.href = `agb${suffix}`;
+
     // Update Language Switcher UI
     document.getElementById('lang-de').classList.toggle('active', lang === 'de');
     document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-    
+
     // Trigger custom event for page-specific JS (like charts)
     document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
 }
