@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <!-- shrink-to-fit=no hilft Safari/Chrome auf iOS/Android beim Skalieren -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>effekt:C | Dein High. Dein Profil. Deine Kontrolle.</title>
+    <title>effekt:C | Cannabis Tagebuch</title>
 
     <!-- FAVICON -->
     <link rel="icon" type="image/png" href="assets/logo_main.png">
     <link rel="apple-touch-icon" href="assets/logo_main.png">
 
-    <meta name="description" content="Tracking für Cannabis-Patienten. Dein High. Dein Profil. Deine Kontrolle.">
+    <meta name="description" content="Tracking für Cannabis-Patienten. Cannabis Tagebuch.">
 
     <!-- Fonts: Roboto (App Standard) -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -350,11 +350,12 @@
             }
 
             .mobile-hero-brand .brand-name {
-                font-size: 1.8rem;
+                font-size: clamp(1.2rem, 5.5vw, 1.8rem);
                 line-height: 1;
                 color: #fff;
                 font-weight: 800;
                 margin-bottom: 2px;
+                white-space: nowrap;
             }
 
             .mobile-hero-brand h1 {
@@ -436,7 +437,7 @@
         }
 
         .brand-name {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
             /* Mobile: Compact */
             font-weight: 800;
             /* Extra Bold for structure */
@@ -444,6 +445,7 @@
             letter-spacing: 0.5px;
             line-height: 1;
             margin-bottom: 2px;
+            white-space: nowrap;
         }
 
         .brand-text {
@@ -1318,7 +1320,7 @@
                         </div>
                         <div class="brand-text">
                             <div class="brand-name">effekt:C</div>
-                            <h1 data-i18n="hero_title">Dein High. Dein Profil. Deine Kontrolle.</h1>
+                            <h1 data-i18n="hero_title" style="font-weight: 400;">Cannabis Tagebuch</h1>
                         </div>
                     </div>
 
@@ -1329,7 +1331,7 @@
                         </div>
                         <div class="brand-text">
                             <div class="brand-name">effekt:C</div>
-                            <h1 data-i18n="hero_title">Dein High. Dein Profil. Deine Kontrolle.</h1>
+                            <h1 data-i18n="hero_title" style="font-weight: 400;">Cannabis Tagebuch</h1>
                         </div>
                     </div>
 
@@ -1711,13 +1713,13 @@
         // --- TRANSLATIONS (DE / EN) ---
         const translations = {
             de: {
-                page_title: "effekt:C | Dein High. Dein Profil. Deine Kontrolle.",
+                page_title: "effekt:C | Cannabis Tagebuch",
                 premium_title: "Hol dir das volle Erlebnis",
                 premium_desc: "Detaillierte Analysen, exportierbare Daten und mehr.",
                 premium_btn: "Premium Features ansehen",
                 gallery_title: "App Vorschau",
                 beta_badge: "Coming Soon",
-                hero_title: "Dein High. Dein Profil. Deine Kontrolle.",
+                hero_title: "Cannabis Tagebuch",
                 hero_subtitle: "Deine persönliche Tracking-App für Cannabis-Konsum. Führe dein Cannabis-Tagebuch, verstehe die Wirkung jeder Sorte und verbessere deine Therapie – präzise, sicher und privat.",
                 hero_cta: "App herunterladen",
                 btn_preview: "App Vorschau",
@@ -1771,13 +1773,13 @@
                 footer_privacy: "Datenschutz"
             },
             en: {
-                page_title: "effekt:C | Your High. Your Profile. Your Control.",
+                page_title: "effekt:C | Cannabis Journal",
                 premium_title: "Get the full experience",
                 premium_desc: "Detailed insights, data export, and more.",
                 premium_btn: "View Premium Features",
                 gallery_title: "App Preview",
                 beta_badge: "Coming Soon",
-                hero_title: "Your High. Your Profile. Your Control.",
+                hero_title: "Cannabis Journal",
                 hero_subtitle: "Your personal tracking app for cannabis consumption. Keep your cannabis journal, understand the effects of every strain, and improve your therapy – precise, secure, and private.",
                 hero_cta: "Download App",
                 btn_preview: "App Preview",

@@ -16,7 +16,7 @@ const translations = {
             btn_google_play: "JETZT BEI"
         },
         index: {
-            hero_title: "Dein High. Dein Profil. Deine Kontrolle.",
+            hero_title: "Cannabis Tagebuch",
             hero_subtitle: "Erfasse Wirkungen, entdecke Muster und finde genau die Sorten, die zu dir passen. Deine, private, Cannabis-Datenbank.",
             feature_1_title: "Wirkungsprofile",
             feature_1_desc: "Dokumentiere exakt, wie verschiedene Sorten auf dich wirken – von Fokus bis Entspannung.",
@@ -66,7 +66,7 @@ const translations = {
             btn_google_play: "GET IT ON"
         },
         index: {
-            hero_title: "Your High. Your Profile. Your Control.",
+            hero_title: "Cannabis Journal",
             hero_subtitle: "Track effects, discover patterns, and find exactly the strains that suit you. Your private cannabis database.",
             feature_1_title: "Effect Profiles",
             feature_1_desc: "Document exactly how different strains affect you – from focus to relaxation.",
